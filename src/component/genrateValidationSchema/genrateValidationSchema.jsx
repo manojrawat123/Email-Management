@@ -17,6 +17,18 @@ const generateValidationSchema = (inputFields) => {
       validationObject[field.name] = Yup.boolean().oneOf([true, false], `You must be ${field.label || field.name}`);
     }
 
+    if (field.type == "number"){
+      if (field.minLength && field.maxLength){
+        validationObject[field.name] = Yup.number().test('len', 'Invalid Number', value => {
+          const length = value.toString().length;
+          return length > field['minLength'] && length < field['maxLength'];
+           });
+      }
+      else{
+        validationObject[field.name] = Yup.number().required()
+      }
+    }
+
     if (field.name == "password2"){
       validationObject[field.name] = Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -31,15 +43,15 @@ const generateValidationSchema = (inputFields) => {
     if (field.name == "experience") {
       validationObject[field.name] = Yup.number().max(5);
     }
-    if (field.type == "dynamic" || field.type == "array"){
+    // if (field.type == "dynamic" || field.type == "array"){
 
-      if (field.name == "job_categoery" || field.name == "sub_categoery" || field.name == "skill_name"){
-        validationObject[field.name] = Yup.object();
-      }
-      else{
-        validationObject[field.name] = Yup.array().min(1, "Please Select One Skill");
-      }
-    }
+    //   if (field.name == "job_categoery" || field.name == "sub_categoery" || field.name == "skill_name"){
+    //     validationObject[field.name] = Yup.object();
+    //   }
+    //   else{
+    //     validationObject[field.name] = Yup.array().min(1, "Please Select One Skill");
+    //   }
+    // }
   });
 
   return Yup.object().shape(validationObject);

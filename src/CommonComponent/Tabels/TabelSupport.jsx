@@ -6,17 +6,20 @@ import { split } from 'postcss/lib/list';
 import { API_BASE_URL } from '../../config';
 import { useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
+import DeleteConfirm from '../../component/ConfirmButton/DeleteConfirm';
 
 const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc, query }) => {
 
 
   const [deleteButton, setDeleteButton] = useState();
   const [isModalOpen, setIsModalOpen] = useState();
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const filterTabel = topTableHeading.filter(item => item.label !== "Action");
 
   return (
     <>
+    {confirmDelete ? <DeleteConfirm url_route={url_route} id={row_data.id} getFunc={getFunc} query={query} setConfirmDelete={setConfirmDelete}/> : null}
       <EditModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
@@ -37,26 +40,9 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
               >Edit</button>
               <button className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
                 onClick={() => {
-                  setDeleteButton(true);
-                  const token = Cookies.get("token");
-                  axios.delete(`${API_BASE_URL}/${url_route}/${row_data.id}/`, {headers :{"Authorization" : `Bearer ${token}`}}).then(() => {
-                    // getCustomerFunction();
-                    if (query) {
-                      getFunc(query);
-                    }
-                    else {
-                      getFunc();
-                    }
-                    toast.success("Customer Deleted");
-
-                  }).catch((err) => {
-                    console.log(err);
-                    toast.error();
-                  }).finally(() => {
-                    setDeleteButton(false);
-                  })
+                  setConfirmDelete(true);
                 }}
-              >{deleteButton ? <CircularProgress size={19} color='inherit' /> : "Delete"}</button>
+              >{deleteButton ? <CircularProgress size={19} color='inherit' /> : "De-Activate"}</button>
             </td>
           }
           return <>{ (element.label == "Increment" && !row_data[element.name])  ?

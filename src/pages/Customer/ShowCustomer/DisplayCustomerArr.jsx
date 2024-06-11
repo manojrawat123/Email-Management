@@ -66,7 +66,7 @@ const displayCustomerHeading = [
         required: true,
         display : false,
         // value: "Default",
-        name: "rates_email",
+        name: "legal_email",
         icon: <Mail className={iconCss} />
     },
     {

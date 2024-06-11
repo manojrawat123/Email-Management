@@ -8,12 +8,14 @@ import { API_BASE_URL } from '../../config';
 import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import { DataContext } from '../../context';
+import EditConfirm from '../../component/ConfirmButton/ConfirmEdit';
 
 
 const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_route, query }) => {
 
     const [button, setAddButton] = useState(false);
-
+    const [confirmEdit, setConfirmEdit] = useState(false);
+    const [editData, setEditData] = useState();
     const formArr = topTableHeading?.map((element, index) => {
         return {
             ...element,
@@ -27,27 +29,14 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
 
     return (
         <div className=''>
+            {confirmEdit ? <EditConfirm url_route={url_route} id={row_data.id} getFunc={getFunc} query={query} setConfirmEdit={setConfirmEdit} editData={editData} setIsModalOpen={setIsModalOpen} /> : null}
             <Formik
                 initialValues={initialValues}
-                onSubmit={(values, { resetForm }) => {
-                    setAddButton(true);
-                    axios.put(`${API_BASE_URL}/${url_route}/${row_data["id"]}/`, values, authHeader).then((val)=>{
-                        if(query){
-                            getFunc(query);
-                        }
-                        else{
-                            getFunc();
-                        }
-                        setIsModalOpen(false);
-                        toast.success("Top Route Updated Successfully!!", {position : "top-center"});
-
-                    }).catch((err)=>{
-                        console.log(err);
-                    }).finally(()=>{
-                        setAddButton(false);
-                    })
-                }}
                 validationSchema={validationSchema}
+                onSubmit={(values, { resetForm }) => {
+                    setEditData(values)
+                    setConfirmEdit(true)
+                }}
             >
                 {({
                     values,
@@ -69,8 +58,7 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
                                         <div className={"w-full relative col-span-1 "}>
                                             {element.icon}
                                             <Field
-                                                defaultValues={"Hii"}
-                                                type={element.type ? element.type : 'text'}
+                                                // type={element.type ? element.type : 'text'}
                                                 name={element.name}
                                                 placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
                                                 className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"

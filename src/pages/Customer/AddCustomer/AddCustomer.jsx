@@ -27,15 +27,15 @@ const AddCustomer = () => {
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
-                        onSubmit={(values, {resetForm}) => {
+                        onSubmit={(values, { resetForm }) => {
                             setAddButton(true);
-                            axios.post(`${API_BASE_URL}/customer/`, values, authHeader).then((res)=>{
-                            resetForm();
-                            toast.success("Customer Added Successfully!!", {position : "top-center"});
-                            }).catch((error)=>{
+                            axios.post(`${API_BASE_URL}/customer/`, values, authHeader).then((res) => {
+                                resetForm();
+                                toast.success("Customer Added Successfully!!", { position: "top-center" });
+                            }).catch((error) => {
                                 console.log(error);
                                 handleErrorsFunc(error);
-                            }).finally(()=>{
+                            }).finally(() => {
                                 setAddButton(false);
                             })
                         }}

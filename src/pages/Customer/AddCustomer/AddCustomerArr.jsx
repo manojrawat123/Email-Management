@@ -76,6 +76,8 @@ const customerFieldsArr = [
         'type': 'number',
         'id': 'ManagerPhone',
         'name': 'manager_phone',
+        'minLength' : 7,
+        'maxLength' : 20,
         'required': true,
         'placeholder': 'Enter Manager Phone',
         'icon' :  <Phone className={iconCss}/>
