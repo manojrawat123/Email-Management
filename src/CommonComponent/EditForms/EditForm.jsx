@@ -1,0 +1,107 @@
+import React, { useContext, useState } from 'react'
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { CircularProgress } from '@mui/material';
+import genrateInitalValues from '../../component/genrateInitalValues/GenrateInitalValues';
+import generateValidationSchema from '../../component/genrateValidationSchema/genrateValidationSchema';
+import axios from 'axios';
+import { API_BASE_URL } from '../../config';
+import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
+import { DataContext } from '../../context';
+
+
+const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_route, query }) => {
+
+    const [button, setAddButton] = useState(false);
+
+    const formArr = topTableHeading?.map((element, index) => {
+        return {
+            ...element,
+            value: row_data[element.name]
+        }
+    });
+
+    const initialValues = genrateInitalValues(formArr);
+    const validationSchema = generateValidationSchema(formArr);
+    const { authHeader } = useContext(DataContext);
+
+    return (
+        <div className=''>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={(values, { resetForm }) => {
+                    setAddButton(true);
+                    axios.put(`${API_BASE_URL}/${url_route}/${row_data["id"]}/`, values, authHeader).then((val)=>{
+                        if(query){
+                            getFunc(query);
+                        }
+                        else{
+                            getFunc();
+                        }
+                        setIsModalOpen(false);
+                        toast.success("Top Route Updated Successfully!!", {position : "top-center"});
+
+                    }).catch((err)=>{
+                        console.log(err);
+                    }).finally(()=>{
+                        setAddButton(false);
+                    })
+                }}
+                validationSchema={validationSchema}
+            >
+                {({
+                    values,
+                    handleSubmit,
+                    resetForm,
+                    setFieldValue,
+                    handleBlur,
+                }) => (
+                    <Form encType="multipart/form-data">
+                        <div className="mb-4 grid md:grid-cols-2 grid-cols-1 gap-4 p-4">
+                            {topTableHeading.map((element, index) => {
+                                if (element.name == "Action") return;
+                                return (
+                                    <div className="" key={index}>
+                                        <h4 className="text-blue-600 mb-2">
+                                            {element.placeholder}
+                                            {element.required ? <span className="text-red-500">*</span> : <span className="text-gray-700"> (Optional)</span>}
+                                        </h4>
+                                        <div className={"w-full relative col-span-1 "}>
+                                            {element.icon}
+                                            <Field
+                                                defaultValues={"Hii"}
+                                                type={element.type ? element.type : 'text'}
+                                                name={element.name}
+                                                placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            />
+                                        </div>
+                                        <ErrorMessage
+                                            name={element.name}
+                                            component="div"
+                                            className="text-red-500"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        <div className="mb-4 mx-5">
+                            <button
+                                type="submit"
+                                className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
+                            >
+                                {button ? (
+                                    <CircularProgress size={19} color="inherit" />
+                                ) : (
+                                    "Update"
+                                )}
+                            </button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
+        </div>
+    )
+}
+
+export default EditForms
