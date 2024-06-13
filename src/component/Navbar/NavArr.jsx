@@ -85,13 +85,22 @@ const navBarArr = [
         label: "Event",
         options: [
             {
-                id: "7a",
-                label: "Send Email",
-                link: '/emailsender'
+                id : "7a",
+                label : "Send Top Route",
+                link : '/emailsender'
+            },
+            {
+                id : "7b",
+                label : "Schedule Top Route"
+            },
+            {
+                id : "7b",
+                label : "Send Rate",
+                link : "/send-rate-email"
             },
             {
                 id: "7b",
-                label: "Schedule Email"
+                label: "Schedule Rate"
             },
         ]
     },

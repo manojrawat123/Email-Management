@@ -1,32 +1,62 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import TabelSupport from './TabelSupport';
 import Loading from '../../component/LoadingSpinner/LoadingSpinner';
+import { useLocation } from 'react-router-dom';
 
 const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url_route, title }) => {
 
-
-// const filterTabelHeading = topTableHeading?.filter(element => element.display == true);
+  const [search, setSearch] = useState('all');
+  const [filterTabelObj, setFilterTabelObj] = useState(tabelObj);
+  const location = useLocation();
+  // const filterTabelHeading = topTableHeading?.filter(element => element.display == true);
+  useEffect(()=>{
+    setFilterTabelObj(tabelObj);
+  },[tabelObj]);
+  
   if (!tabelObj || !topTableHeading) {
-    <Loading />
+    return <Loading />
   }
-console.log(tabelObj)
+
   return (
     <div className='my-5 mx-4'>
       <>
         <ToastContainer />
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">{title}<span className="font-semibold text-2xl">{query ?  "-" : null }{query?.country_name}  </span></h1>
+        <div>
+          <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">{title}<span className="font-semibold text-2xl">{query ? "-" : null}{query?.country_name} </span>
+          </h1>
+          {'active' in tabelObj[0] ? <select
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              if (e.target.value == "all") {
+                setFilterTabelObj(tabelObj);
+              }
+              else {
+                console.log(e.target.value)
+                console.log(true === e.target.value);
+                const filterObjs = tabelObj?.filter((element) => element.active === (e.target.value === 'true'));
+                console.log(filterObjs);
+                setFilterTabelObj(filterObjs);
+              }
+            }}
+          >
+            <option value={'all'}>Show All</option>
+            <option value={true}>Active</option>
+            <option value={false}>Non Active</option>
+          </select> : null}
+        </div>
         <table className="min-w-full  bg-white shadow-md rounded-lg overflow-hidden text-gray-700">
           <thead className="bg-gray-200">
             <tr>
               {topTableHeading?.map((element, index) => {
-                return element.display == false ? null :<th className="text-center py-2 px-4 border-b ">{element.label}</th>
+                return element.display == false ? null : <th className="text-center py-2 px-4 border-b ">{element.label}</th>
               })}
             </tr>
           </thead>
           <tbody>
-            {tabelObj?.map((element, index) => {
-              return <TabelSupport row_data={element} topTableHeading={topTableHeading} EditModal={EditModal} url_route={url_route} getFunc={getFunc} query={query}/>
+            {filterTabelObj?.map((element, index) => {
+              return <TabelSupport row_data={element} topTableHeading={topTableHeading} EditModal={EditModal} url_route={url_route} getFunc={getFunc} query={query} />
             })}
           </tbody>
         </table>

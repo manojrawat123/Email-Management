@@ -15,9 +15,25 @@ const emailConfirmArr = [
     {
         "type" : "text",
         "required" : true,
-        "name" : "body",
-        "id" : "body",
-        "placeholder" : "Body",
+        "name" : "template_body_before",
+        "id" : "template_body_before",
+        "placeholder" : "Template Before Message",
+        "icon" : <ListIcon className={iconCss}/>
+    },
+    {
+        "type" : "text",
+        "required" : true,
+        "name" : "template_body_after",
+        "id" : "template_body_after",
+        "placeholder" : "Template After Message",
+        "icon" : <ListIcon className={iconCss}/>
+    },
+    {
+        "type" : "text",
+        "required" : true,
+        "name" : "signatures",
+        "id" : "signatures",
+        "placeholder" : "Signature",
         "icon" : <ListIcon className={iconCss}/>
     },
     {

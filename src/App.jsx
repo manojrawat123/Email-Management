@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import RateManagmentForm from './pages/ratemanagement/RateManagmentForm'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import EmailSender from './pages/EmailSender/EmailSender'
+import EmailSender from './pages/RouteEmail/EmailSender'
 import Navbar from './component/Navbar/Navbar'
 import AddCustomer from './pages/Customer/AddCustomer/AddCustomer'
 import UpdateRate from './pages/ratemanagement/UpdateRate/UpdateRate'
@@ -17,6 +17,7 @@ import Register from './component/registerComp/Register'
 import DisplayUser from './pages/display_user/DisplayUser'
 import ResetPassword from './component/LoginComponent/ResetPassword/ResetPassword'
 import RouteDeleteUpdate from './pages/TopRoute/RouteDeleteUpdate/RouteDeleteUpdate'
+import RateEmail from './pages/RateEmail/RateEmail'
 
 function App() {
 
@@ -49,6 +50,9 @@ function App() {
 
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/emailsender' Component={EmailSender} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/send-rate-email' Component={RateEmail} />
         </Route>
 
         <Route path='' Component={ProtectedRoutes}>

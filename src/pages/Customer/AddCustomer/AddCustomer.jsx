@@ -95,49 +95,4 @@ const AddCustomer = () => {
 }
 
 
-
-
-
-//     <Formik
-//     initialValues={initialValues}
-//     onSubmit={addExperienceDetailsFunc}
-//     validationSchema={validationSchema}
-//   >
-//     {({
-//       values,
-//       handleSubmit,
-//       resetForm,
-//       setFieldValue
-//     }) => (
-//       <Form encType="multipart/form-data">
-//         <div className="mb-4 grid md:grid-cols-2 grid-cols-1 gap-4 p-4">
-//           {JobExperienceInputArr.map((element, index) => {
-//             return (
-//               <div className="" key={index}>
-//                 <h4 className="text-blue-600 mb-2">
-//                     {element.placeholder}{" "}
-//                   <span className="text-red-500">*</span>
-//                 </h4>
-//                 <div className={"w-full relative col-span-1 "}>
-//                   {element.icon}
-//                   <Field
-//                     type={element.type}
-//                     name={element.name}
-//                     placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
-//                     required
-//                     className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
-//                   />
-//                 </div>
-//                 <ErrorMessage
-//                   name={element.name}
-//                   component="div"
-//                   className="text-red-500"
-//                 />
-//               </div>
-//             );
-//           })}
-//         </div>
-//       </Form>
-//     )}
-//   </Formik>
 export default AddCustomer

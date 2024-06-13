@@ -7,7 +7,6 @@ const genrateInitalValues = (inputArr)=>{
         else{
             initalValues[element.name] = element.value
         }
-        // console.log(element.value)
     });
     return initalValues;
 }

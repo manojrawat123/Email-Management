@@ -3,20 +3,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
-import genrateInitalValues from '../../../../component/genrateInitalValues/GenrateInitalValues';
-import generateValidationSchema from '../../../../component/genrateValidationSchema/genrateValidationSchema';
-import { API_BASE_URL } from '../../../../config';
+import genrateInitalValues from '../../../component/genrateInitalValues/GenrateInitalValues';
+import generateValidationSchema from '../../../component/genrateValidationSchema/genrateValidationSchema';
+import { API_BASE_URL } from '../../../config';
 import emailConfirmArr from './EmailConfirmArr';
-import { DataContext } from '../../../../context';
+import { DataContext } from '../../../context';
 import Select from "react-select";
-import Loading from '../../../../component/LoadingSpinner/LoadingSpinner';
-import EmailLastConfirm from './EmailLastConfirm/EmailLastConfirm';
+import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
+import EmailLastConfirm from '../../../CommonComponent/DynamicForm/ConfirmEmailModal/EmailLastConfirm';
 
 
 const EmailConfirmForm = ({ setIsModalOpen, data }) => {
-
+    
     const initialValues = genrateInitalValues(emailConfirmArr);
-    const validationSchema = generateValidationSchema(emailConfirmArr);
     const [addButton, setAddButton] = useState(false);
     const { emailSenderPageObj, getTopRouteFunc, topRouteTable, setTopRouteTable } = useContext(DataContext);
     const [showConfirmEmail, setShowConfirmEmail] = useState(false);
@@ -29,12 +28,16 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
             const customer = values["to"].map((element, index) => { return element.value });
             console.log(customer);
             formData.append("sendTo", customer);
-            formData.append("message", topRouteTable?.html_data);
+            const final_html_format = `<h4>${values['template_body_before']}</h4>
+        ${topRouteTable?.html_data}
+            <h4>${values['template_body_after']}</h4>
+            <h4>${values['signatures']}</h4>
+            `
+            formData.append("message",final_html_format);
             formData.append("template_id", data.template_id);
             if (data["attachement"]){
                 formData.append("attachement", data["attachement"]);
             }
-           
             Object.entries(values).forEach(([key, value]) => {
                 if (key != 'to') {
                     formData.append(key, value);
@@ -54,9 +57,16 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
 
     useEffect(() => {
         if (data.top_routes != "") {
-            getTopRouteFunc({
-                route_id: data.top_routes
-            });
+            if (data.rate_country != "undefined" || !data.rate_country){
+                getTopRouteFunc({
+                    country_name : data.top_routes
+                });
+            }
+            else{
+                getTopRouteFunc({
+                    route_id: data.top_routes
+                });
+            }
         }
         else {
             setTopRouteTable([])
@@ -68,7 +78,9 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
             ...prevValues,
             "to": defaultOptions,
             "subject": data.header,
-            'body': data.body
+            'template_body_before' : data.template_body_before,
+            'template_body_after' : data.template_body_after,
+            'signatures' : data.signatures
         }))
     }, []);
 
@@ -79,7 +91,7 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
     return (
         <div>
             {showConfirmEmail ? <EmailLastConfirm setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} /> : null}
-            <ToastContainer />
+
             <div className="w-[100%]">
                 <div className="sm:w-[80%] w-[90%] mx-auto bg-white rounded-lg shadow-2xl border border-t-0 border-solid border-gray-300">
                     <h2 className="font-bold text-3xl  px-6  text-gray-800 text-center">
@@ -114,10 +126,7 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
                                                 isSearchable={true}
                                                 isMulti
                                                 isClearable={true}
-                                                onChange={(selectedOptions) => {
-                                                    const selectedValues = selectedOptions.map(option => option.value);
-                                                    formik.setFieldValue(element.name, selectedValues);
-                                                }}
+                                                
                                                 defaultValue={defaultOptions}
                                                 placeholder="Select a Customer"
                                                 required

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
-import { API_BASE_URL } from '../../../../../config';
+import { API_BASE_URL } from '../../../config';
 import { CircularProgress } from '@mui/material';
 import { toast } from 'react-toastify';
-import { DataContext } from '../../../../../context';
+import { DataContext } from '../../../context';
 
 const EmailLastConfirm = (props) => {
   
@@ -28,7 +28,6 @@ const EmailLastConfirm = (props) => {
                 isValidSessionFunc()
                 console.log(props.lastData);
             }).finally(() => {
-                setButton(false);
             });
           }}
         >

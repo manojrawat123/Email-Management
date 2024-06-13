@@ -10,11 +10,9 @@ import DeleteConfirm from '../../component/ConfirmButton/DeleteConfirm';
 
 const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc, query }) => {
 
-
   const [deleteButton, setDeleteButton] = useState();
   const [isModalOpen, setIsModalOpen] = useState();
   const [confirmDelete, setConfirmDelete] = useState(false);
-
   const filterTabel = topTableHeading.filter(item => item.label !== "Action");
 
   return (
@@ -38,11 +36,11 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
                   setIsModalOpen(true);
                 }}
               >Edit</button>
-              <button className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
+              <button className={` text-white py-1 px-3 rounded ${row_data.active == false && "active" in row_data ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'}`}
                 onClick={() => {
                   setConfirmDelete(true);
                 }}
-              >{deleteButton ? <CircularProgress size={19} color='inherit' /> : "De-Activate"}</button>
+              >{"active" in row_data ? row_data.active == false ? "Activate" : "De-Activate" : "Delete"}</button>
             </td>
           }
           return <>{ (element.label == "Increment" && !row_data[element.name])  ?

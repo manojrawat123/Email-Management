@@ -10,8 +10,9 @@ import { Phone } from '@mui/icons-material';
 import { DataContext } from "../../context"
 import Loading from '../../component/LoadingSpinner/LoadingSpinner';
 import { ToastContainer, toast } from 'react-toastify';
-import EmailSenderModal from './EmailSenderModal/EmailSenderModal';
 import BlackBtnTypeBtn from '../../component/Buttons/BlackBtnTypeBtn';
+import EmailSenderModal from '../../CommonComponent/DynamicForm/ConfirmEmailModal/EmailSenderModal';
+import EmailConfirmForm from './EmailConfirmForm/EmailConfirmForm';
 
 
 const emailSenderFormArr = [
@@ -66,11 +67,10 @@ const EmailSenderForm = () => {
     return <Loading />
   }
 
-
   return (
     <>
       <ToastContainer />
-      <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} />
+      <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} />
       <section className="gradient-form h-[100vh] bg-neutral-200 dark:bg-neutral-700 font-semibold text-gray-700">
         <div className=" h-full p-10">
           <div className="flex h-full flex-wrap items-center justify-center text-gray-700 dark:text-neutral-200 md:w-[55%] mx-auto">
@@ -128,11 +128,14 @@ const EmailSenderForm = () => {
                                     setFieldValue(element.name, e.target.value);
                                     if (element.name == "template_id") {
                                       const tempObj = emailSenderPageObj?.email_template?.find(emailEl => emailEl.TemplateID == e.target.value)
-                                      console.log(tempObj);
+
                                       setData({
                                         ...data,
-                                        header: tempObj.TemplateMessage,
-                                        body: tempObj.TemplateBody
+                                        header : tempObj.TemplateMessage,
+                                        body : tempObj.TemplateSubject,
+                                        'template_body_before' : data.template_body_before,
+                                        'template_body_after' : data.template_body_after,
+                                        'signatures' : data.signatures
                                       });
                                     }
                                   }}
@@ -166,7 +169,6 @@ const EmailSenderForm = () => {
                                   required
                                 />
                               )}
-
                               {element.type === "file" && dataType == 1 ?
                                 <input
                                   type="file"
@@ -181,18 +183,8 @@ const EmailSenderForm = () => {
                                 : null}
                             </div>
                           ))}
-
-                          {/* Customer Id input */}
-
-                          {/* Submit button */}
-                          {/* <BlackBtnTypeBtn title={"Send Email"} button={false} func={()=>{
-                          setIsModalOpen(true);
-                        }} />  */}
-
                           <BlackButton title={"Send Email"} button={button} />
-
                         </Form>
-
                       )}
                     </Formik>
                   </div>

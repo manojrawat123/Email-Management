@@ -113,15 +113,12 @@ export const DataProvider = ({ children }) => {
   }
 
   const emailSenderPageFunc = () => {
-    axios
-      .get(`${API_BASE_URL}/emaillog/`, authHeader)
-      .then((value) => {
-        setEmailSenderPageObj(value.data);
-      })
-      .catch((err) => {
-        handleErrorsFunc(err);
-      });
+    commonGetApi('emaillog', setEmailSenderPageObj);
   }
+
+  // const emailRatePageSenderFunc = ()=>{
+
+  // }
 
   const getCustomerRatePageFunc = () => {
     axios
@@ -196,6 +193,10 @@ export const DataProvider = ({ children }) => {
   const getCustomerFunction = () => {
     commonGetApi('customer', setCustomerObjectList);
   }
+
+  // const saveCountriesFunction = ()=>{
+  //   commonGetApi('savecountry', setAllUser)
+  // }
 
   const getRateSearchFunction = (query) => {
     if (!query) return;
