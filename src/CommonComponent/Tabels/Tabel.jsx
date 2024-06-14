@@ -20,12 +20,13 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
 
   return (
     <div className='my-5 mx-4'>
+      {console.log(tabelObj)}
       <>
         <ToastContainer />
         <div>
           <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">{title}<span className="font-semibold text-2xl">{query ? "-" : null}{query?.country_name} </span>
           </h1>
-          {'active' in tabelObj[0] ? <select
+          {tabelObj[0] && 'active' in tabelObj[0] ? <select
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);

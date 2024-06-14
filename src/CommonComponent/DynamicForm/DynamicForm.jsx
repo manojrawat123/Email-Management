@@ -17,35 +17,28 @@ const DynamicForm = ({ form_array, isAllCountry, setIsAllCountry, EmailConfirmFo
     const [button, setButton] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState();
+    const [resetFunction, setResetFunction] = useState();
 
     if (!form_array) {
         return <Loading />
     }
 
     return (<div>
-        <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} isAllCountry={isAllCountry} setIsAllCountry={setIsAllCountry} form_array={form_array}/>
+        <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} isAllCountry={isAllCountry} setIsAllCountry={setIsAllCountry} form_array={form_array} resetFunction={resetFunction} />
         <ToastContainer />
         <div className="w-[100%] py-10 bg-blue-50">
             <div className="sm:w-[80%] w-[90%]  mx-auto bg-white rounded-lg shadow-2xl border border-solid border-gray-300">
                 <h2 className="bg-gray-100  font-bold text-3xl py-4 px-6 mb-6 text-gray-800 text-center">
-                    Add Customer
+                    Send Rate Email
                 </h2>
                 <Formik
                     initialValues={initialValues}
                     // validationSchema={validationSchema}
                     onSubmit={(values, { resetForm }) => {
+                        setResetFunction(resetForm);
                         setData(prevData => { return { ...prevData, ...values } });
                         setIsModalOpen(true);
                         console.log(values);
-                        // axios.post(`${API_BASE_URL}/customer/`, values, authHeader).then((res) => {
-                        //     resetForm();
-                        //     toast.success("Customer Added Successfully!!", { position: "top-center" });
-                        // }).catch((error) => {
-                        //     console.log(error);
-                        //     handleErrorsFunc(error);
-                        // }).finally(() => {
-                        //     setAddButton(false);
-                        // })
                     }}
                 >
                     {({
@@ -102,6 +95,13 @@ const DynamicForm = ({ form_array, isAllCountry, setIsAllCountry, EmailConfirmFo
                                                                     "customer_name": tempObj.label
                                                                 })
                                                             }
+                                                            if (element.name == "rate_id") {
+                                                                const rateObj = element.option?.find(el => el.id == e.target.value);
+                                                                setData({
+                                                                    ...data,
+                                                                    "rate_name": rateObj.label
+                                                                })
+                                                            }
                                                         }}
                                                         className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600`}
                                                     >
@@ -114,7 +114,7 @@ const DynamicForm = ({ form_array, isAllCountry, setIsAllCountry, EmailConfirmFo
                                                 {
                                                     element.type == "dynamic_select" ?
                                                         <>
-                                                            {isAllCountry ? <h1 className="text-green-700 font-semibold w-full py-1 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "> <span><Check className="border border-green-700 rounded-full"/> </span>All Country Selected</h1>
+                                                            {isAllCountry ? <h1 className="text-green-700 font-semibold w-full py-1 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "> <span><Check className="border border-green-700 rounded-full" /> </span>All Country Selected</h1>
                                                                 : null}
                                                             {!isAllCountry ? <Select
                                                                 name={element.name}

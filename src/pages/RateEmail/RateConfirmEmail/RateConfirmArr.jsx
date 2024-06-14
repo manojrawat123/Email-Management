@@ -32,8 +32,8 @@ const rateEmailConfirmArr = [
     {
         "type" : "option",
         "required" : true,
-        "name" : "rate_id",
-        "id" : "rate_id",
+        "name" : "rate_name",
+        "id" : "rate_name",
         "placeholder" : "Rate Sheet Name",
         "icon" : <ListIcon className={iconCss}/>
     },
@@ -57,8 +57,8 @@ const rateEmailConfirmArr = [
         "type" : "option",
         "required" : true,
         "placeholder" : "To",
-        "id" : "customer_id",
-        "name" : "customer_id",
+        "id" : "customer_name",
+        "name" : "customer_name",
         "readOnly" : true,
         "icon" : <Person className={iconCss} />
     }

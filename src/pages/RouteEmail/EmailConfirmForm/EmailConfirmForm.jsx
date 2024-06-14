@@ -14,7 +14,7 @@ import EmailLastConfirm from '../../../CommonComponent/DynamicForm/ConfirmEmailM
 
 
 const EmailConfirmForm = ({ setIsModalOpen, data }) => {
-    
+
     const initialValues = genrateInitalValues(emailConfirmArr);
     const [addButton, setAddButton] = useState(false);
     const { emailSenderPageObj, getTopRouteFunc, topRouteTable, setTopRouteTable } = useContext(DataContext);
@@ -33,9 +33,9 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
             <h4>${values['template_body_after']}</h4>
             <h4>${values['signatures']}</h4>
             `
-            formData.append("message",final_html_format);
+            formData.append("message", final_html_format);
             formData.append("template_id", data.template_id);
-            if (data["attachement"]){
+            if (data["attachement"]) {
                 formData.append("attachement", data["attachement"]);
             }
             Object.entries(values).forEach(([key, value]) => {
@@ -57,19 +57,13 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
 
     useEffect(() => {
         if (data.top_routes != "") {
-            if (data.rate_country != "undefined" || !data.rate_country){
-                getTopRouteFunc({
-                    country_name : data.top_routes
-                });
-            }
-            else{
-                getTopRouteFunc({
-                    route_id: data.top_routes
-                });
-            }
+            getTopRouteFunc({
+                route_id: data.top_routes
+            });
+
         }
         else {
-            setTopRouteTable([])
+            setTopRouteTable([]);
         }
     }, [])
 
@@ -78,9 +72,9 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
             ...prevValues,
             "to": defaultOptions,
             "subject": data.header,
-            'template_body_before' : data.template_body_before,
-            'template_body_after' : data.template_body_after,
-            'signatures' : data.signatures
+            'template_body_before': data.template_body_before,
+            'template_body_after': data.template_body_after,
+            'signatures': data.signatures
         }))
     }, []);
 
@@ -90,12 +84,12 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
 
     return (
         <div>
+            {console.log(topRouteTable)}
             {showConfirmEmail ? <EmailLastConfirm setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} /> : null}
-
             <div className="w-[100%]">
                 <div className="sm:w-[80%] w-[90%] mx-auto bg-white rounded-lg shadow-2xl border border-t-0 border-solid border-gray-300">
                     <h2 className="font-bold text-3xl  px-6  text-gray-800 text-center">
-                        Update Customer Details
+                        Update Customer Detail
                     </h2>
                     <form onSubmit={formik.handleSubmit} className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4 grid md:grid-cols-2 grid-cols-1 gap-4 p-4">
@@ -126,7 +120,6 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
                                                 isSearchable={true}
                                                 isMulti
                                                 isClearable={true}
-                                                
                                                 defaultValue={defaultOptions}
                                                 placeholder="Select a Customer"
                                                 required

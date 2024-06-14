@@ -21,7 +21,7 @@ const emailSenderFormArr = [
     'id': 'template_id',
     'name': 'template_id',
     'required': true,
-    'placeholder': 'Select Template',
+    'placeholder': 'Template',
     // 'icon': <Phone className={iconCss} />
   },
   {
@@ -29,7 +29,7 @@ const emailSenderFormArr = [
     'id': 'customer_id',
     'name': 'customer_id',
     'required': true,
-    'placeholder': 'Enter Company Phone',
+    'placeholder': 'Customer',
     // 'icon': <Phone className={iconCss} />
   },
   {
@@ -37,16 +37,16 @@ const emailSenderFormArr = [
     'id': 'top_routes',
     'name': 'top_routes',
     'required': true,
-    'placeholder': 'Select Top Route',
+    'placeholder': ' Top Route',
     // 'icon': <Phone className={iconCss} />
   },
-  {
-    'type': 'file',
-    'id': 'attachement',
-    'name': 'attachement',
-    'required': true,
-    'placeholder': '',
-  },
+  // {
+  //   'type': 'file',
+  //   'id': 'attachement',
+  //   'name': 'attachement',
+  //   'required': true,
+  //   'placeholder': '',
+  // },
 ]
 
 const EmailSenderForm = () => {
@@ -81,7 +81,7 @@ const EmailSenderForm = () => {
                   <div className="md:mx-6 md:p-12">
                     <div className="text-center">
                       <h4 className="mb-12 mt-1 pb-1 text-xl font-bold">
-                        Send Email
+                        Send Top Route Email
                       </h4>
                     </div>
                     <Formik
@@ -99,7 +99,11 @@ const EmailSenderForm = () => {
                         <Form>
                           {emailSenderFormArr.map((element, index) => (
                             <div key={index} className="mt-4">
-                              {
+                              <h4 className="font-semibold mb-2 text-gray-700">
+                                        {element.placeholder}{" "}
+                                        <span className="text-red-500">*</span>
+                                    </h4>
+                              {/* {
                                 element.name == "top_routes" ? <div className='font-semibold my-4'>
                                   <button
                                     type='button'
@@ -116,10 +120,9 @@ const EmailSenderForm = () => {
                                     }} >Select Existing
                                   </button>
                                 </div>
-                                  : null}
+                                  : null} */}
                               {element.label && <label htmlFor={element.name} className="block mb-2 font-bold">{element.label}</label>}
-                              {element.type === "option" && (
-                                dataType == 2 || element.name == "template_id" ? <Field
+                              {element.type === "option" && ( <Field
                                   as="select"
                                   id={element.name}
                                   name={element.name}
@@ -127,17 +130,16 @@ const EmailSenderForm = () => {
                                   onChange={(e) => {
                                     setFieldValue(element.name, e.target.value);
                                     if (element.name == "template_id") {
-                                      const tempObj = emailSenderPageObj?.email_template?.find(emailEl => emailEl.TemplateID == e.target.value)
-
+                                      const tempObj = emailSenderPageObj?.email_template?.find(emailEl => emailEl.TemplateID == e.target.value);
+                                      console.log(tempObj);
                                       setData({
-                                        ...data,
-                                        header : tempObj.TemplateMessage,
-                                        body : tempObj.TemplateSubject,
-                                        'template_body_before' : data.template_body_before,
-                                        'template_body_after' : data.template_body_after,
-                                        'signatures' : data.signatures
+                                          ...data,
+                                          header: tempObj.TemplateSubject,
+                                          'template_body_before': tempObj.template_body_before,
+                                          'template_body_after': tempObj.template_body_after,
+                                          'signatures': tempObj.signatures
                                       });
-                                    }
+                                  }
                                   }}
                                   className='w-[100%] h-[2.3rem] outline-blue-600 border-2 rounded'
                                 >
@@ -150,7 +152,7 @@ const EmailSenderForm = () => {
                                       return <option value={values}>{values}</option>
                                     }) : null
                                   }
-                                </Field> : null
+                                </Field> 
                               )}
                               {element.type === "select" && (
                                 <Select
@@ -169,7 +171,7 @@ const EmailSenderForm = () => {
                                   required
                                 />
                               )}
-                              {element.type === "file" && dataType == 1 ?
+                              {/* {element.type === "file" && dataType == 1 ?
                                 <input
                                   type="file"
                                   accept=".xls, .xlsx, .csv, application/vnd.ms-excel"
@@ -180,7 +182,7 @@ const EmailSenderForm = () => {
                                   }}
                                   required
                                 />
-                                : null}
+                                : null} */}
                             </div>
                           ))}
                           <BlackButton title={"Send Email"} button={button} />

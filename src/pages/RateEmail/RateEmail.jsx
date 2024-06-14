@@ -9,7 +9,7 @@ import RateEmailConfirmForm from './RateConfirmEmail/RateConfirm';
 const RateEmail = () => {
 
     const { emailSenderPageFunc, emailSenderPageObj } = useContext(DataContext);
-    const [isAllCountry, setIsAllCountry] = useState(false);
+    const [isAllCountry, setIsAllCountry] = useState(true);
 
     useEffect(() => {
         emailSenderPageFunc();
@@ -18,6 +18,7 @@ const RateEmail = () => {
     if (!emailSenderPageObj) {
         <Loading />
     }
+    
     const updateRateEmailArr = rate_email_arr.map((element, index) => {
         if (element.type == "dynamic_option" || element.type == "dynamic_select") {
             if (element.name == "template_id") {
