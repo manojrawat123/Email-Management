@@ -91,17 +91,18 @@ const navBarArr = [
             },
             {
                 id : "7b",
-                label : "Schedule Top Route"
+                label : "Schedule Top Route",
+                link : "/email-schedule"
             },
             {
                 id : "7b",
                 label : "Send Rate",
                 link : "/send-rate-email"
             },
-            {
-                id: "7b",
-                label: "Schedule Rate"
-            },
+            // {
+            //     id: "7b",
+            //     label: "Schedule Rate"
+            // },
         ]
     },
 ];

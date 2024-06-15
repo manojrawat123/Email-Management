@@ -17,7 +17,7 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
 
   return (
     <>
-    {confirmDelete ? <DeleteConfirm url_route={url_route} id={row_data.id} getFunc={getFunc} query={query} setConfirmDelete={setConfirmDelete}/> : null}
+    {confirmDelete ? <DeleteConfirm url_route={url_route} id={row_data.id} getFunc={getFunc} query={query} setConfirmDelete={setConfirmDelete} row_data={row_data}/> : null}
       <EditModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}

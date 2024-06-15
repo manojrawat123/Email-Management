@@ -20,7 +20,7 @@ const EmailLastConfirm = (props) => {
             type='button'
             onClick={() => {
               setButton(true);
-              axios.post(`${API_BASE_URL}/emaillog/`, props.lastData, authHeader).then((res) => {
+              axios.post(`${API_BASE_URL}/${ props.route ? props.route : "emaillog"}/`, props.lastData, authHeader).then((res) => {
                 toast.success("Email Send Successfully!!", { position: "top-center" });
                 props.setIsModalOpen(false);
                 props.resetFunction();

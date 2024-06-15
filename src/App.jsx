@@ -18,6 +18,7 @@ import DisplayUser from './pages/display_user/DisplayUser'
 import ResetPassword from './component/LoginComponent/ResetPassword/ResetPassword'
 import RouteDeleteUpdate from './pages/TopRoute/RouteDeleteUpdate/RouteDeleteUpdate'
 import RateEmail from './pages/RateEmail/RateEmail'
+import EmailRouteSchedule from './pages/EmailRouteSchedule/EmailRouteSchedule'
 
 function App() {
 
@@ -82,6 +83,9 @@ function App() {
         </Route>
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/route-update-delete' Component={RouteDeleteUpdate} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/email-schedule' Component={EmailRouteSchedule} />
         </Route>
 
         {/* Rate Management */}
