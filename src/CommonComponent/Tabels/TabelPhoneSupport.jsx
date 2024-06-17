@@ -37,7 +37,7 @@ const TabelPhoneSupport = ({ row_data, topTableHeading, EditModal, url_route, ge
                     </div>
                 }
                 return <>
-                    <div className='grid grid-cols-3 overflow-x-scroll my-2 text-gray-700'>
+                    <div className='grid grid-cols-3  my-2 text-gray-700  overflow-x-auto'>
                         <div className='text-gray-700 font-bold col-span-1'> {element.display != false ? element.label : null}</div>
                         <div className='col-span-2 font-semibold'>
                             {(element.label == "Increment" && !row_data[element.name]) ?
