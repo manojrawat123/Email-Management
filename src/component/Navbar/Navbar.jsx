@@ -50,33 +50,6 @@ const NavMenu = () => {
                         <span className="font-semibold text-xl tracking-tight">
                         </span>
                     </div>
-                    {/* <div className="md:hidden flex space-x-2 ">
-                        {Cookies.get('token') ?
-                            <>
-                                <button className="text-gray-700 w-full md:w-auto px-4 py-2 font-bold"
-                                    onClick={() => {
-                                        navigate("/notifications");
-                                    }}>
-                                    <Notifications />
-                                </button>
-                                <button className="text-gray-700 w-full md:w-auto px-4 py-2 font-bold"
-                                    onClick={() => {
-                                        navigate("/chat")
-                                    }}>
-                                    <ChatOutlined />
-                                </button>
-                            </>
-                            : <button
-                                onClick={() => {
-                                    setOpen(true);
-                                    setMobileVis(false);
-                                }}
-                                className={`block  lg:inline-block rounded border  border-green-600  mr-2 
-                }  bg-green-600 text-white lg:mt-0 w-full md:w-auto px-4 py-2 `}
-                            >
-                                {"Join"}
-                            </button>}
-                    </div> */}
                 </div>
                 <div className={`menu w-full lg:block lg:items-center lg:w-auto lg:px-3 px-[15%] md:static absolute top-0 bg-white   md:py-0 py-10 
   ${mobMenuVis ? "z-50 h-[100%] flex-grow transition-all duration-1000 ease-in-out -left-[10%]" : "transition-all duration-300 ease-in-out -left-full"
@@ -97,9 +70,6 @@ const NavMenu = () => {
                                     <div
 
                                         onClick={() => {
-                                            // if (window.innerWidth >= 768) {
-                                            //     return;
-                                            // }
                                             if (navbarId == 0) {
                                                 setNavbarId(element.id);
                                             }
@@ -111,7 +81,6 @@ const NavMenu = () => {
                                             }
                                         }}
                                         onMouseEnter={() => {
-
                                             if (window.innerWidth < 768) {
                                                 return;
                                             }
@@ -121,9 +90,7 @@ const NavMenu = () => {
                                             if (window.innerWidth < 768) {
                                                 return
                                             }
-                                            setTimeout(() => {
-                                                setNavbarId(0);
-                                            }, 1500);
+                                            setNavbarId(0);
                                         }}
                                         key={index}
                                         className={`cursor-pointer block mt-4 lg:inline-block lg:mt-0  px-4 py-2 rounded hover:text-green-600 mr-2  ${element.link == "signup" ? "lg:ml-auto" : "lg:ml-2"
@@ -144,41 +111,42 @@ const NavMenu = () => {
                                                 </div>
                                             </>
                                             : element.label}
-                                    </div>
-                                    {element.option && element.id == navbarId ?
-                                        <div className="relative">
-                                            <div className="hidden md:block absolute right-8 top-8 z-[100] transform rotate-[180deg] bg-white">
-                                                <UpArrowIcon />
-                                            </div>
-                                            <div className="md:absolute right-[21rem] top-11 bg-white ml-4 md:ml-0">
-                                                <div className="md:fixed bg-white border rounded shadow-2xl py-4 w-full md:w-[20rem] z-50">
-                                                    {element.option.map((opel, index) => {
-                                                        return (
-                                                            <div className="block"
-                                                                onClick={() => {
-                                                                    setNavbarId(0);
-                                                                    setMobileVis(false);
-                                                                }}
-                                                            >
-                                                                <NavLink
-                                                                    exact
-                                                                    to={opel.link}
-                                                                    key={index}
-                                                                    className={`block mt-4 lg:inline-block lg:mt-0  px-4 py-2 rounded hover:text-green-600  mr-2 ${opel.link == "signup" ? "lg:ml-auto" : "lg:ml-2"
-                                                                        } ${opel.link == location.pathname
-                                                                            ? " underline text-green-600"
-                                                                            : " "
-                                                                        }`}
-                                                                >
-                                                                    {opel.label}
-                                                                </NavLink>
-                                                            </div>
-                                                        );
-                                                    })
-                                                    }
+                                        {element.option && element.id == navbarId ?
+                                            <div className="relative">
+                                                <div className="hidden md:block absolute right-8 top-0 z-[100] transform rotate-[180deg] bg-white">
+                                                    <UpArrowIcon />
                                                 </div>
-                                            </div>
-                                        </div> : null}
+                                                <div className="md:absolute right-[21rem] top-2 bg-white ml-4 md:ml-0">
+                                                    <div className="md:fixed bg-white border rounded shadow-2xl py-4 w-full md:w-[20rem] z-50">
+                                                        {element.option.map((opel, index) => {
+                                                            return (
+                                                                <div className="block"
+                                                                    onClick={() => {
+                                                                        setNavbarId(0);
+                                                                        setMobileVis(false);
+                                                                    }}
+                                                                >
+                                                                    <NavLink
+                                                                        exact
+                                                                        to={opel.link}
+                                                                        key={index}
+                                                                        className={`block mt-4 lg:inline-block lg:mt-0  px-4 py-2 rounded hover:text-green-600  mr-2 ${opel.link == "signup" ? "lg:ml-auto" : "lg:ml-2"
+                                                                            } ${opel.link == location.pathname
+                                                                                ? " underline text-green-600"
+                                                                                : " "
+                                                                            }`}
+                                                                    >
+                                                                        {opel.label}
+                                                                    </NavLink>
+                                                                </div>
+                                                            );
+                                                        })
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div> : null}
+                                    </div>
+
                                 </>
                             )
                         })}
@@ -195,7 +163,7 @@ const NavMenu = () => {
                             data-te-ripple-color="light"
                             style={{
                                 background: "#FF0000",
-                            }}> <PowerSettingsNewIcon /> Logout</button>
+                            }}> <PowerSettingsNewIcon />Logout</button>
                     </div> : null}
                 </div>
             </nav>
