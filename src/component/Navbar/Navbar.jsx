@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { ArrowDropDownCircleOutlined, ChatOutlined, CloseOutlined, Cookie, Lens, Notifications, Search } from "@mui/icons-material";
+import { CloseOutlined } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useEffect } from "react";
@@ -113,10 +113,10 @@ const NavMenu = () => {
                                             : element.label}
                                         {element.option && element.id == navbarId ?
                                             <div className="relative">
-                                                <div className="hidden md:block absolute right-8 top-0 z-[100] transform rotate-[180deg] bg-white">
+                                                <div className="hidden md:block absolute right-4 top-0 z-[100] transform rotate-[180deg] bg-white">
                                                     <UpArrowIcon />
                                                 </div>
-                                                <div className="md:absolute right-[21rem] top-2 bg-white ml-4 md:ml-0">
+                                                <div className="md:absolute right-[20rem] top-2 bg-white ml-4 md:ml-0">
                                                     <div className="md:fixed bg-white border rounded shadow-2xl py-4 w-full md:w-[20rem] z-50">
                                                         {element.option.map((opel, index) => {
                                                             return (
