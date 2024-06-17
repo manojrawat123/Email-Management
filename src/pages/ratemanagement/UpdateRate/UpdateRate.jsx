@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
 const UpdateRate = () => {
 
     const initialValues = genrateInitalValues(updateRateArr);
-    const validationSchema = generateValidationSchema(updateRateArr);
+    // const validationSchema = generateValidationSchema(updateRateArr);
     const [button, setButton] = useState(false);
     const { ratePageObj, getCustomerRatePageFunc, isValidSessionFunc } = useContext(DataContext);
     const [excelSheet, setExcelSheet] = useState();
@@ -59,8 +59,8 @@ const UpdateRate = () => {
                                             });
                                             const token = Cookies.get("token");
                                             axios.put(`${API_BASE_URL}/rate/`, formData, {
-                                                headers : {
-                                                    Authorization : `Bearer ${token}`
+                                                headers: {
+                                                    Authorization: `Bearer ${token}`
                                                 }
                                             }).then((val) => {
                                                 toast.success("Data Updated Successfully", {

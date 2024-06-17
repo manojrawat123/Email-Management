@@ -194,6 +194,11 @@ export const DataProvider = ({ children }) => {
     commonGetApi('customer', setCustomerObjectList);
   }
 
+  const logoutFunc = ()=>{
+    Cookies.remove("token");
+    navigate("/login");
+  }
+
   // const saveCountriesFunction = ()=>{
   //   commonGetApi('savecountry', setAllUser)
   // }
@@ -234,7 +239,8 @@ export const DataProvider = ({ children }) => {
       authHeader,
       getAllUserFunc,
       allUser,
-      handleErrorsFunc
+      handleErrorsFunc,
+      logoutFunc
     }}>
       {children}
     </DataContext.Provider>

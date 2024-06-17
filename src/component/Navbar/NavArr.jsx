@@ -2,7 +2,7 @@ const navBarArr = [
     {
         id: "2",
         label: "Customer Management",
-        options: [
+        option: [
             {
                 id: "2a",
                 label: "Add Customer",
@@ -14,12 +14,13 @@ const navBarArr = [
                 link: "/showcustomer"
             },
         ]
+        
     },
     {
         id: "4",
         label: "User Management",
         link: "#",
-        options: [
+        option: [
             {
                 id: "4a",
                 label: "Add User",
@@ -36,7 +37,7 @@ const navBarArr = [
         id: "5",
         label: "Top Route Management",
         link: "#",
-        options: [
+        option: [
             {
                 id: "5a",
                 label: "Add Routes",
@@ -62,7 +63,7 @@ const navBarArr = [
     {
         id: "6",
         label: "Rate Management",
-        options: [
+        option: [
             {
                 id: "6a",
                 label: "Add Rate",
@@ -83,7 +84,7 @@ const navBarArr = [
     {
         id: "7",
         label: "Event",
-        options: [
+        option: [
             {
                 id : "7a",
                 label : "Send Top Route",

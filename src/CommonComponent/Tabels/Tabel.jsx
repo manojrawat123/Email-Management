@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import TabelSupport from './TabelSupport';
 import Loading from '../../component/LoadingSpinner/LoadingSpinner';
 import { useLocation } from 'react-router-dom';
+import TabelPhoneSupport from './TabelPhoneSupport';
 
 const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url_route, title }) => {
 
@@ -10,17 +11,16 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
   const [filterTabelObj, setFilterTabelObj] = useState(tabelObj);
   const location = useLocation();
   // const filterTabelHeading = topTableHeading?.filter(element => element.display == true);
-  useEffect(()=>{
+  useEffect(() => {
     setFilterTabelObj(tabelObj);
-  },[tabelObj]);
-  
+  }, [tabelObj]);
+
   if (!tabelObj || !topTableHeading) {
     return <Loading />
   }
 
   return (
     <div className='my-5 mx-4'>
-      {console.log(tabelObj)}
       <>
         <ToastContainer />
         <div>
@@ -34,10 +34,7 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
                 setFilterTabelObj(tabelObj);
               }
               else {
-                console.log(e.target.value)
-                console.log(true === e.target.value);
                 const filterObjs = tabelObj?.filter((element) => element.active === (e.target.value === 'true'));
-                console.log(filterObjs);
                 setFilterTabelObj(filterObjs);
               }
             }}
@@ -47,7 +44,7 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
             <option value={false}>Non Active</option>
           </select> : null}
         </div>
-        <table className="min-w-full  bg-white shadow-md rounded-lg overflow-hidden text-gray-700">
+        <table className="min-w-full  bg-white shadow-md rounded-lg overflow-hidden text-gray-700 hidden md:table">
           <thead className="bg-gray-200">
             <tr>
               {topTableHeading?.map((element, index) => {
@@ -61,7 +58,14 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
             })}
           </tbody>
         </table>
+
+<div>
+{filterTabelObj?.map((element, index)=>{
+  return <TabelPhoneSupport  row_data={element} topTableHeading={topTableHeading} EditModal={EditModal} url_route={url_route} getFunc={getFunc} query={query} />
+})}
+</div>
       </>
+        
     </div>
   )
 }

@@ -54,7 +54,7 @@ const EmailRouteShedule = () => {
                                             onSubmit={(values, { resetForm }) => {
                                                 setData(prevData => { return { ...prevData, ...values } });
                                                 setResetForm(resetForm);
-                                                
+
                                                 setIsModalOpen(true);
                                             }}
                                         >
