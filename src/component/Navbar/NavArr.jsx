@@ -13,6 +13,26 @@ const navBarArr = [
                 label: "Show Customer",
                 link: "/showcustomer"
             },
+            {
+                id: "2c",
+                label: "Add Invoice",
+                link: "/add-invoice"
+            },
+            {
+                id: "2d",
+                label: "Search Invoice",
+                link: "/search-invoice"
+            },
+            {
+                id: "2d",
+                label: "Search Dispute",
+                link: "/search-dispute"
+            },
+            {
+                id: "2e",
+                label: "Add Dispute",
+                link: "/add-dispute"
+            },
         ]
         
     },

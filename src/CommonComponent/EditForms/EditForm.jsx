@@ -57,12 +57,22 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
                                         </h4>
                                         <div className={"w-full relative col-span-1 "}>
                                             {element.icon}
-                                            <Field
-                                                // type={element.type ? element.type : 'text'}
+                                            {element.type == "option" ? <Field
+                                                as="select"
                                                 name={element.name}
                                                 placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
                                                 className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                            />
+                                            >
+                                                <option value="">Please Select</option>
+                                                {element.option?.map((element, index)=>{
+                                                    return <option value={element.value}>{element.label}</option>
+                                                })}
+                                            </Field>: <Field
+                                                type={element.type ? element.type : 'text'}
+                                                name={element.name}
+                                                placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            /> }
                                         </div>
                                         <ErrorMessage
                                             name={element.name}

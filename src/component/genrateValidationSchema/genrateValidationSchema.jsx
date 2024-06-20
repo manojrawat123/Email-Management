@@ -34,6 +34,20 @@ const generateValidationSchema = (inputFields) => {
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required(`${field.placeholder} is required`);
     }
+    
+    if (field.name === "invoice_to_date") {
+      validationObject[field.name] = Yup.date().nullable()
+      .typeError('Invalid date format')
+      .when('invoice_from_date', (invoice_from_date, schema) => {
+        return invoice_from_date
+          ? schema.min(
+              invoice_from_date,
+              'Invoice to date must be greater than or equal to invoice from date'
+            )
+          : schema;
+      })
+    }
+
     if (field.type == "url" && validationObject[field.name] == field.required){
      validationObject[field.name] = Yup.string().url('Please enter a valid URL').required('URL is required')
     }
@@ -43,15 +57,6 @@ const generateValidationSchema = (inputFields) => {
     if (field.name == "experience") {
       validationObject[field.name] = Yup.number().max(5);
     }
-    // if (field.type == "dynamic" || field.type == "array"){
-
-    //   if (field.name == "job_categoery" || field.name == "sub_categoery" || field.name == "skill_name"){
-    //     validationObject[field.name] = Yup.object();
-    //   }
-    //   else{
-    //     validationObject[field.name] = Yup.array().min(1, "Please Select One Skill");
-    //   }
-    // }
   });
 
   return Yup.object().shape(validationObject);

@@ -17,7 +17,7 @@ const DisplayTopRoutes = () => {
     const search = queryParams.get("search");
 
     const query = {
-        route_id: search
+        route_id : search
     };
 
     useEffect(() => {

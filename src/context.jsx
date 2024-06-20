@@ -18,6 +18,9 @@ export const DataProvider = ({ children }) => {
   const [session, setSession] = useState();
   const [token, setToken] = useState(Cookies.get("token"));
   const [allUser, setAllUser] = useState();
+  const [invoiceObj, setInvoiceObj] = useState();
+  const [disputePageObj, setDisputePageObj] = useState();
+  const [disputeObj, setDisputeObj] = useState();
 
   const navigate = useNavigate();
 
@@ -85,13 +88,30 @@ export const DataProvider = ({ children }) => {
     });
   }
 
+  const commonGetParamsApi = (route,query, setParamsData) => {
+    const token = Cookies.get("token");
+    axios.get(`${API_BASE_URL}/${route}/`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      },
+      params : query
+    }).then((value) => {
+      console.log(value.data);
+      setParamsData(value.data);
+    }).catch((err) => {
+     handleErrorsFunc(err);
+    });
+  }
+
   const isValidSessionFunc = async (is_login = null, c_token = null) => {
+    setSession();
     setToken(Cookies.get("token"));
     axios.get(`${API_BASE_URL}/session/`, {
       headers: {
         Authorization: `Bearer ${c_token ? c_token : token}`,
       },
     }).then((value) => {
+      setSession(value.data);
       if (value.data.session != true) {
         Cookies.remove("token");
         navigate("/login");
@@ -100,12 +120,9 @@ export const DataProvider = ({ children }) => {
         navigate("/");
       }
     }).catch((err) => {
-      console.log(err);
-      console.log(token);
       toast.error("Session Expired", { position: "top-center" });
       navigate("/login");
     });
-
   }
 
   const getAllUserFunc = () => {
@@ -115,10 +132,6 @@ export const DataProvider = ({ children }) => {
   const emailSenderPageFunc = () => {
     commonGetApi('emaillog', setEmailSenderPageObj);
   }
-
-  // const emailRatePageSenderFunc = ()=>{
-
-  // }
 
   const getCustomerRatePageFunc = () => {
     axios
@@ -132,14 +145,14 @@ export const DataProvider = ({ children }) => {
   }
 
   const getTopRouteFunc = (query) => {
-    setTopRouteTable()
+    setTopRouteTable();
     axios.get(`${API_BASE_URL}/toproute/`, {
       params: query,
       headers: {
         Authorization: `Bearer ${token}`
       }
     }).then((value) => {
-      setTopRouteTable(value.data)
+      setTopRouteTable(value.data);
     }).catch((err) => {
       handleErrorsFunc(err);
       setTopRouteTable([]);
@@ -171,17 +184,7 @@ export const DataProvider = ({ children }) => {
       }
 
       if (value.data.page == "rate_page") {
-        console.log(value.data);
-        const searchPageData = value.data?.data?.map((element, index) => {
-          return {
-            value: element,
-            label: element
-          }
-        });
-        setSearchPageData({
-          options: searchPageData,
-          page: value?.data?.page
-        });
+        setSearchPageData(value.data);
       }
       // setSearchPageData(value.data);
     }).catch((err) => {
@@ -199,9 +202,6 @@ export const DataProvider = ({ children }) => {
     navigate("/login");
   }
 
-  // const saveCountriesFunction = ()=>{
-  //   commonGetApi('savecountry', setAllUser)
-  // }
 
   const getRateSearchFunction = (query) => {
     if (!query) return;
@@ -217,6 +217,24 @@ export const DataProvider = ({ children }) => {
      handleErrorsFunc(err);
     })
   }
+
+
+  const getAllInvoiceFunc = (query)=>{
+    commonGetParamsApi('getinvoices', query,setInvoiceObj);
+  }
+
+
+  const getDisputePageFunc = ()=>{
+      commonGetParamsApi('dispute', {page : true}, setDisputePageObj);
+  }
+
+
+  const getDisputeSearchFunc = (query)=>{
+      commonGetParamsApi('dispute', query, setDisputeObj);
+  }
+
+
+
 
   // End OF lead Function
   return (
@@ -240,7 +258,13 @@ export const DataProvider = ({ children }) => {
       getAllUserFunc,
       allUser,
       handleErrorsFunc,
-      logoutFunc
+      logoutFunc,
+      getAllInvoiceFunc,
+      invoiceObj,
+      getDisputePageFunc,
+      disputePageObj,
+      getDisputeSearchFunc,
+      disputeObj,      
     }}>
       {children}
     </DataContext.Provider>

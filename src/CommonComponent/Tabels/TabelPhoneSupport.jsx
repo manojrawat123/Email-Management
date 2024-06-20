@@ -41,8 +41,10 @@ const TabelPhoneSupport = ({ row_data, topTableHeading, EditModal, url_route, ge
                         <div className='text-gray-700 font-bold col-span-1'> {element.display != false ? element.label : null}</div>
                         <div className='col-span-2 font-semibold'>
                             {(element.label == "Increment" && !row_data[element.name]) ?
-                                <div className=" border-b"> {`${row_data['billing_increment_1']?.split(".")[0]} + ${row_data['billing_increment_n']?.split(".")[0]}`}</div>
-                                : element.display != false ? <div className=" border-b">{row_data[element.name]} </div> : null}
+                                <div className="border-b">
+                                    {`${row_data['billing_increment_1']?.split(".")[0]} + ${row_data['billing_increment_n']?.split(".")[0]}`}
+                                </div>
+                                : element.display != false ? <div className="border-b">{row_data[element.name]} </div> : null}
                         </div>
                     </div>
                 </>

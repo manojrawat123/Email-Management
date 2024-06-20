@@ -24,7 +24,7 @@ const LoginPage = () => {
     e.preventDefault();
     setLoginButton(true);
     axios.post(`${API_BASE_URL}/login/`, {
-      username : e.target.username.value,
+      username: e.target.username.value,
       password: e.target.password.value,
       // url: API_ROUTE_URL,
     }).then((value) => {
@@ -37,18 +37,21 @@ const LoginPage = () => {
       if (err?.response) {
         if (err?.response?.status == 400) {
           if (err?.response?.data?.error) {
-            toast.error(err?.response?.data?.error, { position: "top-center" })
+            toast.error(err?.response?.data?.error, { position: "top-center" });
           }
           else {
             toast.error("Invalid Info", { position: "top-center" });
           }
         }
         else if (err.response.status == 401) {
-          toast.error("Incorrect Password", { position: "top-center" })
+          toast.error("Incorrect Password", { position: "top-center" });
         }
         else {
-          toast.error("Invalid Info!")
+          toast.error("Invalid Info!");
         }
+      }
+      else {
+        toast.error("Internal Server Error", { position: "top-center" });
       }
     }).finally(() => {
       setLoginButton(false);
@@ -58,7 +61,6 @@ const LoginPage = () => {
 
   return (
     <>
-      {/* {open ? <SignUpMd open={open} setOpen={setOpen} /> : null} */}
       {forgotPassword ? <ForgotPasswordModel forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} /> : null}
       <ToastContainer />
       <section className="gradient-form h-[100vh] bg-neutral-200  dark:bg-neutral-700">
@@ -69,14 +71,6 @@ const LoginPage = () => {
                 {/* Left column container */}
                 <div className="px-4 md:px-0">
                   <div className="md:mx-6 md:p-12">
-                    {/* Logo */}
-                    {/* <div className="text-center mt-4">
-                      <img
-                        className="mx-auto w-48"
-                        src={logo}
-                        alt="logo"
-                      />
-                    </div> */}
                     <form onSubmit={loginFunc}>
                       {/* Username input */}
                       {inputLoginArr.map((element, index) => {
@@ -127,9 +121,6 @@ const LoginPage = () => {
                       {/* End of Loading Button */}
                     </form>
                     <hr />
-                    <div className="mt-4 pb-1 pt-1 text-center">
-                      
-                    </div>
                   </div>
                 </div>
               </div>

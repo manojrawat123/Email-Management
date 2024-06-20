@@ -33,7 +33,7 @@ const SearchRoutePage = () => {
                     isSearchable
                     options={searchPageData.options}
                     value={searchValue1}
-                    onChange={(e)=>{ 
+                    onChange={(e) => {
                         console.log(e.value)
                         setSearchValue1(e.value);
                         navigate(`/route?search=${e.value}`);

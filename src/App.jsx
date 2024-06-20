@@ -19,6 +19,12 @@ import ResetPassword from './component/LoginComponent/ResetPassword/ResetPasswor
 import RouteDeleteUpdate from './pages/TopRoute/RouteDeleteUpdate/RouteDeleteUpdate'
 import RateEmail from './pages/RateEmail/RateEmail'
 import EmailRouteSchedule from './pages/EmailRouteSchedule/EmailRouteSchedule'
+import AddInvoice from './pages/InvoiceManagement/AddInvoice/AddInvoice'
+import InvoiceDisplay from './pages/InvoiceManagement/ShowInvoice/InvoiceDisplay'
+import AddDispute from './pages/DisputeManagement/AddDispute/AddDispute'
+import SearchInvoice from './pages/InvoiceManagement/SearchInvoice/SearchInvoice'
+import SearchDispute from './pages/DisputeManagement/SearchDispute/SearchDispute'
+import DisputeDisplay from './pages/DisputeManagement/DisplayDispute/DisplayDispute'
 
 function App() {
 
@@ -34,24 +40,48 @@ function App() {
       {/* Un Protected Routes */}
       <Route path='/login' Component={LoginPage} />
       <Route path="/reset-password/:userid_encode/:verify_token/" Component={ResetPassword} />
+      {/* <Route path='' Component={ProtectedRoutes}> */}
+          <Route path='' Component={AddCustomer} />
+        {/* </Route> */}
 
       <Route path='' Component={ProtectedRoutes}>
         <Route path='/register' Component={Register}/>
       </ Route >
+
       <Route path='' Component={ProtectedRoutes}>
         <Route path='/manage-user' Component={DisplayUser}/>
-      </ Route >
+      </Route >
+      
+      <Route path='' Component={ProtectedRoutes}>
+        <Route path='/search-invoice' Component={SearchInvoice}/>
+      </Route >
+      <Route path='' Component={ProtectedRoutes}>
+        <Route path='/search-dispute' Component={SearchDispute}/>
+      </Route >
 
-
-       
         {/* Protected Routes  */}
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/addrate' Component={RateManagmentForm} />
+        </Route>
+      
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/add-invoice' Component={AddInvoice} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/add-dispute' Component={AddDispute} />
+        </Route>
+      
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/display-invoice' Component={InvoiceDisplay} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/display-dispute' Component={DisputeDisplay} />
         </Route>
 
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/emailsender' Component={EmailSender} />
         </Route>
+        
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/send-rate-email' Component={RateEmail} />
         </Route>
@@ -59,11 +89,9 @@ function App() {
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/addcustomer' Component={AddCustomer} />
         </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='' Component={AddCustomer} />
-        </Route>
-        {/* <Route path='/showcustomer' Component={ShowCustomer}/> */}
-
+       
+        
+       
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/showcustomer' Component={DisplayCustomer} />
         </Route>
@@ -76,14 +104,15 @@ function App() {
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/search-route' Component={SearchRoutePage} />
         </Route>
-        {/* <Route path='/route' Component={MainTopRouteDis} /> */}
 
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/route' Component={DisplayTopRoutes} />
         </Route>
+      
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/route-update-delete' Component={RouteDeleteUpdate} />
         </Route>
+      
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/email-schedule' Component={EmailRouteSchedule} />
         </Route>

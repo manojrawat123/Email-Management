@@ -11,16 +11,17 @@ const DisplayRate = () => {
 
     const { getRateSearchFunction, filterRate } = useContext(DataContext);
     const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const query = queryParams.get("search");
-
+    const query = Object.fromEntries(new URLSearchParams(location.search).entries());
+    
     useEffect(() => {
-        getRateSearchFunction({ country_name: query });
+        getRateSearchFunction(query);
     }, []);
 
     if (!filterRate){
         return <Loading />
     }
+
+    console.log(filterRate);
 
     return (
         <div>
@@ -32,7 +33,7 @@ const DisplayRate = () => {
                 EditModal={CustomEditModal}
                 title={"Rate Search Result"}
                 url_route={"rate-update-delete"} 
-                query={{ "country_name" : query }}
+                query={query}
         />
         </div>
     )

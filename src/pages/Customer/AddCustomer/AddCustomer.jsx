@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import customerFieldsArr from './AddCustomerArr';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,13 +8,29 @@ import genrateInitalValues from '../../../component/genrateInitalValues/GenrateI
 import generateValidationSchema from '../../../component/genrateValidationSchema/genrateValidationSchema';
 import { API_BASE_URL } from '../../../config';
 import { DataContext } from '../../../context';
+import Cookies from "js-cookie";
+import { useNavigate } from 'react-router-dom';
+import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 
 const AddCustomer = () => {
 
     const initialValues = genrateInitalValues(customerFieldsArr);
     const validationSchema = generateValidationSchema(customerFieldsArr);
     const [addButton, setAddButton] = useState(false);
-    const { authHeader, handleErrorsFunc } = useContext(DataContext);
+    const {  handleErrorsFunc, isValidSessionFunc, session } = useContext(DataContext);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        const token = Cookies.get("token");
+        isValidSessionFunc();
+        if (!token || ["", 'undefined', undefined].includes(token)){
+            navigate("/login");
+        }
+    },[]);
+
+    if (!session){
+        return <Loading />
+    }
 
     return (
         <div>
@@ -29,7 +45,12 @@ const AddCustomer = () => {
                         validationSchema={validationSchema}
                         onSubmit={(values, { resetForm }) => {
                             setAddButton(true);
-                            axios.post(`${API_BASE_URL}/customer/`, values, authHeader).then((res) => {
+                            const token = Cookies.get('token');
+                            axios.post(`${API_BASE_URL}/customer/`, values, {
+                                headers : {
+                                    Authorization : `Bearer ${token}`
+                                }
+                            }).then((res) => {
                                 resetForm();
                                 toast.success("Customer Added Successfully!!", { position: "top-center" });
                             }).catch((error) => {
