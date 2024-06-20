@@ -36,6 +36,8 @@ const displayCustomerHeading = [
         display : true,
         // value: "Default",
         name: "company_phone",
+        'minLength' : 7,
+        'maxLength' : 20,
         icon: <VpnKeyIcon className={iconCss} />
 
     },
@@ -93,6 +95,8 @@ const displayCustomerHeading = [
         type : "number",
         placeholder: "Manager Phone",
         required: true,
+        'minLength' : 7,
+        'maxLength' : 15,
         display : false,
         // value: "Default",
         name: "manager_phone",

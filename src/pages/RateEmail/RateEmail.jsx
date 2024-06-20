@@ -18,7 +18,7 @@ const RateEmail = () => {
     if (!emailSenderPageObj) {
         <Loading />
     }
-    
+
     const updateRateEmailArr = rate_email_arr.map((element, index) => {
         if (element.type == "dynamic_option" || element.type == "dynamic_select") {
             if (element.name == "template_id") {
@@ -28,6 +28,7 @@ const RateEmail = () => {
                     return values;
                 });
             }
+            
             if (element.name == "customer_id") {
                 element['option'] = emailSenderPageObj?.customer_data?.map((values, index) => {
                     values["label"] = values.customer_name

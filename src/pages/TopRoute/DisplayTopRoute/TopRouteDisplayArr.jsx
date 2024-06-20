@@ -19,7 +19,8 @@ const topRouteTabelArr = [
         placeholder: "Destination",
         label: "Destination",
         name: "destination",
-        required: true,
+        // required: true,
+        display : true,
         icon: <SellIcon className={iconCss} />
     },
     {

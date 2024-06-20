@@ -34,7 +34,11 @@ function App() {
 
   return (
     <>
+   <div className='mb-20'>
+
      {["/login", "/add"].includes(location.pathname) ? null :  <Navbar />}
+   
+   </div>
       <Routes>
 
       {/* Un Protected Routes */}

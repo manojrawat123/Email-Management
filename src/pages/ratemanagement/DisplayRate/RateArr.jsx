@@ -13,14 +13,14 @@ const topTableHeading = [
         placeholder: "Destination",
         name: "country_name",
         display : true,
-        required: true,
+        // required: true,
         // value: "Default",
         icon: <SellIcon className={iconCss} />
     },
     {
         label: "Codes",
         placeholder: "Codes",
-        required: true,
+        // required: true,
         display : true,
         // value: "Default",
         name: "country_code",

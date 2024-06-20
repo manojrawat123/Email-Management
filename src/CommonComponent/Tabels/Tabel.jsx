@@ -59,13 +59,13 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
           </tbody>
         </table>
 
-<div>
-{filterTabelObj?.map((element, index)=>{
-  return <TabelPhoneSupport  row_data={element} topTableHeading={topTableHeading} EditModal={EditModal} url_route={url_route} getFunc={getFunc} query={query} />
-})}
-</div>
+        <div>
+          {filterTabelObj?.map((element, index) => {
+            return <TabelPhoneSupport row_data={element} topTableHeading={topTableHeading} EditModal={EditModal} url_route={url_route} getFunc={getFunc} query={query} />
+          })}
+        </div>
       </>
-        
+
     </div>
   )
 }

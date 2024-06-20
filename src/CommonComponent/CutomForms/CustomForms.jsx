@@ -88,6 +88,7 @@ const CustomForms = ({ fieldsArr, route_name, title }) => {
                                                                 name={element.name}
                                                                 placeholder={element.placeholder}
                                                                 required
+                                                                max={element.name == 'invoice_to_date' ? new Date().toISOString().split('T')[0] : null}
                                                                 className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                                                             />
                                                         </>
