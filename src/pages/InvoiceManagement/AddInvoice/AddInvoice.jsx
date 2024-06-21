@@ -6,19 +6,19 @@ import addInvoiceArr from './AddInvoiceArr';
 
 const AddInvoice = () => {
 
-    const { getCustomerFunction, customerObject } = useContext(DataContext);
+    const { getCustomerFunction, activeCustomerObject } = useContext(DataContext);
 
     useEffect(()=>{
         getCustomerFunction();
     },[])
 
-    if (!customerObject){
+    if (!activeCustomerObject){
         return <Loading />
     }
 
     const updatedInvoiceArr = addInvoiceArr.map((element, index)=>{
         if (element.type == "dynamicoption"){
-            element["option"] = customerObject?.map((customer, index)=>{
+            element["option"] = activeCustomerObject?.map((customer, index)=>{
                 return {
                     label : customer.customer_name,
                     value : customer.id

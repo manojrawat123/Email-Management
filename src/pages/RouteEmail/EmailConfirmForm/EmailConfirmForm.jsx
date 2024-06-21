@@ -29,7 +29,7 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
             console.log(customer);
             formData.append("sendTo", customer);
             const final_html_format = `<h4>${values['template_body_before']}</h4>
-        ${topRouteTable?.html_data}
+                 ${topRouteTable?.html_data}
             <h4>${values['template_body_after']}</h4>
             <h4>${values['signatures']}</h4>
             `
@@ -132,7 +132,7 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
                                 </div>
                             ))}
                         </div>
-                        {Array.isArray(topRouteTable) && topRouteTable.length == 0 ? null : <div dangerouslySetInnerHTML={{ __html: topRouteTable?.html_data }} />}
+                        {Array.isArray(topRouteTable) && topRouteTable.length == 0 ? null : <div dangerouslySetInnerHTML={{ __html: topRouteTable?.react_data }} />}
                         <br />
                         <div className="mb-4 mx-5">
                             <button

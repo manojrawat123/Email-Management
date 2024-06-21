@@ -9,11 +9,38 @@ const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700
 const inputRegisterArr = [
   {
     type: "text",
-    id: "username",
-    name: "username",
+    id: "company_name",
+    name: "company_name",
     required: true,
     placeholder: "Enter your Username",
     icon: <PersonIcon className={iconCss} />
+  },
+ 
+  {
+    type: "email",
+    id: "email",
+    name: "email",
+    required: true,
+    placeholder: "Enter your Email",
+    icon: <EmailIcon className={iconCss} />
+  },
+  {
+    type: "number",
+    id: "company_phone",
+    name: "company_phone",
+    label: "Company Phone",
+    required: true, 
+    placeholder: "Enter your Company Phone",
+    icon: <FirstNameIcon className={iconCss} />
+  },
+  {
+    type: "text",
+    id: "company_address",
+    name: "company_address",
+    required: true, 
+    label: "Company Address",
+    placeholder: "Enter your Company Address",
+    icon: <LastNameIcon className={iconCss} />
   },
   {
     type: "password",
@@ -24,31 +51,13 @@ const inputRegisterArr = [
     icon: <LockIcon className={iconCss} />
   },
   {
-    type: "email",
-    id: "email",
-    name: "email",
+    type: "password",
+    id: "password2",
+    name: "password2",
     required: true,
-    placeholder: "Enter your Email",
-    icon: <EmailIcon className={iconCss} />
+    placeholder: "Confirm Your Password",
+    icon: <LockIcon className={iconCss} />
   },
-  {
-    type: "text",
-    id: "first_name",
-    name: "first_name",
-    label: "First Name",
-    required: true, 
-    placeholder: "Enter your First Name",
-    icon: <FirstNameIcon className={iconCss} />
-  },
-  {
-    type: "text",
-    id: "last_name",
-    name: "last_name",
-    required: true, 
-    label: "Last Name",
-    placeholder: "Enter your Last Name",
-    icon: <LastNameIcon className={iconCss} />
-  }
 ];
 
 export default inputRegisterArr;

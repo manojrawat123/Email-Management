@@ -5,7 +5,7 @@ import CustomForms from '../../CommonComponent/CutomForms/CustomForms'
 const Register = () => {
 
   return (
-    <CustomForms fieldsArr={inputRegisterArr} route_name={"register"} title={"Add User"}/>
+    <CustomForms fieldsArr={inputRegisterArr} route_name={"register"} title={"Add Company"}/>
   )
 }
 

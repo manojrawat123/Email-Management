@@ -72,11 +72,9 @@ const CustomForms = ({ fieldsArr, route_name, title }) => {
                                                                         if (values['customer_id'] == opt.customer_id) {
                                                                             return <option value={opt.value}>{opt.label}</option>
                                                                         }
-                                                                    }
-                                                                    )
-                                                                        : element.option?.map((opt, index) => {
-                                                                            return <option value={opt.value}>{opt.label}</option>
-                                                                        })}
+                                                                    }) : element.option?.map((opt, index) => {
+                                                                        return <option value={opt.value}>{opt.label}</option>
+                                                                    })}
                                                                 </Field>
                                                             </>}
                                                         </>
@@ -84,11 +82,11 @@ const CustomForms = ({ fieldsArr, route_name, title }) => {
                                                         <>
                                                             {element.icon}
                                                             <Field
-                                                                type={element.type ? element.type : "text"}
+                                                                type={!element.type || element.type == "number" ? "text" : element.type}
                                                                 name={element.name}
                                                                 placeholder={element.placeholder}
                                                                 required
-                                                                max={element.name == 'invoice_to_date' ? new Date().toISOString().split('T')[0] : null}
+                                                                max={['invoice_to_date', 'payment_date'].includes(element.name) ? new Date().toISOString().split('T')[0] : null}
                                                                 className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                                                             />
                                                         </>

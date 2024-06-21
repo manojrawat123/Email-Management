@@ -10,6 +10,7 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
 
   const [customerObject, setCustomerObjectList] = useState();
+  const [activeCustomerObject, setActiveCustomerObject] = useState();
   const [ratePageObj, setRatePageObj] = useState();
   const [emailSenderPageObj, setEmailSenderPageObj] = useState();
   const [topRouteTable, setTopRouteTable] = useState();
@@ -21,6 +22,7 @@ export const DataProvider = ({ children }) => {
   const [invoiceObj, setInvoiceObj] = useState();
   const [disputePageObj, setDisputePageObj] = useState();
   const [disputeObj, setDisputeObj] = useState();
+  const [paymentObj, setPaymentObj] = useState();
 
   const navigate = useNavigate();
 
@@ -194,7 +196,19 @@ export const DataProvider = ({ children }) => {
   }
 
   const getCustomerFunction = () => {
-    commonGetApi('customer', setCustomerObjectList);
+    commonGetApi('', setCustomerObjectList);
+    const token = Cookies.get("token");
+    axios.get(`${API_BASE_URL}/customer/`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    }).then((value) => {
+      setCustomerObjectList(value.data);
+      const active_user = value.data.filter((element) => element.active)
+      setActiveCustomerObject(active_user);
+    }).catch((err) => {
+     handleErrorsFunc(err);
+    });
   }
 
   const logoutFunc = ()=>{
@@ -221,6 +235,9 @@ export const DataProvider = ({ children }) => {
 
   const getAllInvoiceFunc = (query)=>{
     commonGetParamsApi('getinvoices', query,setInvoiceObj);
+  }
+  const getAllPaymentsFunc = (query)=>{
+    commonGetParamsApi('payment', query , setPaymentObj);
   }
 
 
@@ -264,7 +281,10 @@ export const DataProvider = ({ children }) => {
       getDisputePageFunc,
       disputePageObj,
       getDisputeSearchFunc,
-      disputeObj,      
+      disputeObj,   
+      activeCustomerObject  ,
+      getAllPaymentsFunc,
+      paymentObj 
     }}>
       {children}
     </DataContext.Provider>

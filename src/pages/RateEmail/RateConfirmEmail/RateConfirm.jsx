@@ -58,7 +58,7 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
 
     return (
         <div>
-            {showConfirmEmail ? <EmailLastConfirm  resetFunction={resetFunction} setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} /> : null}
+            {showConfirmEmail ? <EmailLastConfirm resetFunction={resetFunction} setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} /> : null}
             <div className="w-[100%]">
                 <div className="sm:w-[80%] w-[90%] mx-auto bg-white rounded-lg shadow-2xl border border-t-0 border-solid border-gray-300">
                     <h2 className="font-bold text-3xl  px-6  text-gray-800 text-center">
@@ -72,7 +72,6 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
                                         {element.placeholder}{" "}
                                         <span className="text-red-500 mr-auto">*</span>
                                         {
-
                                         }
                                     </h4>
                                     <div className={"w-full relative col-span-1 "}>
@@ -100,30 +99,14 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
                                                     readOnly={true}
                                                     className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                                                 />
-
-                                                // <select
-                                                //     value={formik.values[element.name]}
-                                                //     placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
-                                                //     required
-                                                //     onChange={(e) => {
-                                                //         formik.setFieldValue(element.name, e.target.value);
-                                                //     }}
-                                                //     readOnly={true}
-                                                //     className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600`}
-                                                // >
-                                                //     <option value="">Please Select</option>
-                                                //     {form_array?.find((f_e, f_i) => f_e.name == element.name)?.option?.map((subel, index) => {
-                                                //         return <option value={subel.id}>{subel.label}</option>
-                                                //     })}
-                                                // </select>
                                                 :
                                                 isAllCountry ? <h1 className="text-green-700 font-semibold w-full py-1 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "> <span><Check className="border border-green-700 rounded-full" /> </span>All Country Selected</h1> :
                                                     <h1 className="text-gray-700 font-semibold w-full py-1 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 overflow-y-scroll h-[5rem]">
-                                                       {data.country?.map((con_el, index)=>{
-                                                        return <span>
-                                                            {con_el} {",  "}
-                                                        </span>
-                                                       })}
+                                                        {data.country?.map((con_el, index) => {
+                                                            return <span>
+                                                                {con_el} {",  "}
+                                                            </span>
+                                                        })}
                                                     </h1>
                                         }
                                     </div>

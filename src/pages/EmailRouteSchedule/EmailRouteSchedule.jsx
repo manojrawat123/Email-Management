@@ -27,7 +27,6 @@ const EmailRouteShedule = () => {
         emailSenderPageFunc();
     }, []);
 
-
     if (!emailSenderPageObj) {
         return <Loading />
     }

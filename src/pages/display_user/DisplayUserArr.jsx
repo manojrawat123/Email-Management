@@ -8,31 +8,31 @@ const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700
 
 const display_user_arr = [
     {
-        label: "User Name",
+        label: "Company Name",
         placeholder: "User Name",
-        name: "username",
+        name: "company_name",
         display : true,
         required: true,
         // value: "Default",
         icon: <PersonIcon className={iconCss} />
     },
     {
-        label: "First Name",
-        placeholder: "First Name",
+        label: "Company Phone",
+        placeholder: "Enter Company Phone Number",
         required: true,
         display : true,
         // value: "Default",
-        name: "first_name",
+        name: "company_phone",
         icon: <FirstNameIcon className={iconCss} />
     },
     {
-        label: "Last Name",
-        placeholder: "Last Name",
+        label: "Company Email",
+        placeholder: "Enter Company Email",
         type : "text",
         required: true,
         display : true,
         // value: "Default",
-        name: "last_name",
+        name: "email",
         icon: <LastNameIcon className={iconCss} />
     },
     {

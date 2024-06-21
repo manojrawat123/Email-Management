@@ -25,6 +25,9 @@ import AddDispute from './pages/DisputeManagement/AddDispute/AddDispute'
 import SearchInvoice from './pages/InvoiceManagement/SearchInvoice/SearchInvoice'
 import SearchDispute from './pages/DisputeManagement/SearchDispute/SearchDispute'
 import DisputeDisplay from './pages/DisputeManagement/DisplayDispute/DisplayDispute'
+import AddPayment from './pages/PaymentManagement/AddPayment/AddPayment'
+import SearchPayment from './pages/PaymentManagement/SearchPayment/SearchPayment'
+import DisplayPayment from './pages/PaymentManagement/DisplayPayment/DisplayPayment'
 
 function App() {
 
@@ -74,12 +77,21 @@ function App() {
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/add-dispute' Component={AddDispute} />
         </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/add-payment' Component={AddPayment} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/search-payment' Component={SearchPayment} />
+        </Route>
       
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/display-invoice' Component={InvoiceDisplay} />
         </Route>
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/display-dispute' Component={DisputeDisplay} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/display-payment' Component={DisplayPayment} />
         </Route>
 
         <Route path='' Component={ProtectedRoutes}>

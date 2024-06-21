@@ -33,6 +33,16 @@ const navBarArr = [
                 label: "Add Dispute",
                 link: "/add-dispute"
             },
+            {
+                id: "2e",
+                label: "Add Payment",
+                link: "/add-payment"
+            },
+            {
+                id: "2e",
+                label: "Search Payment",
+                link: "/search-payment"
+            },
         ]
         
     },

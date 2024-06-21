@@ -71,6 +71,7 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
                                                 type={element.type ? element.type : 'text'}
                                                 name={element.name}
                                                 placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                max={['invoice_to_date', 'payment_date'].includes(element.name) ? new Date().toISOString().split('T')[0] : null}
                                                 className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                                             /> }
                                         </div>

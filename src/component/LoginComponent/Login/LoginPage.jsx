@@ -24,7 +24,7 @@ const LoginPage = () => {
     e.preventDefault();
     setLoginButton(true);
     axios.post(`${API_BASE_URL}/login/`, {
-      username: e.target.username.value,
+      email: e.target.email.value,
       password: e.target.password.value,
       // url: API_ROUTE_URL,
     }).then((value) => {

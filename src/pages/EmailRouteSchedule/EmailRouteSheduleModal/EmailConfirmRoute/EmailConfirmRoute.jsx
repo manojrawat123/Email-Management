@@ -11,8 +11,7 @@ import Loading from '../../../../component/LoadingSpinner/LoadingSpinner';
 import { format } from "date-fns";
 import EmailLastConfirm from '../../../../CommonComponent/DynamicForm/ConfirmEmailModal/EmailLastConfirm';
 
-const RouteEmailScheduleConfirm = ({ setIsModalOpen, data, isAllCountry, setIsAllCountry, form_array, resetFunction }) => {
-
+const RouteEmailScheduleConfirm = ({ setIsModalOpen, data, resetFunction }) => {
     const initialValues = genrateInitalValues(emailScheduleConfirmArr);
     // const validationSchema = generateValidationSchema(emailScheduleConfirmArr);
     const [addButton, setAddButton] = useState(false);
@@ -51,17 +50,17 @@ const RouteEmailScheduleConfirm = ({ setIsModalOpen, data, isAllCountry, setIsAl
 
         }
         else {
-            setTopRouteTable([]); 
+            setTopRouteTable([]);
         }
     }, []);
 
-    if (!topRouteTable){
+    if (!topRouteTable) {
         return <Loading />
     }
 
     return (
         <div>
-            {showConfirmEmail ? <EmailLastConfirm resetFunction={resetFunction} setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} route={"emailshedule"}/> : null}
+            {showConfirmEmail ? <EmailLastConfirm resetFunction={resetFunction} setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} route={"emailshedule"} /> : null}
             <div className="w-[100%]">
                 <div className="sm:w-[80%] w-[90%] mx-auto bg-white rounded-lg shadow-2xl border border-t-0 border-solid border-gray-300">
                     <h2 className="font-bold text-3xl  px-6  text-gray-800 text-center">
@@ -112,11 +111,11 @@ const RouteEmailScheduleConfirm = ({ setIsModalOpen, data, isAllCountry, setIsAl
                         </div>
                         <div className='ml-4'>
                             <h1 className='font-bold'>To</h1>
-                        {data.customer_names.map((element)=>{
-                            return <h1 className='font-semibold ml-4'> {element}</h1>
-                        })}
+                            {data.customer_names.map((element) => {
+                                return <h1 className='font-semibold ml-4'> {element}</h1>
+                            })}
                         </div>
-                        {Array.isArray(topRouteTable) && topRouteTable.length == 0 ? null : <div dangerouslySetInnerHTML={{ __html: topRouteTable?.html_data }} />}
+                        {Array.isArray(topRouteTable) && topRouteTable.length == 0 ? null : <div dangerouslySetInnerHTML={{ __html: topRouteTable?.react_data }} />}
                         <br />
                         <div className="mb-4 mx-5">
                             <button
@@ -131,7 +130,7 @@ const RouteEmailScheduleConfirm = ({ setIsModalOpen, data, isAllCountry, setIsAl
                             </button>
                         </div>
 
-                       
+
                     </form>
                 </div>
             </div>

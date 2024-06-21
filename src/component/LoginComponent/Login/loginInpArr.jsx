@@ -3,9 +3,9 @@ import LockIcon from "@mui/icons-material/Lock";
 
 const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700`;
 const inputLoginArr = [{
-    "type": "text",
-   "id": "username",
-    "name": "username",
+    "type": "email",
+   "id": "email",
+    "name": "email",
     "required": true,
     "placeholder": "Enter your Email",
     "icon": <PersonIcon className={iconCss} />
