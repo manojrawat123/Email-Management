@@ -14,23 +14,34 @@ import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 
 const AddCustomer = () => {
 
-    const initialValues = genrateInitalValues(customerFieldsArr);
-    const validationSchema = generateValidationSchema(customerFieldsArr);
+
     const [addButton, setAddButton] = useState(false);
-    const {  handleErrorsFunc, isValidSessionFunc, session } = useContext(DataContext);
+    const { handleErrorsFunc,   getCountryCodeFunc, countryCode } = useContext(DataContext);
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        const token = Cookies.get("token");
-        isValidSessionFunc();
-        if (!token || ["", 'undefined', undefined].includes(token)){
-            navigate("/login");
-        }
-    },[]);
+    useEffect(() => {
+        getCountryCodeFunc();
+    }, []);
 
-    if (!session){
+    
+    if (!countryCode) {
         return <Loading />
     }
+
+    const updatedArr = customerFieldsArr.map((element, index)=>{
+        if (element.name == "country_code"){
+          element['option'] = countryCode?.map((country, index)=>{
+                return {
+                    label : `${country.code} ${country.name}`,
+                    value : `${country.id}`
+                }
+            })
+        }
+        return element;
+    })
+
+    const initialValues = genrateInitalValues(updatedArr);
+    const validationSchema = generateValidationSchema(updatedArr);
 
     return (
         <div>
@@ -47,8 +58,8 @@ const AddCustomer = () => {
                             setAddButton(true);
                             const token = Cookies.get('token');
                             axios.post(`${API_BASE_URL}/customer/`, values, {
-                                headers : {
-                                    Authorization : `Bearer ${token}`
+                                headers: {
+                                    Authorization: `Bearer ${token}`
                                 }
                             }).then((res) => {
                                 resetForm();
@@ -67,7 +78,7 @@ const AddCustomer = () => {
                             <Form>
                                 <div className="mb-4 grid md:grid-cols-2 grid-cols-1 gap-4 p-4">
                                     {
-                                        customerFieldsArr.map((element, index) => {
+                                        updatedArr.map((element, index) => {
                                             return (<div className="" key={index}>
                                                 <h4 className="font-semibold mb-2 text-gray-700">
                                                     {element.placeholder}{" "}
@@ -75,13 +86,26 @@ const AddCustomer = () => {
                                                 </h4>
                                                 <div className={"w-full relative col-span-1 "}>
                                                     {element.icon}
-                                                    <Field
-                                                        // type={element.type}
+                                                   {element.type == "dynamicoption" ?
+                                                   <Field 
+                                                   as="select"
+                                                   name={element.name}
+                                                        placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                        required
+                                                        className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
+                                                    >
+                                                        <option value="">Please Select</option>
+                                                        {element.option.map((el)=>{
+                                                            return <option value={el.value}>{el.label}</option>
+                                                        })}
+                                                    </Field>
+                                                   :  <Field
+                                                        type={element.type}
                                                         name={element.name}
                                                         placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
                                                         required
                                                         className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
-                                                    />
+                                                    />}
                                                 </div>
                                                 <ErrorMessage
                                                     name={element.name}
@@ -92,7 +116,6 @@ const AddCustomer = () => {
                                         })
                                     }
                                 </div>
-
                                 <div className="mb-4 mx-5">
                                     <button
                                         type="submit"
@@ -105,7 +128,6 @@ const AddCustomer = () => {
                                         )}
                                     </button>
                                 </div>
-
                             </Form>
                         )}
                     </Formik>

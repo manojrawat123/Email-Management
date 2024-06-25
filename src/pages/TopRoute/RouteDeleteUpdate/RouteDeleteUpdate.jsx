@@ -39,6 +39,7 @@ const RouteDeleteUpdate = () => {
                                         </div>
                                         <form onSubmit={(e) => {
                                             e.preventDefault();
+                                            setButton(true);
                                             const formData = new FormData();
                                             formData.append("excel_sheet", excelSheet);
                                             formData.append("top_route_name", routeId);
@@ -51,6 +52,8 @@ const RouteDeleteUpdate = () => {
                                                 toast.success("Route Updated Successfully!")
                                             }).catch((err)=>{
                                                 handleErrorsFunc(err);
+                                            }).finally(()=>{
+                                                setButton(false);
                                             })
                                         }}>
                                             <div>

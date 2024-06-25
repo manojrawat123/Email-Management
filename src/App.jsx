@@ -28,6 +28,7 @@ import DisputeDisplay from './pages/DisputeManagement/DisplayDispute/DisplayDisp
 import AddPayment from './pages/PaymentManagement/AddPayment/AddPayment'
 import SearchPayment from './pages/PaymentManagement/SearchPayment/SearchPayment'
 import DisplayPayment from './pages/PaymentManagement/DisplayPayment/DisplayPayment'
+import StatementOfAmountComp from './pages/StatementOfAmount/StatementOfAmount'
 
 function App() {
 
@@ -37,11 +38,12 @@ function App() {
 
   return (
     <>
-   <div className='mb-20'>
+    <div className="h-screen flex flex-col">
 
      {["/login", "/add"].includes(location.pathname) ? null :  <Navbar />}
    
-   </div>
+
+   <div className="flex-1 mt-20 overflow-y-auto">
       <Routes>
 
       {/* Un Protected Routes */}
@@ -76,6 +78,9 @@ function App() {
         </Route>
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/add-dispute' Component={AddDispute} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/statement-of-amount' Component={StatementOfAmountComp} />
         </Route>
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/add-payment' Component={AddPayment} />
@@ -148,6 +153,8 @@ function App() {
         </Route>
 
       </Routes>
+      </div>
+        </div>
     </>
   )
 }

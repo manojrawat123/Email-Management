@@ -51,7 +51,7 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
                                 if (element.name == "Action") return;
                                 return (
                                     <div className="" key={index}>
-                                        <h4 className="text-blue-600 mb-2">
+                                        <h4 className="text-gray-700 mb-2">
                                             {element.placeholder}
                                             {element.required ? <span className="text-red-500">*</span> : <span className="text-gray-700"> (Optional)</span>}
                                         </h4>
@@ -61,7 +61,7 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
                                                 as="select"
                                                 name={element.name}
                                                 placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
-                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-black"
                                             >
                                                 <option value="">Please Select</option>
                                                 {element.option?.map((element, index)=>{
@@ -72,7 +72,7 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
                                                 name={element.name}
                                                 placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
                                                 max={['invoice_to_date', 'payment_date'].includes(element.name) ? new Date().toISOString().split('T')[0] : null}
-                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-black"
                                             /> }
                                         </div>
                                         <ErrorMessage
@@ -87,7 +87,7 @@ const EditForms = ({ row_data, setIsModalOpen, topTableHeading, getFunc, url_rou
                         <div className="mb-4 mx-5">
                             <button
                                 type="submit"
-                                className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
+                                className="w-full bg-black text-white py-2 px-4 rounded hover:bg-black transition duration-300"
                             >
                                 {button ? (
                                     <CircularProgress size={19} color="inherit" />

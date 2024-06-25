@@ -17,6 +17,8 @@ const DisplayUser = () => {
         allUser
     } = useContext(DataContext);    
 
+    console.log(allUser);
+
     useEffect(() => {
         getAllUserFunc();
     }, []);

@@ -43,7 +43,7 @@ const addDisputeArr = [
         'icon' : <Factory className={iconCss}/>
     },
     {
-        'type': 'number',
+        'type': 'text',
         'id': 'dispute_number',
         'name': 'dispute_number',
         'required': true,

@@ -7,6 +7,7 @@ import { API_BASE_URL } from '../../config';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
+import Cookies from "js-cookie";
 import { DataContext } from '../../context';
 
 const CustomForms = ({ fieldsArr, route_name, title }) => {
@@ -18,8 +19,12 @@ const CustomForms = ({ fieldsArr, route_name, title }) => {
 
     const handleSubmit = (values, { resetForm }) => {
         setButton(true);
-        axios.post(`${API_BASE_URL}/${route_name}/`, values).then((value) => {
-            console.log(values);
+        const token = Cookies.get("token");
+        axios.post(`${API_BASE_URL}/${route_name}/`, values, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((value) => {
             toast.success("Successfully Updated", {
                 position: "top-center"
             });

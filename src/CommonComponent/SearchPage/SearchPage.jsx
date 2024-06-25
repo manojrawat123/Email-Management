@@ -28,17 +28,18 @@ const SearchPage = ({ title, search_page_arr, route_page }) => {
         }
         )}`);
     }
+    console.log(search_page_arr);
 
-    
+
 
     return (
         <section className="gradient-form h-[100vh] bg-neutral-200 dark:bg-neutral-700">
-    {
-        isLoading ?
-        <div className="fixed inset-3 flex items-center justify-center bg-gray-900  bg-opacity-75 z-40">
-<Loading />
-</div> : null
-    }
+            {
+                isLoading ?
+                    <div className="fixed inset-3 flex items-center justify-center bg-gray-900  bg-opacity-75 z-40">
+                        <Loading />
+                    </div> : null
+            }
             <ToastContainer />
             <div className=" h-full p-10">
                 <div className="flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200 md:w-[55%] mx-auto">
@@ -63,41 +64,37 @@ const SearchPage = ({ title, search_page_arr, route_page }) => {
                                                                     element.type == "option" ?
                                                                         <Select
                                                                             options={element.name == "customer_rate_id" ?
-                                                                                element?.option?.map((element, index) => {
-                                                                                    if (element.customer_id == values["customer_id"]){
-                                                                                        return element;
-                                                                                    }
-                                                                                })  :  element.name == "country_code" ? country : element?.option}
+                                                                                element?.option?.filter((rate_el, index) => rate_el.customer_id == values["customer_id"]) : element.name == "country_code" ? country : element?.option}
                                                                             isSearchable={true}
                                                                             isClearable={true}
                                                                             onChange={(selectedOptions) => {
                                                                                 setFieldValue(element.name, selectedOptions.value);
-                                                                                if (element.name == "customer_rate_id"){
-                                                                                  setIsLoading(true);
+                                                                                if (element.name == "customer_rate_id") {
+                                                                                    setIsLoading(true);
                                                                                     const token = Cookies.get("token");
                                                                                     axios.get(`${API_BASE_URL}/searchpage/${selectedOptions.value}/`, {
-                                                                                        headers : {
-                                                                                            Authorization : `Bearer ${token}`
+                                                                                        headers: {
+                                                                                            Authorization: `Bearer ${token}`
                                                                                         }
-                                                                                        , params : {
-                                                                                            page : "get_country"
+                                                                                        , params: {
+                                                                                            page: "get_country"
                                                                                         }
-                                                                                    }).then((res)=>{
-                                                                                        const opt_val = res.data.country.map((element)=>{
+                                                                                    }).then((res) => {
+                                                                                        const opt_val = res.data.country.map((element) => {
                                                                                             return {
-                                                                                                value : element,
-                                                                                                label : element
+                                                                                                value: element,
+                                                                                                label: element
                                                                                             }
                                                                                         })
                                                                                         setCountry(opt_val);
-                                                                                    }).catch((err)=>{
+                                                                                    }).catch((err) => {
                                                                                         console.log(err);
-                                                                                    }).finally(()=>{
+                                                                                    }).finally(() => {
                                                                                         setIsLoading(false);
                                                                                     });
                                                                                 }
                                                                             }}
-                                                                            placeholder="Select a Customer"
+                                                                            placeholder={element.placeholder}
                                                                             required
                                                                         />
                                                                         :

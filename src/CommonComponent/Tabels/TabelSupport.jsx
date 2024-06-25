@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
 import { split } from 'postcss/lib/list';
 import { API_BASE_URL } from '../../config';
-import { useLocation } from 'react-router-dom';
+import { NavLink, Navigate, useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
 import DeleteConfirm from '../../component/ConfirmButton/DeleteConfirm';
+import { OpenInBrowser } from '@mui/icons-material';
 
 const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc, query }) => {
 
@@ -17,7 +18,7 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
 
   return (
     <>
-    {confirmDelete ? <DeleteConfirm url_route={url_route} id={row_data.id} getFunc={getFunc} query={query} setConfirmDelete={setConfirmDelete} row_data={row_data}/> : null}
+      {confirmDelete ? <DeleteConfirm url_route={url_route} id={row_data.id} getFunc={getFunc} query={query} setConfirmDelete={setConfirmDelete} row_data={row_data} /> : null}
       <EditModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
@@ -43,11 +44,16 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
               >{"active" in row_data ? row_data.active == false ? "Activate" : "De-Activate" : "Delete"}</button>
             </td>
           }
-          return <>{ (element.label == "Increment" && !row_data[element.name])  ?
+          return <>{(element.label == "Increment" && !row_data[element.name]) ?
             <td className="py-2 px-4 border-b"> {`${row_data['billing_increment_1']?.split(".")[0]} + ${row_data['billing_increment_n']?.split(".")[0]}`}</td>
-            : element.display != false ? <td className="py-2 px-4 border-b">{row_data[element.name]} </td> : null}</>
+            : element.display != false ? <td className="py-2 px-4 border-b">
+              {element.name == "invoice_amount_in" ? 
+              <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+{element.name == "invoice_amount_out" ? 
+              <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+             
+              {row_data[element.name]} </td> : null}</>
         })}
-
       </tr>
     </>
   )

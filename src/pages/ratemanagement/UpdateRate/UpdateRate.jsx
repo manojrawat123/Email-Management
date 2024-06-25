@@ -18,7 +18,6 @@ const UpdateRate = () => {
     const [button, setButton] = useState(false);
     const { ratePageObj, getCustomerRatePageFunc, isValidSessionFunc } = useContext(DataContext);
     const [excelSheet, setExcelSheet] = useState();
-    const [rateOpt, setRateOpt] = useState([]);
 
     useEffect(() => {
         getCustomerRatePageFunc();
@@ -47,7 +46,8 @@ const UpdateRate = () => {
                                     </div>
                                     <Formik
                                         initialValues={initialValues}
-                                        onSubmit={(values) => {
+                                        onSubmit={(values, { resetForm }) => {
+                                            setButton(true);
                                             const formData = new FormData();
                                             Object.entries(values).forEach(([key, value]) => {
                                                 if (key == 'excel_sheet') {
@@ -66,6 +66,7 @@ const UpdateRate = () => {
                                                 toast.success("Data Updated Successfully", {
                                                     "position": "top-center"
                                                 });
+                                                resetForm();
                                             }).catch((err) => {
                                                 toast.error("Internal Server Error!!", {
                                                     "position": "top-center"
@@ -93,13 +94,7 @@ const UpdateRate = () => {
                                                                 <h4 className="font-semibold mb-2 text-gray-700 text-base">
                                                                     {element.placeholder}{" "}
                                                                     <span className="text-red-500">*</span>
-                                                                </h4>{console.log(values)}
-                                                                {
-                                                                    ratePageObj?.customer_rate?.map((el) => {
-                                                                        console.log(el.customer_id);
-                                                                        console.log(values["customer"]);
-                                                                    })
-                                                                }
+                                                                </h4>
                                                                 <div className={"w-full relative col-span-1 "}>
                                                                     {element.icon}
                                                                     {element.type == "dynamicoption" ? <Field as={"select"}

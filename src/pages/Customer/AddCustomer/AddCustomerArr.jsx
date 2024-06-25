@@ -25,6 +25,14 @@ const customerFieldsArr = [
         'icon' : <Factory className={iconCss}/>
     },
     {
+        'type': 'dynamicoption',
+        'id': 'Country Code',
+        'name': 'country_code',
+        'required': true,
+        'placeholder': 'Select Country Code',
+        'icon' : <ContactMailIcon className={iconCss}/>
+    },
+    {
         'type': 'number',
         'id': 'CompanyPhone',
         'name': 'company_phone',
@@ -72,6 +80,7 @@ const customerFieldsArr = [
         'placeholder': 'Enter Manager Email',
         'icon' : <ContactMailIcon className={iconCss}/>
     },
+    
     {
         'type': 'number',
         'id': 'ManagerPhone',

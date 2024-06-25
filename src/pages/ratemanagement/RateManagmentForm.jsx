@@ -49,7 +49,7 @@ const RateManagmentForm = () => {
                                     </div>
                                     <Formik
                                         initialValues={initialValues}
-                                        onSubmit={(values) => {
+                                        onSubmit={(values, {resetForm}) => {
                                             setButton(true);
                                             values['radio_value'] = radioValue
                                             if ((excelSheet == "" || !excelSheet) && (customerRateId == "" || !customerRateId)) {
@@ -79,7 +79,7 @@ const RateManagmentForm = () => {
                                                 toast.success("Data Updated Successfully", {
                                                     "position": "top-center"
                                                 });
-                                                console.log(value);
+                                               resetForm();
                                             }).catch((err) => {
                                                 isValidSessionFunc();
                                                 toast.error("Internal Server Error!!", {

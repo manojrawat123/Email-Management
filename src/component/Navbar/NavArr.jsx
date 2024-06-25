@@ -43,6 +43,11 @@ const navBarArr = [
                 label: "Search Payment",
                 link: "/search-payment"
             },
+            {
+                id: "2f",
+                label: "Statement Of amount",
+                link: "/statement-of-amount"
+            },
         ]
         
     },
@@ -82,12 +87,7 @@ const navBarArr = [
                 id: "5c",
                 label: "Update Routes",
                 link: '/route-update-delete'
-            },
-            {
-                id: "5d",
-                label: "Replace Routes",
-                link: '/route-update-delete'
-            },
+            }
         ]
     },
     {

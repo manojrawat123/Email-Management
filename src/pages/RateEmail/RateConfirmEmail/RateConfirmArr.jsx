@@ -13,22 +13,7 @@ const rateEmailConfirmArr = [
         "placeholder" : "Subject", 
         "icon" : <SellIcon className={iconCss}/>
     },
-    {
-        "type" : "text",
-        "required" : true,
-        "name" : "template_body_before",
-        "id" : "template_body_before",
-        "placeholder" : "Template Before Message",
-        "icon" : <ListIcon className={iconCss}/>
-    },
-    {
-        "type" : "text",
-        "required" : true,
-        "name" : "template_body_after",
-        "id" : "template_body_after",
-        "placeholder" : "Template After Message",
-        "icon" : <ListIcon className={iconCss}/>
-    },
+    
     {
         "type" : "option",
         "required" : true,
@@ -61,7 +46,23 @@ const rateEmailConfirmArr = [
         "name" : "customer_name",
         "readOnly" : true,
         "icon" : <Person className={iconCss} />
-    }
+    },
+    {
+        "type" : "text",
+        "required" : true,
+        "name" : "template_body_before",
+        "id" : "template_body_before",
+        "placeholder" : "Template Before Message",
+        "icon" : <ListIcon className={iconCss}/>
+    },
+    {
+        "type" : "text",
+        "required" : true,
+        "name" : "template_body_after",
+        "id" : "template_body_after",
+        "placeholder" : "Template After Message",
+        "icon" : <ListIcon className={iconCss}/>
+    },
 ]
 
 export default rateEmailConfirmArr;

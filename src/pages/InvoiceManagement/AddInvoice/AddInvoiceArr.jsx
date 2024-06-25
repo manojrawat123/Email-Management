@@ -1,4 +1,4 @@
-import { Email } from "@mui/icons-material";
+import { Email, Numbers } from "@mui/icons-material";
 import { Factory } from "@mui/icons-material";
 import { Phone } from "@mui/icons-material";
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
@@ -35,7 +35,7 @@ const addInvoiceArr = [
         'icon' : <Factory className={iconCss}/>
     },
     {
-        'type': 'number',
+        'type': 'text',
         'id': 'invoice_number',
         'name': 'invoice_number',
         'required': true,
@@ -65,6 +65,14 @@ const addInvoiceArr = [
         'required': true,
         'placeholder': 'Enter Invoice Amount',
         'icon' : <Email className={iconCss}/>
+    },
+    {
+        'type': 'number',
+        'id': 'invoice_minutes',
+        'name': 'invoice_minutes',
+        'required': true,
+        'placeholder': 'Enter Invoice minutes',
+        'icon' : <Numbers className={iconCss}/>
     }
 ]
 

@@ -10,7 +10,7 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
   const [search, setSearch] = useState('all');
   const [filterTabelObj, setFilterTabelObj] = useState(tabelObj);
   const location = useLocation();
-  // const filterTabelHeading = topTableHeading?.filter(element => element.display == true);
+
   useEffect(() => {
     setFilterTabelObj(tabelObj);
   }, [tabelObj]);

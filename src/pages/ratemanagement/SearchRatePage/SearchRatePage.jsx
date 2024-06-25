@@ -43,9 +43,9 @@ const SearchRatePage = () => {
             label: "Please Select Customer",
             option: searchPageData?.customer_rate?.map((element, index) => {
                 return {
-                    label: element.rate_name,
-                    value: element.id,
-                    customer_id: element.customer_id
+                    label : element.rate_name,
+                    value : element.id,
+                    customer_id : element.customer_id
                 };
             }),
             icon: <DateRange className={iconCss} />

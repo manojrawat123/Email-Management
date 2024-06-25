@@ -1,9 +1,9 @@
 import { Email } from "@mui/icons-material";
 import { Factory } from "@mui/icons-material";
 import { Phone } from "@mui/icons-material";
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+// import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+// import ContactMailIcon from '@mui/icons-material/ContactMail';
 import PersonIcon from '@mui/icons-material/Person';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
 
 const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700 left-1 text-gray-700`;
 
@@ -34,8 +34,8 @@ const display_payment_arr = [
                 label : "Out"
             }
         ],
-        'placeholder': 'Invoice Type',
-        'label': 'Invoice Type',
+        'placeholder': 'Payment Type',
+        'label': 'Payment Type',
         'icon': <Factory className={iconCss} />
     },
     {
@@ -64,8 +64,8 @@ const display_payment_arr = [
         'name': 'bank_charges',
         'required': true,
         'display': true,
-        'label': 'Invoice To Date',
-        'placeholder': 'Invoice To Date',
+        'label': 'Bank Charges',
+        'placeholder': 'Bank Charges',
         'icon': <Email className={iconCss} />
     },
     {

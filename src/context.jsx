@@ -23,6 +23,8 @@ export const DataProvider = ({ children }) => {
   const [disputePageObj, setDisputePageObj] = useState();
   const [disputeObj, setDisputeObj] = useState();
   const [paymentObj, setPaymentObj] = useState();
+  const [countryCode, setCountryCode] = useState();
+  const [statementOfAmount ,setStatementOfAmount] = useState();
 
   const navigate = useNavigate();
 
@@ -101,6 +103,7 @@ export const DataProvider = ({ children }) => {
       console.log(value.data);
       setParamsData(value.data);
     }).catch((err) => {
+      console.log(err);
      handleErrorsFunc(err);
     });
   }
@@ -196,7 +199,6 @@ export const DataProvider = ({ children }) => {
   }
 
   const getCustomerFunction = () => {
-    commonGetApi('', setCustomerObjectList);
     const token = Cookies.get("token");
     axios.get(`${API_BASE_URL}/customer/`, {
       headers: {
@@ -215,7 +217,6 @@ export const DataProvider = ({ children }) => {
     Cookies.remove("token");
     navigate("/login");
   }
-
 
   const getRateSearchFunction = (query) => {
     if (!query) return;
@@ -236,6 +237,7 @@ export const DataProvider = ({ children }) => {
   const getAllInvoiceFunc = (query)=>{
     commonGetParamsApi('getinvoices', query,setInvoiceObj);
   }
+
   const getAllPaymentsFunc = (query)=>{
     commonGetParamsApi('payment', query , setPaymentObj);
   }
@@ -250,6 +252,13 @@ export const DataProvider = ({ children }) => {
       commonGetParamsApi('dispute', query, setDisputeObj);
   }
 
+  const getCountryCodeFunc = ()=>{
+    commonGetApi('countrycode', setCountryCode);
+  }
+
+  const getCustomerStatmentOfAccount = ()=>{
+    commonGetApi('statementofamount', setStatementOfAmount);
+  }
 
 
 
@@ -284,7 +293,11 @@ export const DataProvider = ({ children }) => {
       disputeObj,   
       activeCustomerObject  ,
       getAllPaymentsFunc,
-      paymentObj 
+      paymentObj ,
+      countryCode,
+      getCountryCodeFunc,
+      getCustomerStatmentOfAccount,
+      statementOfAmount
     }}>
       {children}
     </DataContext.Provider>

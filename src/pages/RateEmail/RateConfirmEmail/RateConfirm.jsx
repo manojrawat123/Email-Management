@@ -28,11 +28,8 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
             formData.append("type", 'rate');
             formData.append("is_all_country", isAllCountry);
             const final_html_format = `<h4>${values['template_body_before']}</h4>
-                                            ${topRouteTable?.html_data && topRouteTable?.html_data != "undefined" ? topRouteTable?.html_data : ""}
                                         <h4>${values['template_body_after']}</h4>
                 <h4>${values['signatures']}</h4>`
-            console.log(final_html_format);
-            formData.append("message", final_html_format);
             Object.entries(values).forEach(([key, value]) => {
                 formData.append(key, value);
             });
@@ -76,7 +73,20 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
                                     </h4>
                                     <div className={"w-full relative col-span-1 "}>
                                         {element.icon}
-                                        {element.type != "select" && element.type != "option" ? <input
+                                        {element.type != "select" && element.type != "option" ? 
+                                      ['template_body_before', 'template_body_after'].includes(element.name) ?
+                                      <textarea
+                                      onBlur={formik.handleBlur}
+                                      type={element.type}
+                                      name={element.name}
+                                      onChange={formik.handleChange}
+                                      value={formik.values[element.name]}
+                                      placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
+                                      required
+                                      readOnly={element.readOnly}
+                                      className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 `} />
+                                      :
+                                            <input
                                             onBlur={formik.handleBlur}
                                             type={element.type}
                                             name={element.name}
@@ -85,7 +95,7 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
                                             placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
                                             required
                                             readOnly={element.readOnly}
-                                            className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 `}
                                         /> :
                                             element.type == "option" ?
                                                 <input
@@ -116,7 +126,7 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
                                 </div>
                             ))}
                         </div>
-                        {Array.isArray(topRouteTable) && topRouteTable.length == 0 ? null : <div dangerouslySetInnerHTML={{ __html: topRouteTable?.html_data }} />}
+                        {/* {Array.isArray(topRouteTable) && topRouteTable.length == 0 ? null : <div dangerouslySetInnerHTML={{ __html: topRouteTable?.html_data }} />} */}
                         <br />
                         <div className="mb-4 mx-5">
                             <button

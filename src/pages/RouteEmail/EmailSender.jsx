@@ -171,18 +171,6 @@ const EmailSenderForm = () => {
                                   required
                                 />
                               )}
-                              {/* {element.type === "file" && dataType == 1 ?
-                                <input
-                                  type="file"
-                                  accept=".xls, .xlsx, .csv, application/vnd.ms-excel"
-                                  className='w-[100%] h-[2.3rem] outline-blue-600 border-2 rounded'
-                                  onChange={(e) => {
-                                    console.log(e.target.files[0]);
-                                    setAttachement(e.target.files[0]);
-                                  }}
-                                  required
-                                />
-                                : null} */}
                             </div>
                           ))}
                           <BlackButton title={"Send Email"} button={button} />
