@@ -13,7 +13,7 @@ const addDisputeArr = [
         'id': 'customer_id',
         'name': 'customer_id',
         'required': true,
-        'placeholder': 'Enter Customer Name',
+        'placeholder': 'Customer Name',
         'icon' : <PersonIcon className={iconCss}/>
     },
     {
@@ -21,7 +21,7 @@ const addDisputeArr = [
         'id': 'invoice_number',
         'name': 'invoice_number',
         'required': true,
-        'placeholder': 'Select Invoice Number',
+        'placeholder': 'Invoice Number',
         'icon' : <PersonIcon className={iconCss}/>
     },
     {
@@ -32,14 +32,14 @@ const addDisputeArr = [
         'option' : [
             {
                 value : "IN",
-                label : "In"
+                label : "Customer"
             },
             {
                 value : "OUT",
-                label : "Out"
+                label : "Vendor"
             }
         ],
-        'placeholder': 'Select Invoice Type',
+        'placeholder': 'Invoice Type',
         'icon' : <Factory className={iconCss}/>
     },
     {
@@ -47,7 +47,7 @@ const addDisputeArr = [
         'id': 'dispute_number',
         'name': 'dispute_number',
         'required': true,
-        'placeholder': 'Enter Dispute Number',
+        'placeholder': 'Dispute Number',
         'icon' : <Phone className={iconCss}/>
     },
     // {
@@ -55,7 +55,7 @@ const addDisputeArr = [
     //     'id': 'invoice_from_date',
     //     'name': 'invoice_from_date',
     //     'required': true,
-    //     'placeholder': 'Enter Invoice From Date',
+    //     'placeholder': 'Invoice From Date',
     //     'icon' : <Email className={iconCss}/>        
     // },
     // {
@@ -63,7 +63,7 @@ const addDisputeArr = [
     //     'id': 'invoice_to_date',
     //     'name': 'invoice_to_date',
     //     'required': true,
-    //     'placeholder': 'Enter Invoice To Date',
+    //     'placeholder': 'Invoice To Date',
     //     'icon' : <Email className={iconCss}/>
     // },
     {
@@ -71,7 +71,7 @@ const addDisputeArr = [
         'id': 'dispute_amount',
         'name': 'dispute_amount',
         'required': true,
-        'placeholder': 'Enter Dispute Amount',
+        'placeholder': 'Dispute Amount',
         'icon' : <SupervisorAccountIcon className={iconCss}/>
     },
     {
@@ -79,7 +79,7 @@ const addDisputeArr = [
         'id': 'desc',
         'name': 'desc',
         'required': true,
-        'placeholder': 'Enter Description',
+        'placeholder': 'Description',
         'icon' : <Email className={iconCss}/>
     },
 

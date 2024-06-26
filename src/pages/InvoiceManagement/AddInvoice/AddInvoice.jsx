@@ -16,7 +16,7 @@ const AddInvoice = () => {
         return <Loading />
     }
 
-    const updatedInvoiceArr = addInvoiceArr.map((element, index)=>{
+    const updatedInvoiceArr = addInvoiceArr?.map((element, index)=>{
         if (element.type == "dynamicoption"){
             element["option"] = activeCustomerObject?.map((customer, index)=>{
                 return {

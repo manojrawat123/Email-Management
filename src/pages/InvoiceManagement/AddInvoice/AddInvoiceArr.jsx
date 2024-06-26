@@ -13,7 +13,7 @@ const addInvoiceArr = [
         'id': 'customer_id',
         'name': 'customer_id',
         'required': true,
-        'placeholder': 'Enter Customer Name',
+        'placeholder': 'Customer Name',
         'icon' : <PersonIcon className={iconCss}/>
     },
     {
@@ -24,14 +24,14 @@ const addInvoiceArr = [
         'option' : [
             {
                 value : "IN",
-                label : "In"
+                label : "Vendor"
             },
             {
                 value : "OUT",
-                label : "Out"
+                label : "Customer"
             }
         ],
-        'placeholder': 'Select Invoice Type',
+        'placeholder': 'Invoice Type',
         'icon' : <Factory className={iconCss}/>
     },
     {
@@ -39,7 +39,7 @@ const addInvoiceArr = [
         'id': 'invoice_number',
         'name': 'invoice_number',
         'required': true,
-        'placeholder': 'Enter Invoice Number',
+        'placeholder': 'Invoice Number',
         'icon' : <Phone className={iconCss}/>
     },
     {
@@ -47,7 +47,7 @@ const addInvoiceArr = [
         'id': 'invoice_from_date',
         'name': 'invoice_from_date',
         'required': true,
-        'placeholder': 'Enter Invoice From Date',
+        'placeholder': 'Invoice From Date',
         'icon' : <Email className={iconCss}/>        
     },
     {
@@ -55,7 +55,7 @@ const addInvoiceArr = [
         'id': 'invoice_to_date',
         'name': 'invoice_to_date',
         'required': true,
-        'placeholder': 'Enter Invoice To Date',
+        'placeholder': 'Invoice To Date',
         'icon' : <Email className={iconCss}/>
     },
     {
@@ -63,7 +63,7 @@ const addInvoiceArr = [
         'id': 'invoice_amount',
         'name': 'invoice_amount',
         'required': true,
-        'placeholder': 'Enter Invoice Amount',
+        'placeholder': 'Invoice Amount',
         'icon' : <Email className={iconCss}/>
     },
     {
@@ -71,7 +71,7 @@ const addInvoiceArr = [
         'id': 'invoice_minutes',
         'name': 'invoice_minutes',
         'required': true,
-        'placeholder': 'Enter Invoice minutes',
+        'placeholder': 'Invoice minutes',
         'icon' : <Numbers className={iconCss}/>
     }
 ]

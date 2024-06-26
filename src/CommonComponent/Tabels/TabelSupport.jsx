@@ -44,9 +44,13 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
               >{"active" in row_data ? row_data.active == false ? "Activate" : "De-Activate" : "Delete"}</button>
             </td>
           }
-          return <>{(element.label == "Increment" && !row_data[element.name]) ?
-            <td className="py-2 px-4 border-b"> {`${row_data['billing_increment_1']?.split(".")[0]} + ${row_data['billing_increment_n']?.split(".")[0]}`}</td>
-            : element.display != false ? <td className="py-2 px-4 border-b">
+          return <>{
+            
+            (element.label == "Increment") ? 
+            <td className="py-2 px-4 border-b"> {`${row_data['billing_increment_1']} + ${row_data['billing_increment_n']}`}</td>
+            :
+            
+            element.display != false ? <td className="py-2 px-4 border-b">
               {element.name == "invoice_amount_in" ? 
               <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
 {element.name == "invoice_amount_out" ? 

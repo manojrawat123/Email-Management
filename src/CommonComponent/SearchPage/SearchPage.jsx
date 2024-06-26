@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import generateValidationSchema from '../../component/genrateValidationSchema/genrateValidationSchema';
 import genrateInitalValues from '../../component/genrateInitalValues/GenrateInitalValues';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../config';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { CircularProgress } from '@mui/material';
@@ -19,7 +19,9 @@ const SearchPage = ({ title, search_page_arr, route_page }) => {
     const [country, setCountry] = useState([]);
     const [isLoading, setIsLoading] = useState()
     const { handleErrorsFunc } = useContext(DataContext);
+    const location = useLocation();
     const navigate = useNavigate()
+
 
     const handleSubmit = (values, { resetForm }) => {
         setButton(true);
@@ -77,7 +79,8 @@ const SearchPage = ({ title, search_page_arr, route_page }) => {
                                                                                             Authorization: `Bearer ${token}`
                                                                                         }
                                                                                         , params: {
-                                                                                            page: "get_country"
+                                                                                            page: "get_country",
+                                                                                            url : location.pathname
                                                                                         }
                                                                                     }).then((res) => {
                                                                                         const opt_val = res.data.country.map((element) => {

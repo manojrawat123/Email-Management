@@ -15,7 +15,7 @@ const addPaymentArr = [
         'id': 'customer_id',
         'name': 'customer_id',
         'required': true,
-        'placeholder': 'Enter Customer ID',
+        'placeholder': 'Customer ID',
         'icon' : <AccountCircle className={iconCss}/>
     },
     {
@@ -26,14 +26,14 @@ const addPaymentArr = [
         'option' : [
             {
                 value : "IN",
-                label : "In"
+                label : "Customer"
             },
             {
                 value : "OUT",
-                label : "Out"
+                label : "Vendor"
             }
         ],
-        'placeholder': 'Select Payment Type',
+        'placeholder': 'Payment Type',
         'icon' : <Payment className={iconCss}/>
     },
     {
@@ -41,7 +41,7 @@ const addPaymentArr = [
         'id': 'payment_date',
         'name': 'payment_date',
         'required': true,
-        'placeholder': 'Enter Payment Date',
+        'placeholder': 'Payment Date',
         'icon' : <DateRange className={iconCss}/>
     },
     {
@@ -49,7 +49,7 @@ const addPaymentArr = [
         'id': 'payment_amount',
         'name': 'payment_amount',
         'required': true,
-        'placeholder': 'Enter Payment Amount',
+        'placeholder': 'Payment Amount',
         'icon' : <Money className={iconCss}/>
     },
     {
@@ -57,15 +57,7 @@ const addPaymentArr = [
         'id': 'bank_charges',
         'name': 'bank_charges',
         'required': true,
-        'placeholder': 'Enter Bank Charges',
-        'icon' : <AccountBalance className={iconCss}/>
-    },
-    {
-        'type': 'number',
-        'id': 'other_charges',
-        'name': 'other_charges',
-        'required': true,
-        'placeholder': 'Enter Other Charges',
+        'placeholder': 'Bank Charges',
         'icon' : <AccountBalance className={iconCss}/>
     },
     {
@@ -87,7 +79,7 @@ const addPaymentArr = [
                 label : "Online"
             }
         ],
-        'placeholder': 'Select Payment Mode',
+        'placeholder': 'Payment Mode',
         'icon' : <Payment className={iconCss}/>
     },
     {
@@ -95,7 +87,7 @@ const addPaymentArr = [
         'id': 'description',
         'name': 'description',
         'required': true,
-        'placeholder': 'Enter Description',
+        'placeholder': 'Description',
         'icon' : <Description className={iconCss}/>
     },
     {
@@ -117,7 +109,7 @@ const addPaymentArr = [
                 label : "Failed"
             }
         ],
-        'placeholder': 'Select Status',
+        'placeholder': 'Status',
         'icon' : <SupervisorAccountIcon className={iconCss}/>
     }
 ]

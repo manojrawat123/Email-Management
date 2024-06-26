@@ -14,26 +14,25 @@ import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 
 const AddCustomer = () => {
 
-
     const [addButton, setAddButton] = useState(false);
-    const { handleErrorsFunc,   getCountryCodeFunc, countryCode } = useContext(DataContext);
+    const { handleErrorsFunc, getCountryCodeFunc, countryCode } = useContext(DataContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         getCountryCodeFunc();
     }, []);
 
-    
+
     if (!countryCode) {
         return <Loading />
     }
 
-    const updatedArr = customerFieldsArr.map((element, index)=>{
-        if (element.name == "country_code"){
-          element['option'] = countryCode?.map((country, index)=>{
+    const updatedArr = customerFieldsArr.map((element, index) => {
+        if (["country_code", "manager_phone_country_code"].includes(element.name)) {
+            element['option'] = countryCode?.map((country, index) => {
                 return {
-                    label : `${country.code} ${country.name}`,
-                    value : `${country.id}`
+                    label: `${country.code} ${country.name}`,
+                    value: `${country.id}`
                 }
             })
         }
@@ -76,36 +75,73 @@ const AddCustomer = () => {
                             values, resetForm, setFieldValue
                         }) => (
                             <Form>
-                                <div className="mb-4 grid md:grid-cols-2 grid-cols-1 gap-4 p-4">
+                                <div className="mb-4 grid md:grid-cols-4 grid-cols-1 gap-4 p-4">
                                     {
                                         updatedArr.map((element, index) => {
-                                            return (<div className="" key={index}>
+
+                                             if (["country_code", "company_phone", "manager_phone_country_code", "manager_phone"].includes(element.name)){
+                                                return <div className="" key={index}>
                                                 <h4 className="font-semibold mb-2 text-gray-700">
                                                     {element.placeholder}{" "}
                                                     <span className="text-red-500">*</span>
                                                 </h4>
-                                                <div className={"w-full relative col-span-1 "}>
+                                                <div className={"w-full relative col-span-1"}>
                                                     {element.icon}
-                                                   {element.type == "dynamicoption" ?
-                                                   <Field 
-                                                   as="select"
-                                                   name={element.name}
-                                                        placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
-                                                        required
-                                                        className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
-                                                    >
-                                                        <option value="">Please Select</option>
-                                                        {element.option.map((el)=>{
-                                                            return <option value={el.value}>{el.label}</option>
-                                                        })}
-                                                    </Field>
-                                                   :  <Field
-                                                        type={element.type}
-                                                        name={element.name}
-                                                        placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
-                                                        required
-                                                        className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
-                                                    />}
+                                                    {element.type == "dynamicoption" ?
+                                                        <Field
+                                                            as="select"
+                                                            name={element.name}
+                                                            placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                            required
+                                                            className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
+                                                        >
+                                                            <option value="">Please Select</option>
+                                                            {element.option?.map((el) => {
+                                                                return <option value={el.value}>{el.label}</option>
+                                                            })}
+                                                        </Field>
+                                                        : <Field
+                                                            type={element.type}
+                                                            name={element.name}
+                                                            placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                            required
+                                                            className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
+                                                        />}
+                                                </div>
+                                                <ErrorMessage
+                                                    name={element.name}
+                                                    component="div"
+                                                    className="text-red-500"
+                                                />
+                                            </div>
+                                             }
+                                            return (<div className="col-span-2" key={index}>
+                                                <h4 className="font-semibold mb-2 text-gray-700">
+                                                    {element.placeholder}{" "}
+                                                    <span className="text-red-500">*</span>
+                                                </h4>
+                                                <div className={"w-full relative "}>
+                                                    {element.icon}
+                                                    {element.type == "dynamicoption" ?
+                                                        <Field
+                                                            as="select"
+                                                            name={element.name}
+                                                            placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                            required
+                                                            className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
+                                                        >
+                                                            <option value="">Please Select</option>
+                                                            {element.option.map((el) => {
+                                                                return <option value={el.value}>{el.label}</option>
+                                                            })}
+                                                        </Field>
+                                                        : <Field
+                                                            type={element.type}
+                                                            name={element.name}
+                                                            placeholder={element.name == 'title' ? element.helpingtext : element.placeholder}
+                                                            required
+                                                            className={"pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
+                                                        />}
                                                 </div>
                                                 <ErrorMessage
                                                     name={element.name}

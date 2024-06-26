@@ -13,7 +13,7 @@ const customerFieldsArr = [
         'id': 'CustomerName',
         'name': 'customer_name',
         'required': true,
-        'placeholder': 'Enter Customer Name',
+        'placeholder': 'Customer Name',
         'icon' : <PersonIcon className={iconCss}/>
     },
     {
@@ -21,7 +21,7 @@ const customerFieldsArr = [
         'id': 'CompanyName',
         'name': 'company_name',
         'required': true,
-        'placeholder': 'Enter Company Name',
+        'placeholder': 'Company Name',
         'icon' : <Factory className={iconCss}/>
     },
     {
@@ -29,7 +29,7 @@ const customerFieldsArr = [
         'id': 'Country Code',
         'name': 'country_code',
         'required': true,
-        'placeholder': 'Select Country Code',
+        'placeholder': 'Country Code',
         'icon' : <ContactMailIcon className={iconCss}/>
     },
     {
@@ -37,7 +37,7 @@ const customerFieldsArr = [
         'id': 'CompanyPhone',
         'name': 'company_phone',
         'required': true,
-        'placeholder': 'Enter Company Phone',
+        'placeholder': 'Company Phone',
         'icon' : <Phone className={iconCss}/>
     },
     {
@@ -45,7 +45,7 @@ const customerFieldsArr = [
         'id': 'RatesEmail',
         'name': 'rates_email',
         'required': true,
-        'placeholder': 'Enter Rates Email',
+        'placeholder': 'Rates Email',
         'icon' : <Email className={iconCss}/>        
     },
     {
@@ -53,7 +53,7 @@ const customerFieldsArr = [
         'id': 'BillingEmail',
         'name': 'billing_email',
         'required': true,
-        'placeholder': 'Enter Billing Email',
+        'placeholder': 'Billing Email',
         'icon' : <Email className={iconCss}/>
     },
     {
@@ -61,7 +61,7 @@ const customerFieldsArr = [
         'id': 'LegalEmail',
         'name': 'legal_email',
         'required': true,
-        'placeholder': 'Enter Legal Email',
+        'placeholder': 'Legal Email',
         'icon' : <Email className={iconCss}/>
     },
     {
@@ -69,7 +69,7 @@ const customerFieldsArr = [
         'id': 'ManagerName',
         'name': 'manager_name',
         'required': true,
-        'placeholder': 'Enter Manager Name',
+        'placeholder': 'Manager Name',
         'icon' : <SupervisorAccountIcon className={iconCss}/>
     },
     {
@@ -77,10 +77,17 @@ const customerFieldsArr = [
         'id': 'ManagerEmail',
         'name': 'manager_email',
         'required': true,
-        'placeholder': 'Enter Manager Email',
+        'placeholder': 'Manager Email',
         'icon' : <ContactMailIcon className={iconCss}/>
     },
-    
+    {
+        'type': 'dynamicoption',
+        'id': 'Manager Country Code',
+        'name': 'manager_phone_country_code',
+        'required': true,
+        'placeholder': 'Manager Country Code',
+        'icon' : <ContactMailIcon className={iconCss}/>
+    },
     {
         'type': 'number',
         'id': 'ManagerPhone',
@@ -88,7 +95,7 @@ const customerFieldsArr = [
         'minLength' : 7,
         'maxLength' : 20,
         'required': true,
-        'placeholder': 'Enter Manager Phone',
+        'placeholder': 'Manager Phone',
         'icon' :  <Phone className={iconCss}/>
     },
 ]

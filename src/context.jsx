@@ -188,16 +188,17 @@ export const DataProvider = ({ children }) => {
         });
       }
 
-      if (value.data.page == "rate_page") {
+      if (["rate_page", "vendor_rate_page"].includes(value.data.page)) {
         setSearchPageData(value.data);
       }
-      // setSearchPageData(value.data);
     }).catch((err) => {
       handleErrorsFunc(err);
       setSearchPageData([]);
     });
   }
 
+
+  
   const getCustomerFunction = () => {
     const token = Cookies.get("token");
     axios.get(`${API_BASE_URL}/customer/`, {
@@ -218,9 +219,25 @@ export const DataProvider = ({ children }) => {
     navigate("/login");
   }
 
+
   const getRateSearchFunction = (query) => {
     if (!query) return;
     axios.get(`${API_BASE_URL}/rate-search/`, {
+
+      params: query,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((value) => {
+      setFilterRate(value.data)
+    }).catch((err) => {
+     handleErrorsFunc(err);
+    })
+  }
+
+  const getVendorRateSearchFunction = (query) => {
+    if (!query) return;
+    axios.get(`${API_BASE_URL}/vendorratesearch/`, {
 
       params: query,
       headers: {
@@ -297,7 +314,8 @@ export const DataProvider = ({ children }) => {
       countryCode,
       getCountryCodeFunc,
       getCustomerStatmentOfAccount,
-      statementOfAmount
+      statementOfAmount,
+      getVendorRateSearchFunction
     }}>
       {children}
     </DataContext.Provider>

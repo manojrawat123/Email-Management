@@ -111,6 +111,7 @@ const navBarArr = [
             },
         ]
     },
+    
     {
         id: "7",
         label: "Event",
@@ -136,6 +137,32 @@ const navBarArr = [
             // },
         ]
     },
+    {
+        id: "8",
+        label: "Vendor Rate Management",
+        option: [
+            {
+                id: "8a",
+                label: "Upload Vendor Rate",
+                link: '/upload-vendor-rate'
+            },
+            // {
+            //     id: "8b",
+            //     label: "Update Rate",
+            //     link: '/update-rate'
+            // },
+            {
+                id: "8c",
+                label: "Search Vendor Rate",
+                link: '/search-vendor-rate'
+            },
+            {
+                id: "8d",
+                label: "Add Rate",
+                link: '/add-rate'
+            },
+        ]
+    }
 ];
 
 export default navBarArr;

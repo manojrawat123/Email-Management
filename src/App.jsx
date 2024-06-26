@@ -29,6 +29,9 @@ import AddPayment from './pages/PaymentManagement/AddPayment/AddPayment'
 import SearchPayment from './pages/PaymentManagement/SearchPayment/SearchPayment'
 import DisplayPayment from './pages/PaymentManagement/DisplayPayment/DisplayPayment'
 import StatementOfAmountComp from './pages/StatementOfAmount/StatementOfAmount'
+import VendorUploadRate from './pages/VendorRateManagement/UploadVendorRate/VendorUploadRateForm'
+import SearchVendorRate from './pages/VendorRateManagement/SearchVendorRate/SearchVendorRatePage'
+import DisplayVendorRate from './pages/VendorRateManagement/DisplayVendorRate/DisplayVendorRate'
 
 function App() {
 
@@ -151,6 +154,18 @@ function App() {
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/rate' Component={DisplayRate} />
         </Route>
+
+        {/* Vendor Rate Management */}
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/upload-vendor-rate' Component={VendorUploadRate} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/search-vendor-rate' Component={SearchVendorRate} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/display-vendor-rate' Component={DisplayVendorRate} />
+        </Route>
+
 
       </Routes>
       </div>
