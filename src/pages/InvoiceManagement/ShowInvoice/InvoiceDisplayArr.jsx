@@ -74,8 +74,8 @@ const invoice_display_arr = [
         'name': 'invoice_amount',
         'required': true,
         'display': true,
-        'label': 'Enter Invoice Amount',
-        'placeholder': 'Enter Invoice Amount',
+        'label': 'Invoice Amount',
+        'placeholder': 'Invoice Amount',
         'icon': <Email className={iconCss} />
     },
     {

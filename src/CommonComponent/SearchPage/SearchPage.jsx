@@ -80,7 +80,7 @@ const SearchPage = ({ title, search_page_arr, route_page }) => {
                                                                                         }
                                                                                         , params: {
                                                                                             page: "get_country",
-                                                                                            url : location.pathname
+                                                                                            url: location.pathname
                                                                                         }
                                                                                     }).then((res) => {
                                                                                         const opt_val = res.data.country.map((element) => {

@@ -32,6 +32,9 @@ import StatementOfAmountComp from './pages/StatementOfAmount/StatementOfAmount'
 import VendorUploadRate from './pages/VendorRateManagement/UploadVendorRate/VendorUploadRateForm'
 import SearchVendorRate from './pages/VendorRateManagement/SearchVendorRate/SearchVendorRatePage'
 import DisplayVendorRate from './pages/VendorRateManagement/DisplayVendorRate/DisplayVendorRate'
+import AddVendorRate from './pages/VendorRateManagement/AddVendorRate/AddVendorRate'
+import SearchVendorRateByCountryCode from './pages/VendorRateManagement/SearchVendorRateCountryCode/SearchVendorRateCountryCode'
+import DisplayVendorByCountryCode from './pages/VendorRateManagement/DisplayByCountryCode/DisplayByCountryCode'
 
 function App() {
 
@@ -163,10 +166,17 @@ function App() {
           <Route path='/search-vendor-rate' Component={SearchVendorRate} />
         </Route>
         <Route path='' Component={ProtectedRoutes}>
+          <Route path='/search-vendor-rate-country' Component={SearchVendorRateByCountryCode} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
           <Route path='/display-vendor-rate' Component={DisplayVendorRate} />
         </Route>
-
-
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/display-vendor-rate-by-country' Component={DisplayVendorByCountryCode} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/add-vendor-rate' Component={AddVendorRate} />
+        </Route>
       </Routes>
       </div>
         </div>

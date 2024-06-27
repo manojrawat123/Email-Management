@@ -17,14 +17,6 @@ const addDisputeArr = [
         'icon' : <PersonIcon className={iconCss}/>
     },
     {
-        'type': 'dynamicoption',
-        'id': 'invoice_number',
-        'name': 'invoice_number',
-        'required': true,
-        'placeholder': 'Invoice Number',
-        'icon' : <PersonIcon className={iconCss}/>
-    },
-    {
         'type': 'option',
         'id': 'dispute_type',
         'name': 'dispute_type',
@@ -42,6 +34,15 @@ const addDisputeArr = [
         'placeholder': 'Invoice Type',
         'icon' : <Factory className={iconCss}/>
     },
+    {
+        'type': 'dynamicoption',
+        'id': 'invoice_number',
+        'name': 'invoice_number',
+        'required': true,
+        'placeholder': 'Invoice Number',
+        'icon' : <PersonIcon className={iconCss}/>
+    },
+   
     {
         'type': 'text',
         'id': 'dispute_number',

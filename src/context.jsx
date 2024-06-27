@@ -25,6 +25,8 @@ export const DataProvider = ({ children }) => {
   const [paymentObj, setPaymentObj] = useState();
   const [countryCode, setCountryCode] = useState();
   const [statementOfAmount ,setStatementOfAmount] = useState();
+  const [vendorRatePage, setVendorRatePage] = useState();
+  const [vendorRate, setVendorRate] = useState();
 
   const navigate = useNavigate();
 
@@ -188,7 +190,8 @@ export const DataProvider = ({ children }) => {
         });
       }
 
-      if (["rate_page", "vendor_rate_page"].includes(value.data.page)) {
+      if (["rate_page", "vendor_rate_page", "all_country"].includes(value.data.page)) {
+        console.log(value.data);
         setSearchPageData(value.data);
       }
     }).catch((err) => {
@@ -250,6 +253,21 @@ export const DataProvider = ({ children }) => {
     })
   }
 
+  const getVendorRateByCountryCodeSearchFunction = (query) => {
+    if (!query) return;
+    axios.get(`${API_BASE_URL}/vendorratebycountrycode/`, {
+
+      params: query,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((value) => {
+      setVendorRate(value.data);
+    }).catch((err) => {
+     handleErrorsFunc(err);
+    })
+  }
+
 
   const getAllInvoiceFunc = (query)=>{
     commonGetParamsApi('getinvoices', query,setInvoiceObj);
@@ -277,6 +295,9 @@ export const DataProvider = ({ children }) => {
     commonGetApi('statementofamount', setStatementOfAmount);
   }
 
+  const addVenderRatePageFunc = ()=>{
+    commonGetApi('addvendorratepage', setVendorRatePage);
+  }
 
 
   // End OF lead Function
@@ -315,7 +336,11 @@ export const DataProvider = ({ children }) => {
       getCountryCodeFunc,
       getCustomerStatmentOfAccount,
       statementOfAmount,
-      getVendorRateSearchFunction
+      getVendorRateSearchFunction,
+      addVenderRatePageFunc,
+      vendorRatePage,
+      getVendorRateByCountryCodeSearchFunction,
+      vendorRate
     }}>
       {children}
     </DataContext.Provider>

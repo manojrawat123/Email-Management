@@ -93,8 +93,8 @@ const statement_of_amount_arr = [
         'name': 'bank_charges_in',
         'required': true,
         'display': true,
-        'label': 'Vendor Bank Charges ',
-        'placeholder': 'Vendor Bank Charges',
+        'label': 'Customer Bank Charges ',
+        'placeholder': 'Customer Bank Charges',
         'icon': <Email className={iconCss} />
     },
     {
@@ -103,7 +103,7 @@ const statement_of_amount_arr = [
         'name': 'bank_charges_out',
         'required': true,
         'display': true,
-        'label': 'Customer Bank Charge',
+        'label': 'Vendor Bank Charge',
         'placeholder': 'Customer Bank Charge',
         'icon': <Email className={iconCss} />
     },
@@ -118,5 +118,6 @@ const statement_of_amount_arr = [
         'icon': <Email className={iconCss} />
     },
 ]
+
 
 export default statement_of_amount_arr;

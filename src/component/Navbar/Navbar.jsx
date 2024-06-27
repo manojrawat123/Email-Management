@@ -46,7 +46,7 @@ const NavMenu = () => {
                             )}
                         </button>
                     </div>
-                    <div className="flex items-center flex-shrink-0 text-gray-800 md:mr-16 mx-auto md:mx-0">
+                    <div className="flex items-center flex-shrink-0 text-gray-800 md:mr-2 mx-auto md:mx-0">
                         <span className="font-semibold text-xl tracking-tight">
                         </span>
                     </div>
@@ -67,7 +67,6 @@ const NavMenu = () => {
                             return (
                                 <>
                                     <div
-
                                         onClick={() => {
                                             if (navbarId == 0) {
                                                 setNavbarId(element.id);

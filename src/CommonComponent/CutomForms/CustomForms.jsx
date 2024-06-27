@@ -10,12 +10,13 @@ import axios from 'axios';
 import Cookies from "js-cookie";
 import { DataContext } from '../../context';
 
-const CustomForms = ({ fieldsArr, route_name, title }) => {
+const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
     const validationSchema = generateValidationSchema(fieldsArr);
     const initialValues = genrateInitalValues(fieldsArr);
     const [button, setButton] = useState(false);
     const { handleErrorsFunc } = useContext(DataContext);
     const navigate = useNavigate();
+    const [maxDisputeAmount, setMaxDisputeAmount] = useState(0);
 
     const handleSubmit = (values, { resetForm }) => {
         setButton(true);
@@ -28,6 +29,9 @@ const CustomForms = ({ fieldsArr, route_name, title }) => {
             toast.success("Successfully Updated", {
                 position: "top-center"
             });
+            if (pageFunc){
+                pageFunc();
+            }
             resetForm();
         }).catch((err) => {
             handleErrorsFunc(err);
@@ -70,16 +74,24 @@ const CustomForms = ({ fieldsArr, route_name, title }) => {
                                                                     name={element.name}
                                                                     placeholder={element.placeholder}
                                                                     required
+                                                                    onChange={(e)=>{
+                                                                        setFieldValue(element.name, e.target.value);
+                                                                        if (element.name == "invoice_number"){
+                                                                           const tempObj = element.option.find(element => element.value == e.target.value);
+                                                                            setMaxDisputeAmount(Number(tempObj.invoice_amount));
+                                                                        }
+                                                                    }}
                                                                     className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                                                                 >
                                                                     <option value="">Please Select</option>
-                                                                    {element?.name == "invoice_number" ? element?.option?.map((opt, index) => {
-                                                                        if (values['customer_id'] == opt.customer_id) {
+                                                                    {["invoice_number", 'vendor_rate_id'].includes(element?.name) ? element?.option?.map((opt, index) => {
+                                                                        if (values['customer_id'] == opt.customer_id && values['dispute_type'] == opt.invoice_type) {
                                                                             return <option value={opt.value}>{opt.label}</option>
                                                                         }
-                                                                    }) : element.option?.map((opt, index) => {
-                                                                        return <option value={opt.value}>{opt.label}</option>
-                                                                    })}
+                                                                    }) :
+                                                                        element.option?.map((opt, index) => {
+                                                                            return <option value={opt.value}>{opt.label}</option>
+                                                                        })}
                                                                 </Field>
                                                             </>}
                                                         </>
@@ -90,8 +102,22 @@ const CustomForms = ({ fieldsArr, route_name, title }) => {
                                                                 type={!element.type || element.type == "number" ? "text" : element.type}
                                                                 name={element.name}
                                                                 placeholder={element.placeholder}
+                                                                onChange={(e)=>{
+                                                                    if (element.name == "dispute_amount"){
+                                                                        if (maxDisputeAmount < e.target.value){
+                                                                            toast.error("Dispute Amount cannot above selected Invoice Number");
+                                                                            return;
+                                                                        }
+                                                                        else{
+                                                                            setFieldValue(element.name, e.target.value);
+                                                                        }
+                                                                    }
+                                                                    else{
+                                                                        setFieldValue(element.name, e.target.value);
+                                                                    }
+                                                                }}
                                                                 required
-                                                                max={['invoice_to_date', 'payment_date'].includes(element.name) ? new Date().toISOString().split('T')[0] : null}
+                                                                max={['invoice_to_date', 'payment_date'].includes(element.name) ? new Date().toISOString().split('T')[0] : element.name == "dispute_amount" ? 90 :null}
                                                                 className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                                                             />
                                                         </>

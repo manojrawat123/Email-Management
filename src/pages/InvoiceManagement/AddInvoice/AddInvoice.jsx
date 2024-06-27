@@ -8,29 +8,29 @@ const AddInvoice = () => {
 
     const { getCustomerFunction, activeCustomerObject } = useContext(DataContext);
 
-    useEffect(()=>{
+    useEffect(() => {
         getCustomerFunction();
-    },[])
+    }, []);
 
-    if (!activeCustomerObject){
+    if (!activeCustomerObject) {
         return <Loading />
     }
 
-    const updatedInvoiceArr = addInvoiceArr?.map((element, index)=>{
-        if (element.type == "dynamicoption"){
-            element["option"] = activeCustomerObject?.map((customer, index)=>{
+    const updatedInvoiceArr = addInvoiceArr?.map((element, index) => {
+        if (element.type == "dynamicoption") {
+            element["option"] = activeCustomerObject?.map((customer, index) => {
                 return {
-                    label : customer.customer_name,
-                    value : customer.id
+                    label: customer.customer_name,
+                    value: customer.id
                 }
-            }) 
+            })
         }
         return element;
     })
 
-  return (
-    <CustomForms fieldsArr={updatedInvoiceArr} route_name={"invoices"} title={"Add Invoice"} />
-  )
+    return (
+        <CustomForms fieldsArr={updatedInvoiceArr} route_name={"invoices"} title={"Add Invoice"} />
+    )
 }
 
 export default AddInvoice

@@ -158,8 +158,13 @@ const navBarArr = [
             },
             {
                 id: "8d",
-                label: "Add Rate",
-                link: '/add-rate'
+                label: "Add Vendor Rate",
+                link: '/add-vendor-rate'
+            },
+            {
+                id: "8e",
+                label: "Search Vendor Rate Country",
+                link: '/search-vendor-rate-country'
             },
         ]
     }
