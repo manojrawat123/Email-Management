@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
 
 const RateManagmentForm = () => {
 
-    const { ratePageObj, getCustomerRatePageFunc, isValidSessionFunc } = useContext(DataContext);
+    const { ratePageObj, getCustomerRatePageFunc, isValidSessionFunc, handleErrorsFunc } = useContext(DataContext);
     const [button, setButton] = useState();
     const initialValues = genrateInitalValues(rateArr);
     // const validationSchema = generateValidationSchema(rateArr);
@@ -82,9 +82,7 @@ const RateManagmentForm = () => {
                                                resetForm();
                                             }).catch((err) => {
                                                 isValidSessionFunc();
-                                                toast.error("Internal Server Error!!", {
-                                                    "position": "top-center"
-                                                });
+                                                handleErrorsFunc(err);
                                                 console.log(err);
                                             }).finally(() => {
                                                 setButton(false);

@@ -11,7 +11,7 @@ import { DataContext } from "../../context";
 
 const NavMenu = () => {
     const [mobMenuVis, setMobileVis] = useState(false);
-    const { logoutFunc } = useContext(DataContext);
+    const { logoutFunc,isValidSessionFunc, session } = useContext(DataContext);
     const [navbarId, setNavbarId] = useState(0);
     const location = useLocation();
     const [open, setOpen] = useState(false);
@@ -25,6 +25,21 @@ const NavMenu = () => {
             document.body.style.overflow = 'hidden';
         }
     }, [mobMenuVis]);
+
+    useEffect(()=>{
+        isValidSessionFunc();
+    },[])
+
+    if (!session){
+        return null;
+    }
+
+    const updatedNavBarArr = navBarArr.filter((element) => {        
+        if (!session.is_company && element.label === "User Management") {
+            return false; 
+        }
+        return true; 
+    });
 
     return (
         <>
@@ -63,7 +78,7 @@ const NavMenu = () => {
                         </button>
                     </div>
                     <div className="text-md font-bold text-gray-500 md:flex md:text-center">
-                        {navBarArr?.map((element, index) => {
+                        {updatedNavBarArr?.map((element, index) => {
                             return (
                                 <>
                                     <div

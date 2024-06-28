@@ -35,8 +35,7 @@ const SearchVendorRateByCountryCode = () => {
                     label:` ${element}`,
                     value: element
                 };
-            }),
-            icon: <DateRange className={iconCss} />
+            })
         }
     ];
 

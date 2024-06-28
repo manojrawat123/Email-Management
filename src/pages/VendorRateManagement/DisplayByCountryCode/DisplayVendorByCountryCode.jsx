@@ -18,15 +18,6 @@ const displayVendorByCountryCode = [
         icon: <SellIcon className={iconCss} />
     },
     {
-        label: "Vendor Rate ",
-        placeholder: "Vendor rate",
-        name: "vendor_rate_id_name",
-        display : true,
-        required: true,
-        value: "Default",
-        icon: <SellIcon className={iconCss} />
-    },
-    {
         label: "Destination",
         placeholder: "Destination",
         name: "country_name",
