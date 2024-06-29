@@ -40,8 +40,8 @@ const SearchVendorRate = () => {
         {
             type: "option",
             name: "customer_rate_id",
-            placeholder: "Please Select Customer Rate",
-            label: "Please Select Customer",
+            placeholder: "Please Select Vendor Rate",
+            label: "Please Select Vendor Rate",
             option: searchPageData?.customer_rate?.map((element, index) => {
                 return {
                     label:` ${element.vendor_rate_name}`,

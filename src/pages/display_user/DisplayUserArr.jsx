@@ -8,8 +8,8 @@ const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700
 
 const display_user_arr = [
     {
-        label: "User Name",
-        placeholder: "User Name",
+        label: "Name",
+        placeholder: "Name",
         name: "user_name",
         display : true,
         required: true,
@@ -20,15 +20,6 @@ const display_user_arr = [
         label: "Company Name",
         placeholder: "Company Name",
         name: "company_name",
-        display : true,
-        required: true,
-        // value: "Default",
-        icon: <PersonIcon className={iconCss} />
-    },
-    {
-        label: "Added By",
-        placeholder: "Added By",
-        name: "added_by",
         display : true,
         required: true,
         // value: "Default",

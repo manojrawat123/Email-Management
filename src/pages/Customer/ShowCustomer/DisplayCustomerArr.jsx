@@ -18,16 +18,16 @@ const displayCustomerHeading = [
         // value: "Default",
         icon: <SellIcon className={iconCss} />
     },
-    // {
-    //     label: "Company Name",
-    //     placeholder: "Company Name",
-    //     required: true,
-    //     display : true,
-    //     // value: "Default",
-    //     name: "company_name",
-    //     icon: <ListIcon className={iconCss} />
+    {
+        label: "Added By",
+        placeholder: "Added By",
+        required: true,
+        display : true,
+        // value: "Default",
+        name: "added_by",
+        icon: <ListIcon className={iconCss} />
 
-    // },
+    },
     {
         label: "Company Phone",
         placeholder: "Company Phone",
