@@ -28,7 +28,7 @@ const RateEmail = () => {
                     return values;
                 });
             }
-            
+
             if (element.name == "customer_id") {
                 element['option'] = emailSenderPageObj?.customer_data?.map((values, index) => {
                     values["label"] = values.customer_name
@@ -39,6 +39,7 @@ const RateEmail = () => {
             if (element.name == "rate_id") {
                 element['option'] = emailSenderPageObj?.customer_rate?.map((values, index) => {
                     values["label"] = values?.rate_name
+                    values["customer_id"] = values?.customer_id
                     return values;
                 });
             }

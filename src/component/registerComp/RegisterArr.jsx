@@ -9,8 +9,8 @@ const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700
 const inputRegisterArr = [
   {
     type: "text",
-    id: "company_name",
-    name: "company_name",
+    id: "user_name",
+    name: "user_name",
     required: true,
     placeholder: "Enter your Username",
     icon: <PersonIcon className={iconCss} />

@@ -119,6 +119,7 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
                                                 }))}
                                                 isSearchable={true}
                                                 isMulti
+                                                isDisabled
                                                 isClearable={true}
                                                 defaultValue={defaultOptions}
                                                 placeholder="Select a Customer"

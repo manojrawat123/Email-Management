@@ -1,12 +1,16 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Cookies from 'js-cookie';
 import { API_BASE_URL } from '../../config';
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
+import { DataContext } from '../../context';
 
 const EditConfirm = ({ id, url_route, getFunc, query, setConfirmEdit, setIsModalOpen, editData }) => {
+
+  const { isValidSessionFunc } = useContext(DataContext);
   const [button, setButton] = useState(false);
+
   return (
     <div className="fixed inset-3 flex items-center justify-center bg-gray-900  bg-opacity-75 z-40">
       <div className="bg-white p-4 rounded-lg">
@@ -34,8 +38,7 @@ const EditConfirm = ({ id, url_route, getFunc, query, setConfirmEdit, setIsModal
                 setIsModalOpen(false);
               }).catch((error) => {
                 console.log(error);
-                isValidSessionFunc()
-                console.log(props.lastData);
+                isValidSessionFunc();
               }).finally(() => {
                 setButton(false);
               });

@@ -16,14 +16,14 @@ const customerFieldsArr = [
         'placeholder': 'Customer Name',
         'icon' : <PersonIcon className={iconCss}/>
     },
-    {
-        'type': 'text',
-        'id': 'CompanyName',
-        'name': 'company_name',
-        'required': true,
-        'placeholder': 'Company Name',
-        'icon' : <Factory className={iconCss}/>
-    },
+    // {
+    //     'type': 'text',
+    //     'id': 'CompanyName',
+    //     'name': 'company_name',
+    //     'required': true,
+    //     'placeholder': 'Company Name',
+    //     'icon' : <Factory className={iconCss}/>
+    // },
     {
         'type': 'dynamicoption',
         'id': 'Country Code',

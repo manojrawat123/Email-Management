@@ -8,9 +8,27 @@ const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700
 
 const display_user_arr = [
     {
-        label: "Company Name",
+        label: "User Name",
         placeholder: "User Name",
+        name: "user_name",
+        display : true,
+        required: true,
+        // value: "Default",
+        icon: <PersonIcon className={iconCss} />
+    },
+    {
+        label: "Company Name",
+        placeholder: "Company Name",
         name: "company_name",
+        display : true,
+        required: true,
+        // value: "Default",
+        icon: <PersonIcon className={iconCss} />
+    },
+    {
+        label: "Added By",
+        placeholder: "Added By",
+        name: "added_by",
         display : true,
         required: true,
         // value: "Default",
@@ -55,6 +73,16 @@ const display_user_arr = [
         name: "password",
         icon: <EmailIcon className={iconCss} />
     },
+    // {
+    //     label: "Confirm Password",
+    //     type : "password",
+    //     placeholder: "Confirm Password",
+    //     required: true,
+    //     display : false,
+    //     // value: "Default",
+    //     name: "password2",
+    //     icon: <EmailIcon className={iconCss} />
+    // },
     {
         label: "Action",
         placeholder: "Action",

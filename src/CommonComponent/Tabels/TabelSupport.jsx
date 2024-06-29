@@ -47,7 +47,7 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
           return <>{
             
             (element.label == "Increment") ? 
-            <td className="py-2 px-4 border-b"> {`${row_data['billing_increment_1']} + ${row_data['billing_increment_n']}`}</td>
+            <td className="py-2 px-4 border-b"> {!row_data['increment'] ? `${row_data['billing_increment_1']} + ${row_data['billing_increment_n']}` : row_data['increment']}</td>
             :
             
             element.display != false ? <td className="py-2 px-4 border-b">

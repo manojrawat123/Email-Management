@@ -22,7 +22,7 @@ const DynamicForm = ({ form_array, isAllCountry, setIsAllCountry, EmailConfirmFo
     if (!form_array) {
         return <Loading />
     }
-
+    console.log(form_array);
     return (<div>
         <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} isAllCountry={isAllCountry} setIsAllCountry={setIsAllCountry} form_array={form_array} resetFunction={resetFunction} />
         <ToastContainer />
@@ -106,7 +106,13 @@ const DynamicForm = ({ form_array, isAllCountry, setIsAllCountry, EmailConfirmFo
                                                         className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600`}
                                                     >
                                                         <option value="">Please Select</option>
-                                                        {element.option?.map((subel, index) => {
+                                                        {element.name == "rate_id" ? 
+                                                        element.option?.map((subel)=>{
+                                                            if (subel.customer_id == values['customer_id']){
+                                                                return <option value={subel.id}>{subel.label}</option>;
+                                                            }
+                                                        })
+                                                        : element.option?.map((subel, index) => {
                                                             return <option value={subel.id}>{subel.label}</option>
                                                         })}
                                                     </Field> : null
