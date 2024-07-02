@@ -30,17 +30,25 @@ const SearchVendorTargetSheet = () => {
             placeholder: "Please Select Country",
             label: "Select Country",
             icon: <DateRange className={iconCss} />,
-            option : searchPageData?.country?.map((element, index) => {
+            option: searchPageData?.country?.map((element, index) => {
                 return {
-                    label:` ${element}`,
+                    label: ` ${element}`,
                     value: element
                 };
             })
+        },
+        {
+            type: "apioption",
+            name: "country_code",
+            placeholder: "Please Select Country",
+            label: "Select Country",
+            icon: <DateRange className={iconCss} />,
+            option: []
         }
     ];
 
     return (
-        <SearchPage title={"Search Vendor Target Rate Sheet"} search_page_arr={search_invoice_arr} route_page={"display-vendor-target-sheet"} />
+        <SearchPage title={"Search Vendor Target Rate Sheet"} search_page_arr={search_invoice_arr} route_page={"display-vendor-target-sheet"} country_code_pg={true} />
     )
 }
 

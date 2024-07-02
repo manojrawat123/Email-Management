@@ -58,7 +58,7 @@ const DisplayVendorTargetSheet = () => {
         return <Loading />;
     }
 
-    console.log(vendorTargetSheet.data);
+    console.log(vendorTargetSheet);
 
     return (
         <div>
@@ -66,14 +66,16 @@ const DisplayVendorTargetSheet = () => {
                 <Select
                     options={vendorTargetSheet.country_list.map((el) => {
                         return {
-                            value: el,
-                            label: el
+                            value: `${el[0]} - ${el[1]}`,
+                            label: `${el[0]} - ${el[1]}`
                         };
                     })}
                     isSearchable={true}
                     isClearable={true}
                     onChange={(selectedOptions) => {
-                        const url = new URLSearchParams({ "country_name": selectedOptions.value });
+                        console.log(selectedOptions)
+                        const temp = selectedOptions.value.split(' - ');
+                        const url = new URLSearchParams({ "country_name": temp[0], "country_code": temp[1] });
                         getVendorTagetSheetFunction(url);
                         setQuery(url);
                         navigate(`/display-vendor-target-sheet/?${url}`);

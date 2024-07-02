@@ -12,12 +12,13 @@ import Select from "react-select";
 import Cookies from 'js-cookie';
 import Loading from '../../component/LoadingSpinner/LoadingSpinner';
 
-const SearchPage = ({ title, search_page_arr, route_page }) => {
+const SearchPage = ({ title, search_page_arr, route_page, country_code_pg }) => {
     const validationSchema = generateValidationSchema(search_page_arr);
     const initialValues = genrateInitalValues(search_page_arr);
     const [button, setButton] = useState(false);
     const [country, setCountry] = useState([]);
     const [isLoading, setIsLoading] = useState()
+    const [countryCode, setCountryCode] = useState();
     const { handleErrorsFunc } = useContext(DataContext);
     const location = useLocation();
     const navigate = useNavigate()
@@ -30,7 +31,6 @@ const SearchPage = ({ title, search_page_arr, route_page }) => {
         }
         )}`);
     }
-    console.log(search_page_arr);
 
 
 
@@ -63,14 +63,41 @@ const SearchPage = ({ title, search_page_arr, route_page }) => {
                                                             <h4 className="text-gray-700 mb-2">{element.placeholder} <span className="text-red-500">*</span></h4>
                                                             <div className={"w-full relative col-span-1 "}>
                                                                 {
-                                                                    element.type == "option" ?
+                                                                    ["option", "apioption"].includes(element.type) ?
                                                                         <Select
                                                                             options={element.name == "customer_rate_id" ?
-                                                                                element?.option?.filter((rate_el, index) => rate_el.customer_id == values["customer_id"]) : element.name == "country_code" ? country : element?.option}
+                                                                                element?.option?.filter((rate_el, index) => rate_el.customer_id == values["customer_id"]) :element.type == "apioption" ? countryCode : element.name == "country_code" ? country :  element?.option}
                                                                             isSearchable={true}
                                                                             isClearable={true}
                                                                             onChange={(selectedOptions) => {
                                                                                 setFieldValue(element.name, selectedOptions.value);
+                                                                                if (country_code_pg && element.name == "country_name") {
+                                                                                    setIsLoading(true);
+                                                                                    const token = Cookies.get("token");
+                                                                                    axios.get(`${API_BASE_URL}/searchpage/`, {
+                                                                                        headers: {
+                                                                                            Authorization: `Bearer ${token}`
+                                                                                        },
+                                                                                        params: {
+                                                                                            page: "country_code",
+                                                                                            country: selectedOptions.value
+                                                                                        }
+                                                                                    }).then((res) => {
+                                                                                        const opt_val = res.data.country_code.map((element) => {
+                                                                                            return {
+                                                                                                value: element,
+                                                                                                label: element
+                                                                                            }
+                                                                                        })
+                                                                                        setCountryCode(opt_val);
+                                                                                        console.log(opt_val);
+                                                                                    }).catch((err) => {
+                                                                                        console.log(err);
+                                                                                    }).finally(() => {
+                                                                                        setIsLoading(false);
+                                                                                    });
+                                                                                }
+
                                                                                 if (element.name == "customer_rate_id") {
                                                                                     setIsLoading(true);
                                                                                     const token = Cookies.get("token");

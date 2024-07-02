@@ -83,6 +83,7 @@ export const DataProvider = ({ children }) => {
   }
 
   const commonGetApi = (route, setParamsData) => {
+    setParamsData();
     const token = Cookies.get("token");
     axios.get(`${API_BASE_URL}/${route}/`, {
       headers: {
@@ -96,6 +97,7 @@ export const DataProvider = ({ children }) => {
   }
 
   const commonGetParamsApi = (route,query, setParamsData) => {
+    setParamsData();
     const token = Cookies.get("token");
     axios.get(`${API_BASE_URL}/${route}/`, {
       headers: {
@@ -142,6 +144,7 @@ export const DataProvider = ({ children }) => {
   }
 
   const getCustomerRatePageFunc = () => {
+  setRatePageObj();
     axios
       .get(`${API_BASE_URL}/rate/`, authHeader)
       .then((value) => {
@@ -204,6 +207,8 @@ export const DataProvider = ({ children }) => {
 
   
   const getCustomerFunction = () => {
+  setCustomerObjectList();
+  setActiveCustomerObject();
     const token = Cookies.get("token");
     axios.get(`${API_BASE_URL}/customer/`, {
       headers: {
@@ -226,6 +231,7 @@ export const DataProvider = ({ children }) => {
 
   const getRateSearchFunction = (query) => {
     if (!query) return;
+    setFilterRate();
     axios.get(`${API_BASE_URL}/rate-search/`, {
 
       params: query,
@@ -241,6 +247,7 @@ export const DataProvider = ({ children }) => {
 
   const getVendorRateSearchFunction = (query) => {
     if (!query) return;
+    setFilterRate();
     axios.get(`${API_BASE_URL}/vendorratesearch/`, {
 
       params: query,
@@ -256,8 +263,8 @@ export const DataProvider = ({ children }) => {
 
   const getVendorRateByCountryCodeSearchFunction = (query) => {
     if (!query) return;
+    setVendorRate();
     axios.get(`${API_BASE_URL}/vendorratebycountrycode/`, {
-
       params: query,
       headers: {
         Authorization: `Bearer ${token}`
@@ -268,8 +275,11 @@ export const DataProvider = ({ children }) => {
      handleErrorsFunc(err);
     })
   }
+
+  
   const getVendorTagetSheetFunction = (query) => {
     if (!query) return;
+    setVendorTargetSheet();
     axios.get(`${API_BASE_URL}/vendortargetsheet/`, {
 
       params: query,

@@ -45,18 +45,24 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
             </td>
           }
           return <>{
-            
-            (element.label == "Increment") ? 
-            <td className="py-2 px-4 border-b"> {!row_data['increment'] ? `${row_data['billing_increment_1']} + ${row_data['billing_increment_n']}` : row_data['increment']}</td>
-            :
-            
-            element.display != false ? <td className="py-2 px-4 border-b">
-              {element.name == "invoice_amount_in" ? 
-              <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
-{element.name == "invoice_amount_out" ? 
-              <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
-             
-              {row_data[element.name]} </td> : null}</>
+            (element.label == "Increment") ?
+              <td className="py-2 px-4 border-b"> {!row_data['increment'] ? `${row_data['billing_increment_1']} + ${row_data['billing_increment_n']}` : row_data['increment']}</td>
+              :
+              element.display != false ? <td className="py-2 px-4 border-b">
+                {element.name == "payment_in" ?
+                  <NavLink to={`/display-payment/?customer_id=${row_data['id']}&payment_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                {element.name == "payment_out" ?
+                  <NavLink to={`/display-payment/?customer_id=${row_data['id']}&payment_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                {element.name == "dispute_amount_in" ?
+                  <NavLink to={`/display-dispute/?customer_id=${row_data['id']}&dispute_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                {element.name == "dispute_amount_out" ?
+                  <NavLink to={`/display-dispute/?customer_id=${row_data['id']}&dispute_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                {element.name == "invoice_amount_in" ?
+                  <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                {element.name == "invoice_amount_out" ?
+                  <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+
+                {row_data[element.name]} </td> : null}</>
         })}
       </tr>
     </>

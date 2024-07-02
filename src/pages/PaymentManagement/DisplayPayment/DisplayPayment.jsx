@@ -28,8 +28,8 @@ const DisplayPayment = () => {
     return (
         <div>
             <CustomTabel
-                getFunc={getAllPaymentsFunc} 
-                tabelObj={paymentObj} 
+                getFunc={getAllPaymentsFunc}
+                tabelObj={paymentObj}
                 topTableHeading={display_payment_arr}
                 key={1}
                 EditModal={CustomEditModal}
