@@ -24,6 +24,7 @@ const EmailLastConfirm = (props) => {
                 toast.success("Email Send Successfully!!", { position: "top-center" });
                 props.setIsModalOpen(false);
                 props.resetFunction();
+                props.fieldValueFunc('customer_id' , null)
               }).catch((error) => {
                 console.log(error);
                 isValidSessionFunc()

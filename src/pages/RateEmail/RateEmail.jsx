@@ -10,6 +10,7 @@ const RateEmail = () => {
 
     const { emailSenderPageFunc, emailSenderPageObj } = useContext(DataContext);
     const [isAllCountry, setIsAllCountry] = useState(true);
+    
 
     useEffect(() => {
         emailSenderPageFunc();

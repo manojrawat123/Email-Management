@@ -12,8 +12,17 @@ const emailConfirmArr = [
         "placeholder" : "Subject", 
         "icon" : <SellIcon className={iconCss}/>
     },
+    
     {
         "type" : "text",
+        "required" : true,
+        "name" : "signatures",
+        "id" : "signatures",
+        "placeholder" : "Signature",
+        "icon" : <ListIcon className={iconCss}/>
+    },
+    {
+        "type" : "textarea",
         "required" : true,
         "name" : "template_body_before",
         "id" : "template_body_before",
@@ -21,19 +30,11 @@ const emailConfirmArr = [
         "icon" : <ListIcon className={iconCss}/>
     },
     {
-        "type" : "text",
+        "type" : "textarea",
         "required" : true,
         "name" : "template_body_after",
         "id" : "template_body_after",
         "placeholder" : "Template After Message",
-        "icon" : <ListIcon className={iconCss}/>
-    },
-    {
-        "type" : "text",
-        "required" : true,
-        "name" : "signatures",
-        "id" : "signatures",
-        "placeholder" : "Signature",
         "icon" : <ListIcon className={iconCss}/>
     },
     {

@@ -13,7 +13,7 @@ import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 import EmailLastConfirm from '../../../CommonComponent/DynamicForm/ConfirmEmailModal/EmailLastConfirm';
 
 
-const EmailConfirmForm = ({ setIsModalOpen, data }) => {
+const EmailConfirmForm = ({ setIsModalOpen, data, resetFunction, fieldValueFunc }) => {
 
     const initialValues = genrateInitalValues(emailConfirmArr);
     const [addButton, setAddButton] = useState(false);
@@ -26,7 +26,6 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
         onSubmit: (values, { resetForm }) => {
             const formData = new FormData();
             const customer = values["to"].map((element, index) => { return element.value });
-            console.log(customer);
             formData.append("sendTo", customer);
             const final_html_format = `<h4>${values['template_body_before']}</h4>
                  ${topRouteTable?.html_data}
@@ -84,8 +83,7 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
 
     return (
         <div>
-            {console.log(topRouteTable)}
-            {showConfirmEmail ? <EmailLastConfirm setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} /> : null}
+            {showConfirmEmail ? <EmailLastConfirm setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} resetFunction={resetFunction} fieldValueFunc={fieldValueFunc} /> : null}
             <div className="w-[100%]">
                 <div className="sm:w-[80%] w-[90%] mx-auto bg-white rounded-lg shadow-2xl border border-t-0 border-solid border-gray-300">
                     <h2 className="font-bold text-3xl  px-6  text-gray-800 text-center">
@@ -101,16 +99,27 @@ const EmailConfirmForm = ({ setIsModalOpen, data }) => {
                                     </h4>
                                     <div className={"w-full relative col-span-1 "}>
                                         {element.icon}
-                                        {element.type != "select" ? <input
-                                            onBlur={formik.handleBlur}
-                                            type={element.type}
-                                            name={element.name}
-                                            onChange={formik.handleChange}
-                                            value={formik.values[element.name]}
-                                            placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
-                                            required
-                                            className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        /> :
+                                        {element.type != "select" ? element.type == "textarea" ?
+                                            <textarea
+                                                onBlur={formik.handleBlur}
+                                                type={element.type}
+                                                name={element.name}
+                                                onChange={formik.handleChange}
+                                                value={formik.values[element.name]}
+                                                placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
+                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                                required
+                                            ></textarea>
+                                            : <input
+                                                onBlur={formik.handleBlur}
+                                                type={element.type}
+                                                name={element.name}
+                                                onChange={formik.handleChange}
+                                                value={formik.values[element.name]}
+                                                placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
+                                                className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                                required
+                                            /> :
                                             <Select
                                                 name='to'
                                                 options={emailSenderPageObj?.customer_data?.map((customer, idx) => ({

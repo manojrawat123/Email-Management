@@ -27,6 +27,7 @@ export const DataProvider = ({ children }) => {
   const [statementOfAmount ,setStatementOfAmount] = useState();
   const [vendorRatePage, setVendorRatePage] = useState();
   const [vendorRate, setVendorRate] = useState();
+  const [vendorTargetSheet , setVendorTargetSheet] = useState();
 
   const navigate = useNavigate();
 
@@ -267,6 +268,20 @@ export const DataProvider = ({ children }) => {
      handleErrorsFunc(err);
     })
   }
+  const getVendorTagetSheetFunction = (query) => {
+    if (!query) return;
+    axios.get(`${API_BASE_URL}/vendortargetsheet/`, {
+
+      params: query,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((value) => {
+      setVendorTargetSheet(value.data);
+    }).catch((err) => {
+     handleErrorsFunc(err);
+    })
+  }
 
 
   const getAllInvoiceFunc = (query)=>{
@@ -340,7 +355,9 @@ export const DataProvider = ({ children }) => {
       addVenderRatePageFunc,
       vendorRatePage,
       getVendorRateByCountryCodeSearchFunction,
-      vendorRate
+      vendorRate,
+      getVendorTagetSheetFunction,
+      vendorTargetSheet
     }}>
       {children}
     </DataContext.Provider>

@@ -166,6 +166,11 @@ const navBarArr = [
                 label: "Search Vendor Rate Country",
                 link: '/search-vendor-rate-country'
             },
+            {
+                id: "8e",
+                label: "Search Vendor Target Sheet",
+                link: '/search-vendor-target-sheet'
+            },
         ]
     }
 ];

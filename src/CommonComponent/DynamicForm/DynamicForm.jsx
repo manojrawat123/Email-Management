@@ -22,7 +22,7 @@ const DynamicForm = ({ form_array, isAllCountry, setIsAllCountry, EmailConfirmFo
     if (!form_array) {
         return <Loading />
     }
-    console.log(form_array);
+
     return (<div>
         <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} isAllCountry={isAllCountry} setIsAllCountry={setIsAllCountry} form_array={form_array} resetFunction={resetFunction} />
         <ToastContainer />
@@ -38,7 +38,6 @@ const DynamicForm = ({ form_array, isAllCountry, setIsAllCountry, EmailConfirmFo
                         setResetFunction(resetForm);
                         setData(prevData => { return { ...prevData, ...values } });
                         setIsModalOpen(true);
-                        console.log(values);
                     }}
                 >
                     {({

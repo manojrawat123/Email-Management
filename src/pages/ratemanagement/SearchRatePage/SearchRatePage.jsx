@@ -20,7 +20,6 @@ const SearchRatePage = () => {
         return <Loading />
     }
 
-    console.log(searchPageData);
 
     const search_invoice_arr = [
         {

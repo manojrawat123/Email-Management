@@ -68,16 +68,16 @@ const display_payment_arr = [
         'placeholder': 'Bank Charges',
         'icon': <Email className={iconCss} />
     },
-    {
-        'type': 'number',
-        'id': 'other_charges',
-        'name': 'other_charges',
-        'required': true,
-        'display': true,
-        'label': 'Enter Invoice Amount',
-        'placeholder': 'Enter Invoice Amount',
-        'icon': <Email className={iconCss} />
-    },
+    // {
+    //     'type': 'number',
+    //     'id': 'other_charges',
+    //     'name': 'other_charges',
+    //     'required': true,
+    //     'display': true,
+    //     'label': 'Enter Invoice Amount',
+    //     'placeholder': 'Enter Invoice Amount',
+    //     'icon': <Email className={iconCss} />
+    // },
     {
         label: "Action",
         placeholder: "Action",

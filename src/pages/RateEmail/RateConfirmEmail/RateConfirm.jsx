@@ -73,30 +73,30 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
                                     </h4>
                                     <div className={"w-full relative col-span-1 "}>
                                         {element.icon}
-                                        {element.type != "select" && element.type != "option" ? 
-                                      ['template_body_before', 'template_body_after'].includes(element.name) ?
-                                      <textarea
-                                      onBlur={formik.handleBlur}
-                                      type={element.type}
-                                      name={element.name}
-                                      onChange={formik.handleChange}
-                                      value={formik.values[element.name]}
-                                      placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
-                                      required
-                                      readOnly={element.readOnly}
-                                      className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 `} />
-                                      :
-                                            <input
-                                            onBlur={formik.handleBlur}
-                                            type={element.type}
-                                            name={element.name}
-                                            onChange={formik.handleChange}
-                                            value={formik.values[element.name]}
-                                            placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
-                                            required
-                                            readOnly={element.readOnly}
-                                            className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 `}
-                                        /> :
+                                        {element.type != "select" && element.type != "option" ?
+                                            ['template_body_before', 'template_body_after'].includes(element.name) ?
+                                                <textarea
+                                                    onBlur={formik.handleBlur}
+                                                    type={element.type}
+                                                    name={element.name}
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values[element.name]}
+                                                    placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
+                                                    required
+                                                    readOnly={element.readOnly}
+                                                    className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 `} />
+                                                :
+                                                <input
+                                                    onBlur={formik.handleBlur}
+                                                    type={element.type}
+                                                    name={element.name}
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values[element.name]}
+                                                    placeholder={element.name === 'title' ? element.helpingtext : element.placeholder}
+                                                    required
+                                                    readOnly={element.readOnly}
+                                                    className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 `}
+                                                /> :
                                             element.type == "option" ?
                                                 <input
                                                     onBlur={formik.handleBlur}

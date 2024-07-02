@@ -35,6 +35,8 @@ import DisplayVendorRate from './pages/VendorRateManagement/DisplayVendorRate/Di
 import AddVendorRate from './pages/VendorRateManagement/AddVendorRate/AddVendorRate'
 import SearchVendorRateByCountryCode from './pages/VendorRateManagement/SearchVendorRateCountryCode/SearchVendorRateCountryCode'
 import DisplayVendorByCountryCode from './pages/VendorRateManagement/DisplayByCountryCode/DisplayByCountryCode'
+import SearchVendorTargetSheet from './pages/VendorRateManagement/SearchVendorTargetSheet/SearchVendorTargetSheet'
+import DisplayVendorTargetSheet from './pages/VendorRateManagement/DisplayVendorTargetSheet/DisplayVendorTargetSheet'
 
 function App() {
 
@@ -173,6 +175,12 @@ function App() {
         </Route>
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/display-vendor-rate-by-country' Component={DisplayVendorByCountryCode} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/display-vendor-target-sheet' Component={DisplayVendorTargetSheet} />
+        </Route>
+        <Route path='' Component={ProtectedRoutes}>
+          <Route path='/search-vendor-target-sheet' Component={SearchVendorTargetSheet} />
         </Route>
         <Route path='' Component={ProtectedRoutes}>
           <Route path='/add-vendor-rate' Component={AddVendorRate} />

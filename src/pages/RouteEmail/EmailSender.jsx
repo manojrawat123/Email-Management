@@ -56,8 +56,10 @@ const EmailSenderForm = () => {
   const initialValues = genrateInitalValues(emailSenderFormArr);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState();
-  const [dataType, setDataType] = useState(1);
   const [attachement, setAttachement] = useState();
+  const [resetFunction, setResetFunction] = useState();
+  const [fieldValueFunc, setFieldValueFunc] = useState();
+
 
   useEffect(() => {
     emailSenderPageFunc();
@@ -70,7 +72,7 @@ const EmailSenderForm = () => {
   return (
     <>
       <ToastContainer />
-      <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} />
+      <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} resetFunction={resetFunction} fieldValueFunc={fieldValueFunc} />
       <section className="gradient-form h-[100vh] bg-neutral-200 dark:bg-neutral-700 font-semibold text-gray-700">
         <div className=" h-full p-10">
           <div className="flex h-full flex-wrap items-center justify-center text-gray-700 dark:text-neutral-200 md:w-[55%] mx-auto">
@@ -87,7 +89,9 @@ const EmailSenderForm = () => {
                     <Formik
                       initialValues={initialValues}
                       // validationSchema={validationSchema}
-                      onSubmit={(values) => {
+                      onSubmit={(values, { resetForm, setFieldValue }) => {
+                        setResetFunction(() => resetForm);
+                        setFieldValueFunc(() => setFieldValue);
                         setData(prevData => { return { ...prevData, ...values, attachement } });
                         setIsModalOpen(true);
                       }
@@ -100,59 +104,41 @@ const EmailSenderForm = () => {
                           {emailSenderFormArr.map((element, index) => (
                             <div key={index} className="mt-4">
                               <h4 className="font-semibold mb-2 text-gray-700">
-                                        {element.placeholder}{" "}
-                                        <span className="text-red-500">*</span>
-                                    </h4>
-                              {/* {
-                                element.name == "top_routes" ? <div className='font-semibold my-4'>
-                                  <button
-                                    type='button'
-                                    className={`${dataType == 1 ? 'bg-black text-white' : 'border border-black'}  rounded py-1 px-2  mx-2 `} onClick={() => {
-                                      setDataType(1);
-                                      setFieldValue("top_routes", "")
-                                    }}>
-                                    Select Excel File
-                                  </button>
-                                  <button
-                                    type='button'
-                                    className={`${dataType == 2 ? 'bg-black text-white' : 'border border-black'}  rounded py-1 px-2  mx-2 `} onClick={() => {
-                                      setDataType(2);
-                                    }} >Select Existing
-                                  </button>
-                                </div>
-                                  : null} */}
+                                {element.placeholder}{" "}
+                                <span className="text-red-500">*</span>
+                              </h4>
                               {element.label && <label htmlFor={element.name} className="block mb-2 font-bold">{element.label}</label>}
-                              {element.type === "option" && ( <Field
-                                  as="select"
-                                  id={element.name}
-                                  name={element.name}
-                                  required
-                                  onChange={(e) => {
-                                    setFieldValue(element.name, e.target.value);
-                                    if (element.name == "template_id") {
-                                      const tempObj = emailSenderPageObj?.email_template?.find(emailEl => emailEl.TemplateID == e.target.value);
-                                      console.log(tempObj);
-                                      setData({
-                                          ...data,
-                                          header: tempObj.TemplateSubject,
-                                          'template_body_before': tempObj.template_body_before,
-                                          'template_body_after': tempObj.template_body_after,
-                                          'signatures': tempObj.signatures
-                                      });
+                              {element.type === "option" && (<Field
+                                as="select"
+                                id={element.name}
+                                name={element.name}
+                                required
+                                onChange={(e) => {
+                                  setFieldValue(element.name, e.target.value);
+                                  if (element.name == "template_id") {
+                                    const tempObj = emailSenderPageObj?.email_template?.find(emailEl => emailEl.TemplateID == e.target.value);
+
+                                    setData({
+                                      ...data,
+                                      header: tempObj.TemplateSubject,
+                                      'template_body_before': tempObj.template_body_before,
+                                      'template_body_after': tempObj.template_body_after,
+                                      'signatures': tempObj.signatures
+                                    });
                                   }
-                                  }}
-                                  className='w-[100%] h-[2.3rem] outline-blue-600 border-2 rounded'
-                                >
-                                  <option value="">{element.placeholder}</option>
-                                  {element.name == "template_id" ? emailSenderPageObj.email_template?.map((values, idx) => (
-                                    <option key={idx} value={values?.TemplateID}>{values?.TemplateName}</option>
-                                  )) : null}
-                                  {
-                                    element.name == "top_routes" ? emailSenderPageObj?.route_list?.map((values, idx) => {
-                                      return <option value={values}>{values}</option>
-                                    }) : null
-                                  }
-                                </Field> 
+                                }}
+                                className='w-[100%] h-[2.3rem] outline-blue-600 border-2 rounded'
+                              >
+                                <option value="">{"Please Select"}</option>
+                                {element.name == "template_id" ? emailSenderPageObj.email_template?.map((values, idx) => (
+                                  <option key={idx} value={values?.TemplateID}>{values?.TemplateName}</option>
+                                )) : null}
+                                {
+                                  element.name == "top_routes" ? emailSenderPageObj?.route_list?.map((values, idx) => {
+                                    return <option value={values}>{values}</option>
+                                  }) : null
+                                }
+                              </Field>
                               )}
                               {element.type === "select" && (
                                 <Select
