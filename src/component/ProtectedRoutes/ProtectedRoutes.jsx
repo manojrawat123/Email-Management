@@ -40,6 +40,7 @@ const ProtectedRoutes = () => {
         start_url_routes.push("/navbar-access");
       }
       ex_url_routes.push(el.link);
+      start_url_routes.push(el.link);
     })
   })
 
