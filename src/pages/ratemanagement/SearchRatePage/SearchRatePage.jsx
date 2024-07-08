@@ -60,7 +60,7 @@ const SearchRatePage = () => {
     ];
 
     return (
-        <SearchPage title={"Search Rate"} search_page_arr={search_invoice_arr} route_page={"rate"} />
+        <SearchPage title={"Search Rate"} search_page_arr={search_invoice_arr} route_page={"display-rate"} />
     )
 }
 

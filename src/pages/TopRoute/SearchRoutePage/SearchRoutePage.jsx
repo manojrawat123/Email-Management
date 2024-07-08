@@ -35,7 +35,7 @@ const SearchRoutePage = () => {
                     onChange={(e) => {
                         console.log(e.value)
                         setSearchValue1(e.value);
-                        navigate(`/route?search=${e.value}`);
+                        navigate(`/display-route?search=${e.value}`);
                     }}
                     styles={{
                         control: (provided, state) => ({

@@ -20,7 +20,7 @@ const SearchIpAddress = () => {
     ]
 
     return (
-        <SearchPage title={"Search Ip"} search_page_arr={search_payment_arr} route_page={"display-ipadresses"} />
+        <SearchPage title={"Search Ip"} search_page_arr={search_payment_arr} route_page={"display-ip"} />
     );
 }
 

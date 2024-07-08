@@ -40,7 +40,7 @@ const SearchVendorRateByCountryCode = () => {
     ];
 
     return (
-        <SearchPage title={"Search Vendor Rate"} search_page_arr={search_invoice_arr} route_page={"display-vendor-rate-by-country"} />
+        <SearchPage title={"Search Vendor Rate"} search_page_arr={search_invoice_arr} route_page={"display-vendor-rate-country"} />
     )
 }
 

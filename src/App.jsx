@@ -141,7 +141,7 @@ function App() {
             </Route>
 
             <Route path='' Component={ProtectedRoutes}>
-              <Route path='/route' Component={DisplayTopRoutes} />
+              <Route path='/display-route' Component={DisplayTopRoutes} />
             </Route>
 
             <Route path='' Component={ProtectedRoutes}>
@@ -163,7 +163,7 @@ function App() {
             </Route>
 
             <Route path='' Component={ProtectedRoutes}>
-              <Route path='/rate' Component={DisplayRate} />
+              <Route path='/display-rate' Component={DisplayRate} />
             </Route>
 
             {/* Vendor Rate Management */}
@@ -180,7 +180,7 @@ function App() {
               <Route path='/display-vendor-rate' Component={DisplayVendorRate} />
             </Route>
             <Route path='' Component={ProtectedRoutes}>
-              <Route path='/display-vendor-rate-by-country' Component={DisplayVendorByCountryCode} />
+              <Route path='/display-vendor-rate-country' Component={DisplayVendorByCountryCode} />
             </Route>
             <Route path='' Component={ProtectedRoutes}>
               <Route path='/display-vendor-target-sheet' Component={DisplayVendorTargetSheet} />
@@ -189,7 +189,7 @@ function App() {
               <Route path='/search-vendor-target-sheet' Component={SearchVendorTargetSheet} />
             </Route>
             <Route path='' Component={ProtectedRoutes}>
-              <Route path='/search-vendor-target-sheet-by-country_code' Component={SearchVendorTargetSheetByCountryCode} />
+              <Route path='/search-vendor-target-sheet-country_code' Component={SearchVendorTargetSheetByCountryCode} />
             </Route>
             <Route path='' Component={ProtectedRoutes}>
               <Route path='/add-vendor-rate' Component={AddVendorRate} />
@@ -204,7 +204,7 @@ function App() {
               <Route path='/search-ip' Component={SearchIpAddress} />
             </Route>
             <Route path='' Component={ProtectedRoutes}>
-              <Route path='/display-ipadresses' Component={DisplayIp} />
+              <Route path='/display-ip' Component={DisplayIp} />
             </Route>
             <Route path='' Component={ProtectedRoutes}>
               <Route path='/navbar-access/:id' Component={NavbarAccessDisplay} />

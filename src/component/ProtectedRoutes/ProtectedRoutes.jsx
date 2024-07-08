@@ -36,15 +36,42 @@ const ProtectedRoutes = () => {
         ex_url_routes.push("/");
       }
       if (el.link == "/manage-user") {
-        
         start_url_routes.push("/navbar-access");
+      }
+      if (el.link == "/search-invoice"){
+        start_url_routes.push("/display-invoice");
+      }
+      if (el.link == "/search-dispute"){
+        start_url_routes.push("/display-dispute");
+      }
+      if (el.link == "/search-payment"){
+        start_url_routes.push("/display-payment");
+      }
+      if (el.link == "/search-ip"){
+        start_url_routes.push("/display-ip");
+      }
+      if (el.link == "/search-route"){
+        start_url_routes.push("/display-route");
+      }
+      if (el.link == "/search-rate"){
+        start_url_routes.push("/display-rate");
+      }
+      if (el.link == "/search-vendor-rate"){
+        start_url_routes.push("/display-vendor-rate");
+      }
+      if (el.link == "/search-vendor-rate-country"){
+        start_url_routes.push("/display-vendor-rate-country");
+      }
+      if (el.link == "/search-vendor-target-sheet"){
+        start_url_routes.push("/display-vendor-target-sheet");
+      }
+      if (el.link == "/search-vendor-target-sheet-country_code"){
+        start_url_routes.push("/display-vendor-target-sheet");
       }
       ex_url_routes.push(el.link);
       start_url_routes.push(el.link);
     })
-  })
-
-
+  });
 
   return (
     ex_url_routes.includes(location.pathname) || start_url_routes.some((el) => location.pathname.startsWith(el)) ? <Outlet /> : <Unauthorized />
