@@ -9,7 +9,6 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
 
   const [search, setSearch] = useState('all');
   const [filterTabelObj, setFilterTabelObj] = useState(tabelObj);
-  
   const location = useLocation();
 
   useEffect(() => {
@@ -25,7 +24,7 @@ const CustomTabel = ({ topTableHeading, getFunc, tabelObj, query, EditModal, url
       <>
         <ToastContainer />
         <div>
-          <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">{title}<span className="font-semibold text-2xl">{query ? "-" : null}{query?.country_name} </span>
+          <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">{title}<span className="font-semibold text-2xl">{query?.country_name} </span>
           </h1>
           {tabelObj[0] && 'active' in tabelObj[0] ? <select
             value={search}

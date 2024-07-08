@@ -16,6 +16,7 @@ const AddDispute = () => {
     if (!disputePageObj) {
         return <Loading />
     }
+
     const updateDusputeArr = addDisputeArr.map((element, index) => {
         if (element.type == "dynamicoption") {
             if (element.name == "customer_id") {
@@ -29,11 +30,11 @@ const AddDispute = () => {
             if (element.name == "invoice_number") {
                 element["option"] = disputePageObj?.invoice?.map((el_invoice) => {
                     return {
-                        label : `${el_invoice.invoice_number} - amount (${el_invoice.invoice_amount})`,
-                        value : el_invoice.id,
-                        customer_id : el_invoice.customer_id,
-                        invoice_type : el_invoice.invoice_type,
-                        invoice_amount : el_invoice.invoice_amount
+                        label: `${el_invoice.invoice_number} - amount (${el_invoice.invoice_amount})`,
+                        value: el_invoice.id,
+                        customer_id: el_invoice.customer_id,
+                        invoice_type: el_invoice.invoice_type,
+                        invoice_amount: el_invoice.invoice_amount
                     }
                 });
             }
@@ -42,7 +43,7 @@ const AddDispute = () => {
     })
 
     return (
-        <CustomForms fieldsArr={updateDusputeArr} route_name={"dispute"} title={"Add Dispute"} pageFunc={getDisputePageFunc}/>
+        <CustomForms fieldsArr={updateDusputeArr} route_name={"dispute"} title={"Add Dispute"} pageFunc={getDisputePageFunc} />
     )
 }
 

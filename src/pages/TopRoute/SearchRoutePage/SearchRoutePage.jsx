@@ -16,8 +16,7 @@ const SearchRoutePage = () => {
 
     useEffect(() => {
         searchPageOptionGetFunc("top_route")
-    }, [])
-
+    }, []);
 
     if (!searchPageData) {
         return <Loading />

@@ -17,11 +17,13 @@ const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
     const { handleErrorsFunc } = useContext(DataContext);
     const navigate = useNavigate();
     const [maxDisputeAmount, setMaxDisputeAmount] = useState(0);
+    const [selectedUser, setSelectedUser] = useState([]);
+    const [fromDataTransferUser, setFromDataTransferUser] = useState();
 
     const handleSubmit = (values, { resetForm }) => {
         setButton(true);
         const token = Cookies.get("token");
-        axios.post(`${API_BASE_URL}/${route_name}/`, values, {
+        axios.post(`${API_BASE_URL}/${route_name}/`, {...values, fromDataTransferUser}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -29,7 +31,7 @@ const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
             toast.success("Successfully Updated", {
                 position: "top-center"
             });
-            if (pageFunc){
+            if (pageFunc) {
                 pageFunc();
             }
             resetForm();
@@ -74,11 +76,19 @@ const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
                                                                     name={element.name}
                                                                     placeholder={element.placeholder}
                                                                     required
-                                                                    onChange={(e)=>{
+                                                                    onChange={(e) => {
                                                                         setFieldValue(element.name, e.target.value);
-                                                                        if (element.name == "invoice_number"){
-                                                                           const tempObj = element.option.find(element => element.value == e.target.value);
+                                                                        if (element.name == "invoice_number") {
+                                                                            const tempObj = element.option.find(el => el.value == e.target.value);
                                                                             setMaxDisputeAmount(Number(tempObj.invoice_amount));
+                                                                        }
+                                                                        if (element.name == "transfer_customer") {
+                                                                            const tempObj = element.option.find(el => el.value == e.target.value);
+                                                                            // console.log(tempObj);
+                                                                            setFromDataTransferUser(tempObj.userId)
+                                                                            const userOpt = fieldsArr.find(el => el.name == "transfer_user").option;
+                                                                            console.log(userOpt);
+                                                                            setSelectedUser(userOpt.filter((e) => tempObj.userId != e.value));
                                                                         }
                                                                     }}
                                                                     className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -88,6 +98,8 @@ const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
                                                                         if (values['customer_id'] == opt.customer_id && values['dispute_type'] == opt.invoice_type) {
                                                                             return <option value={opt.value}>{opt.label}</option>
                                                                         }
+                                                                    }) : element.name == "transfer_user" ? selectedUser?.map((opt, index) => {
+                                                                        return <option value={opt.value}>{opt.label}</option>
                                                                     }) :
                                                                         element.option?.map((opt, index) => {
                                                                             return <option value={opt.value}>{opt.label}</option>
@@ -102,22 +114,22 @@ const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
                                                                 type={!element.type || element.type == "number" ? "text" : element.type}
                                                                 name={element.name}
                                                                 placeholder={element.placeholder}
-                                                                onChange={(e)=>{
-                                                                    if (element.name == "dispute_amount"){
-                                                                        if (maxDisputeAmount < e.target.value){
+                                                                onChange={(e) => {
+                                                                    if (element.name == "dispute_amount") {
+                                                                        if (maxDisputeAmount < e.target.value) {
                                                                             toast.error("Dispute Amount cannot above selected Invoice Number");
                                                                             return;
                                                                         }
-                                                                        else{
+                                                                        else {
                                                                             setFieldValue(element.name, e.target.value);
                                                                         }
                                                                     }
-                                                                    else{
+                                                                    else {
                                                                         setFieldValue(element.name, e.target.value);
                                                                     }
                                                                 }}
                                                                 required
-                                                                max={['invoice_to_date', 'payment_date'].includes(element.name) ? new Date().toISOString().split('T')[0] : element.name == "dispute_amount" ? 90 :null}
+                                                                max={['invoice_to_date', 'payment_date'].includes(element.name) ? new Date().toISOString().split('T')[0] : element.name == "dispute_amount" ? 90 : null}
                                                                 className="pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                                                             />
                                                         </>

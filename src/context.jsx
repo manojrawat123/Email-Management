@@ -28,6 +28,9 @@ export const DataProvider = ({ children }) => {
   const [vendorRatePage, setVendorRatePage] = useState();
   const [vendorRate, setVendorRate] = useState();
   const [vendorTargetSheet , setVendorTargetSheet] = useState();
+  const [transferCustomerPageObj, setTransferCustomerPageObj] = useState();
+  const [displayIpAddressObj, setDisplayIpAddressObj] = useState();
+  const [navbarAccessPageObj, setNavbarAccessPageObj] = useState();
 
   const navigate = useNavigate();
 
@@ -86,6 +89,20 @@ export const DataProvider = ({ children }) => {
     setParamsData();
     const token = Cookies.get("token");
     axios.get(`${API_BASE_URL}/${route}/`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    }).then((value) => {
+      setParamsData(value.data);
+    }).catch((err) => {
+     handleErrorsFunc(err);
+    });
+  }
+
+  const commonGetIdApi = (route,id, setParamsData) => {
+    setParamsData();
+    const token = Cookies.get("token");
+    axios.get(`${API_BASE_URL}/${route}/${id}/`, {
       headers: {
         "Authorization": `Bearer ${token}`
       }
@@ -195,6 +212,9 @@ export const DataProvider = ({ children }) => {
       }
 
       if (["rate_page", "vendor_rate_page", "all_country"].includes(value.data.page)) {
+        setSearchPageData(value.data);
+      }
+      if(page_name == "country_code"){
         console.log(value.data);
         setSearchPageData(value.data);
       }
@@ -203,7 +223,6 @@ export const DataProvider = ({ children }) => {
       setSearchPageData([]);
     });
   }
-
 
   
   const getCustomerFunction = () => {
@@ -324,6 +343,18 @@ export const DataProvider = ({ children }) => {
     commonGetApi('addvendorratepage', setVendorRatePage);
   }
 
+  const transferCustomerPageFunc = ()=>{
+    commonGetApi('transfercustomer', setTransferCustomerPageObj);
+  }
+
+  const getDisplayIpAddressGetFunc = (query)=>{
+    commonGetParamsApi('userip', query, setDisplayIpAddressObj);
+  }
+
+  const navBarAccessDisplayPageFunc = (id)=>{
+    commonGetIdApi('menuaccess', id, setNavbarAccessPageObj);
+  }
+
 
   // End OF lead Function
   return (
@@ -367,7 +398,13 @@ export const DataProvider = ({ children }) => {
       getVendorRateByCountryCodeSearchFunction,
       vendorRate,
       getVendorTagetSheetFunction,
-      vendorTargetSheet
+      vendorTargetSheet,
+      transferCustomerPageFunc,
+      transferCustomerPageObj,
+      getDisplayIpAddressGetFunc,
+      displayIpAddressObj,
+      navbarAccessPageObj,
+      navBarAccessDisplayPageFunc
     }}>
       {children}
     </DataContext.Provider>

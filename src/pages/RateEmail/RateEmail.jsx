@@ -3,21 +3,19 @@ import { DataContext } from '../../context'
 import rate_email_arr from './RateEmailArr';
 import Loading from '../../component/LoadingSpinner/LoadingSpinner';
 import DynamicForm from '../../CommonComponent/DynamicForm/DynamicForm';
-import EmailConfirmForm from '../RouteEmail/EmailConfirmForm/EmailConfirmForm';
 import RateEmailConfirmForm from './RateConfirmEmail/RateConfirm';
 
 const RateEmail = () => {
 
     const { emailSenderPageFunc, emailSenderPageObj } = useContext(DataContext);
     const [isAllCountry, setIsAllCountry] = useState(true);
-    
 
     useEffect(() => {
         emailSenderPageFunc();
     }, [])
 
     if (!emailSenderPageObj) {
-        <Loading />
+      return <Loading />
     }
 
     const updateRateEmailArr = rate_email_arr.map((element, index) => {

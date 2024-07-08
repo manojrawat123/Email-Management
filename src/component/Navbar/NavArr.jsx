@@ -24,32 +24,41 @@ const navBarArr = [
                 link: "/search-invoice"
             },
             {
-                id: "2d",
+                id: "2e",
                 label: "Search Dispute",
                 link: "/search-dispute"
             },
             {
-                id: "2e",
+                id: "2f",
                 label: "Add Dispute",
                 link: "/add-dispute"
             },
             {
-                id: "2e",
+                id: "2g",
                 label: "Add Payment",
                 link: "/add-payment"
             },
             {
-                id: "2e",
+                id: "2h",
                 label: "Search Payment",
                 link: "/search-payment"
             },
             {
-                id: "2f",
+                id: "2i",
                 label: "Statement Of amount",
                 link: "/statement-of-amount"
             },
+            {
+                id: "2j",
+                label: "Add Customer Ip",
+                link: "/add-customer-ip"
+            },
+            {
+                id: "2k",
+                label: "Search Ip",
+                link: "/search-ip"
+            },
         ]
-        
     },
     {
         id: "4",
@@ -66,11 +75,16 @@ const navBarArr = [
                 label: "Show User",
                 link: "/manage-user"
             },
+            {
+                id: "4b",
+                label: "Transfer Customer",
+                link: "/transfer-customer"
+            },
         ]
     },
     {
         id: "5",
-        label: "Top Route Management",
+        label: "Top Route & Rate Management",
         link: "#",
         option: [
             {
@@ -87,25 +101,19 @@ const navBarArr = [
                 id: "5c",
                 label: "Update Routes",
                 link: '/route-update-delete'
-            }
-        ]
-    },
-    {
-        id: "6",
-        label: "Rate Management",
-        option: [
+            },
             {
-                id: "6a",
+                id: "5d",
                 label: "Add Rate",
                 link: '/addrate'
             },
             {
-                id: "6b",
+                id: "5e",
                 label: "Update Rate",
                 link: '/updaterate'
             },
             {
-                id: "6c",
+                id: "5f",
                 label: "Search Rate",
                 link: '/search-rate'
             },
@@ -146,11 +154,6 @@ const navBarArr = [
                 label: "Upload Vendor Rate",
                 link: '/upload-vendor-rate'
             },
-            // {
-            //     id: "8b",
-            //     label: "Update Rate",
-            //     link: '/update-rate'
-            // },
             {
                 id: "8c",
                 label: "Search Vendor Rate",
@@ -167,9 +170,14 @@ const navBarArr = [
                 link: '/search-vendor-rate-country'
             },
             {
-                id: "8e",
+                id: "8f",
                 label: "Search Vendor Target Sheet",
                 link: '/search-vendor-target-sheet'
+            },
+            {
+                id: "8g",
+                label: "Search Vendor Target Sheet Code",
+                link: '/search-vendor-target-sheet-by-country_code'
             },
         ]
     }

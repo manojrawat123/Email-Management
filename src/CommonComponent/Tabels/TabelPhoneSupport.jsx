@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import DeleteConfirm from '../../component/ConfirmButton/DeleteConfirm';
+import { NavLink } from 'react-router-dom';
+import { OpenInBrowser } from '@mui/icons-material';
 
 const TabelPhoneSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc, query }) => {
 
@@ -44,7 +46,21 @@ const TabelPhoneSupport = ({ row_data, topTableHeading, EditModal, url_route, ge
                                 <div className="border-b">
                                     {`${row_data['billing_increment_1']?.split(".")[0]} + ${row_data['billing_increment_n']?.split(".")[0]}`}
                                 </div>
-                                : element.display != false ? <div className="border-b">{row_data[element.name]} </div> : null}
+                                : element.display != false ? <div className="border-b">
+                                    {element.name == "payment_in" ?
+                                        <NavLink to={`/display-payment/?customer_id=${row_data['id']}&payment_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                                    {element.name == "payment_out" ?
+                                        <NavLink to={`/display-payment/?customer_id=${row_data['id']}&payment_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                                    {element.name == "dispute_amount_in" ?
+                                        <NavLink to={`/display-dispute/?customer_id=${row_data['id']}&dispute_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                                    {element.name == "dispute_amount_out" ?
+                                        <NavLink to={`/display-dispute/?customer_id=${row_data['id']}&dispute_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                                    {element.name == "invoice_amount_in" ?
+                                        <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"IN"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                                    {element.name == "invoice_amount_out" ?
+                                        <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
+                                    {url_route == "myuser" && element.name == "user_name" ? <NavLink className={'text-blue-600 underline'} to={`/navbar-access/${row_data['id']}`} > {row_data[element.name]}</NavLink> : row_data[element.name]}
+                                </div> : null}
                         </div>
                     </div>
                 </>

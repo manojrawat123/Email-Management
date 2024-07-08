@@ -64,23 +64,33 @@ const DisplayVendorTargetSheet = () => {
         <div>
             <div className='w-full md:w-[50%] mx-auto'>
                 <Select
-                    options={vendorTargetSheet.country_list.map((el) => {
+                    options={vendorTargetSheet.country_list ? vendorTargetSheet.country_list.map((el) => {
                         return {
-                            value: `${el[0]} - ${el[1]}`,
-                            label: `${el[0]} - ${el[1]}`
+                            value: el,
+                            label: el
                         };
-                    })}
+                    }) : vendorTargetSheet.country_code.map((el) => {
+                        return {
+                            value: el,
+                            label: el
+                        };
+                    }) }
                     isSearchable={true}
                     isClearable={true}
                     onChange={(selectedOptions) => {
-                        console.log(selectedOptions)
-                        const temp = selectedOptions.value.split(' - ');
-                        const url = new URLSearchParams({ "country_name": temp[0], "country_code": temp[1] });
+                        console.log(location.pathname);
+                        let url;
+                        if (!isNaN(parseFloat(selectedOptions.value))){
+                            url = new URLSearchParams({ "country_code": selectedOptions.value });
+                        } 
+                        else {
+                            url = new URLSearchParams({ "country_name": selectedOptions.value });
+                        }
                         getVendorTagetSheetFunction(url);
                         setQuery(url);
                         navigate(`/display-vendor-target-sheet/?${url}`);
                     }}
-                    placeholder={"Search By Country"}
+                    placeholder={"Search By Country or Country Code"}
                     required
                 />
             </div>

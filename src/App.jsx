@@ -37,6 +37,12 @@ import SearchVendorRateByCountryCode from './pages/VendorRateManagement/SearchVe
 import DisplayVendorByCountryCode from './pages/VendorRateManagement/DisplayByCountryCode/DisplayByCountryCode'
 import SearchVendorTargetSheet from './pages/VendorRateManagement/SearchVendorTargetSheet/SearchVendorTargetSheet'
 import DisplayVendorTargetSheet from './pages/VendorRateManagement/DisplayVendorTargetSheet/DisplayVendorTargetSheet'
+import SearchVendorTargetSheetByCountryCode from './pages/VendorRateManagement/SearchVendorTargetSheet/SearchVTShetByCountryCode'
+import TransferCustomer from './pages/TransferCustomer/TransferCustomer'
+import AddUserIpAddress from './pages/UserIpAddress/AddIp/AddIp'
+import SearchIpAddress from './pages/UserIpAddress/SearchIp/SearchIp'
+import DisplayIp from './pages/UserIpAddress/DisplayIp/DisplayIp'
+import NavbarAccessDisplay from './pages/NavBarAccess/NavbarAccessDisplay'
 
 function App() {
 
@@ -46,148 +52,166 @@ function App() {
 
   return (
     <>
-    <div className="h-screen flex flex-col">
+      <div className="h-screen flex flex-col">
 
-     {["/login", "/add"].includes(location.pathname) ? null :  <Navbar />}
-   
+        {["/login", "/add"].includes(location.pathname) ? null : <Navbar />}
 
-   <div className="flex-1 mt-20 overflow-y-auto">
-      <Routes>
 
-      {/* Un Protected Routes */}
-      <Route path='/login' Component={LoginPage} />
-      <Route path="/reset-password/:userid_encode/:verify_token/" Component={ResetPassword} />
-      {/* <Route path='' Component={ProtectedRoutes}> */}
-          <Route path='' Component={AddCustomer} />
-        {/* </Route> */}
+        <div className="flex-1 mt-20 overflow-y-auto">
+          <Routes>
 
-      <Route path='' Component={ProtectedRoutes}>
-        <Route path='/register' Component={Register}/>
-      </ Route >
+            {/* Un Protected Routes */}
+            <Route path='/login' Component={LoginPage} />
+            <Route path="/reset-password/:userid_encode/:verify_token/" Component={ResetPassword} />
+            {/* <Route path='' Component={ProtectedRoutes}> */}
+            <Route path='' Component={AddCustomer} />
+            {/* </Route> */}
 
-      <Route path='' Component={ProtectedRoutes}>
-        <Route path='/manage-user' Component={DisplayUser}/>
-      </Route >
-      
-      <Route path='' Component={ProtectedRoutes}>
-        <Route path='/search-invoice' Component={SearchInvoice}/>
-      </Route >
-      <Route path='' Component={ProtectedRoutes}>
-        <Route path='/search-dispute' Component={SearchDispute}/>
-      </Route >
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/register' Component={Register} />
+            </ Route >
 
-        {/* Protected Routes  */}
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/addrate' Component={RateManagmentForm} />
-        </Route>
-      
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/add-invoice' Component={AddInvoice} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/add-dispute' Component={AddDispute} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/statement-of-amount' Component={StatementOfAmountComp} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/add-payment' Component={AddPayment} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/search-payment' Component={SearchPayment} />
-        </Route>
-      
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/display-invoice' Component={InvoiceDisplay} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/display-dispute' Component={DisputeDisplay} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/display-payment' Component={DisplayPayment} />
-        </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/manage-user' Component={DisplayUser} />
+            </Route >
 
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/emailsender' Component={EmailSender} />
-        </Route>
-        
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/send-rate-email' Component={RateEmail} />
-        </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-invoice' Component={SearchInvoice} />
+            </Route >
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-dispute' Component={SearchDispute} />
+            </Route >
 
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/addcustomer' Component={AddCustomer} />
-        </Route>
-       
-        
-       
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/showcustomer' Component={DisplayCustomer} />
-        </Route>
+            {/* Protected Routes  */}
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/addrate' Component={RateManagmentForm} />
+            </Route>
 
-        {/* Route Management */}
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/addtoproute' Component={AddTopRoute} />
-        </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/add-invoice' Component={AddInvoice} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/add-dispute' Component={AddDispute} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/statement-of-amount' Component={StatementOfAmountComp} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/add-payment' Component={AddPayment} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-payment' Component={SearchPayment} />
+            </Route>
 
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/search-route' Component={SearchRoutePage} />
-        </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/display-invoice' Component={InvoiceDisplay} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/display-dispute' Component={DisputeDisplay} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/display-payment' Component={DisplayPayment} />
+            </Route>
 
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/route' Component={DisplayTopRoutes} />
-        </Route>
-      
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/route-update-delete' Component={RouteDeleteUpdate} />
-        </Route>
-      
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/email-schedule' Component={EmailRouteSchedule} />
-        </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/emailsender' Component={EmailSender} />
+            </Route>
 
-        {/* Rate Management */}
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/search-rate' Component={SearchRatePage} />
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/send-rate-email' Component={RateEmail} />
+            </Route>
 
-        </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/addcustomer' Component={AddCustomer} />
+            </Route>
 
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/updaterate' Component={UpdateRate} />
-        </Route>
 
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/rate' Component={DisplayRate} />
-        </Route>
 
-        {/* Vendor Rate Management */}
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/upload-vendor-rate' Component={VendorUploadRate} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/search-vendor-rate' Component={SearchVendorRate} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/search-vendor-rate-country' Component={SearchVendorRateByCountryCode} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/display-vendor-rate' Component={DisplayVendorRate} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/display-vendor-rate-by-country' Component={DisplayVendorByCountryCode} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/display-vendor-target-sheet' Component={DisplayVendorTargetSheet} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/search-vendor-target-sheet' Component={SearchVendorTargetSheet} />
-        </Route>
-        <Route path='' Component={ProtectedRoutes}>
-          <Route path='/add-vendor-rate' Component={AddVendorRate} />
-        </Route>
-      </Routes>
-      </div>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/showcustomer' Component={DisplayCustomer} />
+            </Route>
+
+            {/* Route Management */}
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/addtoproute' Component={AddTopRoute} />
+            </Route>
+
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-route' Component={SearchRoutePage} />
+            </Route>
+
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/route' Component={DisplayTopRoutes} />
+            </Route>
+
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/route-update-delete' Component={RouteDeleteUpdate} />
+            </Route>
+
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/email-schedule' Component={EmailRouteSchedule} />
+            </Route>
+
+            {/* Rate Management */}
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-rate' Component={SearchRatePage} />
+
+            </Route>
+
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/updaterate' Component={UpdateRate} />
+            </Route>
+
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/rate' Component={DisplayRate} />
+            </Route>
+
+            {/* Vendor Rate Management */}
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/upload-vendor-rate' Component={VendorUploadRate} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-vendor-rate' Component={SearchVendorRate} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-vendor-rate-country' Component={SearchVendorRateByCountryCode} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/display-vendor-rate' Component={DisplayVendorRate} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/display-vendor-rate-by-country' Component={DisplayVendorByCountryCode} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/display-vendor-target-sheet' Component={DisplayVendorTargetSheet} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-vendor-target-sheet' Component={SearchVendorTargetSheet} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-vendor-target-sheet-by-country_code' Component={SearchVendorTargetSheetByCountryCode} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/add-vendor-rate' Component={AddVendorRate} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/transfer-customer' Component={TransferCustomer} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/add-customer-ip' Component={AddUserIpAddress} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/search-ip' Component={SearchIpAddress} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/display-ipadresses' Component={DisplayIp} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/navbar-access/:id' Component={NavbarAccessDisplay} />
+            </Route>
+          </Routes>
         </div>
+      </div>
     </>
   )
 }

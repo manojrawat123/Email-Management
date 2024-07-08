@@ -31,7 +31,7 @@ const addDisputeArr = [
                 label : "Vendor"
             }
         ],
-        'placeholder': 'Invoice Type',
+        'placeholder': 'Dispute Type',
         'icon' : <Factory className={iconCss}/>
     },
     {

@@ -33,16 +33,17 @@ const NavMenu = () => {
     if (!session){
         return null;
     }
-console.log(session);
-    const updatedNavBarArr = navBarArr.filter((element) => {        
-        if (!session.is_company && element.label === "User Management") {
-            return false; 
-        }
-        return true; 
-    });
+
+    // const updatedNavBarArr = navBarArr.filter((element) => {        
+    //     if (!session.is_company && element.label === "User Management") {
+    //         return false; 
+    //     }
+    //     return true; 
+    // });
 
     return (
         <>
+        {console.log(session)}
             <nav className={`flex items-center justify-between flex-wrap bg-white py-4  shadow-md border-t-2 border-green-700  top-0 w-full ${!mobMenuVis ? 'fixed' : ''} ${navbarId != 0 ? 'z-10' : ''}`}>
                 <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
                     <div className="block lg:hidden">
@@ -78,7 +79,7 @@ console.log(session);
                         </button>
                     </div>
                     <div className="text-md font-bold text-gray-500 md:flex md:text-center">
-                        {updatedNavBarArr?.map((element, index) => {
+                        {session.navbar?.map((element, index) => {
                             return (
                                 <>
                                     <div

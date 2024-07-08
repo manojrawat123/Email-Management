@@ -4,7 +4,7 @@ import SearchPage from '../../../CommonComponent/SearchPage/SearchPage';
 import { DataContext } from '../../../context'
 import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 
-const SearchVendorTargetSheet = () => {
+const SearchVendorTargetSheetByCountryCode = () => {
 
     const {
         searchPageOptionGetFunc,
@@ -12,36 +12,37 @@ const SearchVendorTargetSheet = () => {
     } = useContext(DataContext);
 
     useEffect(() => {
-        searchPageOptionGetFunc("all_country");
+        searchPageOptionGetFunc("country_code");
     }, []);
 
 
     const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700 left-1 text-gray-700`;
     if (!searchPageData) {
-        console.log(searchPageData);
         return <Loading />
     }
+
+    console.log(searchPageData);
 
 
     const search_invoice_arr = [
         {
-            type: "option",
-            name: "country_name",
-            placeholder: "Please Select Country",
+            type: "apioption",
+            name: "country_code",
+            placeholder: "Please Select Country Code",
             label: "Select Country",
             icon: <DateRange className={iconCss} />,
-            option: searchPageData?.country?.map((element, index) => {
+            option: searchPageData.country_code?.map((el)=>{
                 return {
-                    label: ` ${element}`,
-                    value: element
-                };
+                    value : el,
+                    label : el
+                }
             })
         }
     ];
 
     return (
-        <SearchPage title={"Search Vendor Target Rate Sheet"} search_page_arr={search_invoice_arr} route_page={"display-vendor-target-sheet"} country_code_pg={true} />
+        <SearchPage title={"Search Vendor Target Rate Sheet By Country Code"} search_page_arr={search_invoice_arr} route_page={"display-vendor-target-sheet"} country_code_pg={true} />
     )
 }
 
-export default SearchVendorTargetSheet;
+export default SearchVendorTargetSheetByCountryCode;

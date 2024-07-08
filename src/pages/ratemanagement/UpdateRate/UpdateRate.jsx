@@ -29,7 +29,6 @@ const UpdateRate = () => {
 
     return (
         <section className="gradient-form h-[80vh] bg-neutral-200  dark:bg-neutral-700">
-            {console.log(ratePageObj)}
             <ToastContainer />
             <div className="p-10">
                 <div className="flex flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200 md:w-[55%] mx-auto">
@@ -41,7 +40,7 @@ const UpdateRate = () => {
                                     {/* Logo */}
                                     <div className="text-center">
                                         <h4 className="text-2xl font-bold text-gray-600 underline">
-                                            Rate Management System
+                                            Rate Update Form
                                         </h4>
                                     </div>
                                     <Formik

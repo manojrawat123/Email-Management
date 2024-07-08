@@ -32,7 +32,7 @@ const SearchPage = ({ title, search_page_arr, route_page, country_code_pg }) => 
         )}`);
     }
 
-
+    console.log(search_page_arr);
 
     return (
         <section className="gradient-form h-[100vh] bg-neutral-200 dark:bg-neutral-700">
@@ -66,37 +66,11 @@ const SearchPage = ({ title, search_page_arr, route_page, country_code_pg }) => 
                                                                     ["option", "apioption"].includes(element.type) ?
                                                                         <Select
                                                                             options={element.name == "customer_rate_id" ?
-                                                                                element?.option?.filter((rate_el, index) => rate_el.customer_id == values["customer_id"]) :element.type == "apioption" ? countryCode : element.name == "country_code" ? country :  element?.option}
+                                                                                element?.option?.filter((rate_el, index) => rate_el.customer_id == values["customer_id"]) : element.type == "apioption" ? element.option : element.name == "country_code" ? country : element?.option}
                                                                             isSearchable={true}
                                                                             isClearable={true}
                                                                             onChange={(selectedOptions) => {
                                                                                 setFieldValue(element.name, selectedOptions.value);
-                                                                                if (country_code_pg && element.name == "country_name") {
-                                                                                    setIsLoading(true);
-                                                                                    const token = Cookies.get("token");
-                                                                                    axios.get(`${API_BASE_URL}/searchpage/`, {
-                                                                                        headers: {
-                                                                                            Authorization: `Bearer ${token}`
-                                                                                        },
-                                                                                        params: {
-                                                                                            page: "country_code",
-                                                                                            country: selectedOptions.value
-                                                                                        }
-                                                                                    }).then((res) => {
-                                                                                        const opt_val = res.data.country_code.map((element) => {
-                                                                                            return {
-                                                                                                value: element,
-                                                                                                label: element
-                                                                                            }
-                                                                                        })
-                                                                                        setCountryCode(opt_val);
-                                                                                        console.log(opt_val);
-                                                                                    }).catch((err) => {
-                                                                                        console.log(err);
-                                                                                    }).finally(() => {
-                                                                                        setIsLoading(false);
-                                                                                    });
-                                                                                }
 
                                                                                 if (element.name == "customer_rate_id") {
                                                                                     setIsLoading(true);

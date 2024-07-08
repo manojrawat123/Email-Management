@@ -62,7 +62,7 @@ const TabelSupport = ({ row_data, topTableHeading, EditModal, url_route, getFunc
                 {element.name == "invoice_amount_out" ?
                   <NavLink to={`/display-invoice/?customer_id=${row_data['id']}&invoice_type=${"OUT"}`} className="text-blue-700"><OpenInBrowser /></NavLink> : null}
 
-                {row_data[element.name]} </td> : null}</>
+                {url_route == "myuser" && element.name == "user_name" ? <NavLink className={'text-blue-600 underline'} to={`/navbar-access/${row_data['id']}`} > {row_data[element.name]}</NavLink> : row_data[element.name]} </td> : null}</>
         })}
       </tr>
     </>

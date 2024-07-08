@@ -49,6 +49,7 @@ const RouteDeleteUpdate = () => {
                                                     Authorization : `Bearer ${token}`
                                                 } 
                                             }).then((value)=>{
+                                                setRouteId("");
                                                 toast.success("Route Updated Successfully!")
                                             }).catch((err)=>{
                                                 handleErrorsFunc(err);
@@ -66,6 +67,7 @@ const RouteDeleteUpdate = () => {
                                                     <select name="" id=""
                                                         placeholder='Top Route Name'
                                                         required
+                                                        value={routeId}
                                                         className={`pl-9 w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 `}
                                                         onChange={(e)=>{
                                                             setRouteId(e.target.value);

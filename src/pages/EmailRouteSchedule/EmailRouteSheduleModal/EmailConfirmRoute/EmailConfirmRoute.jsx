@@ -60,7 +60,7 @@ const RouteEmailScheduleConfirm = ({ setIsModalOpen, data, resetFunction }) => {
 
     return (
         <div>
-            {showConfirmEmail ? <EmailLastConfirm resetFunction={resetFunction} setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} route={"emailshedule"} /> : null}
+            {showConfirmEmail ? <EmailLastConfirm resetFunction={resetFunction} setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} route={"emailshedule"} success_message={"Email Schedule Successfully!"}/> : null}
             <div className="w-[100%]">
                 <div className="sm:w-[80%] w-[90%] mx-auto bg-white rounded-lg shadow-2xl border border-t-0 border-solid border-gray-300">
                     <h2 className="font-bold text-3xl  px-6  text-gray-800 text-center">

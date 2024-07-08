@@ -16,6 +16,7 @@ const SearchRatePage = () => {
 
 
     const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700 left-1 text-gray-700`;
+    
     if (!searchPageData) {
         return <Loading />
     }
