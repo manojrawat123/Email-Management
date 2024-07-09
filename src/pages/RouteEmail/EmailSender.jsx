@@ -83,7 +83,7 @@ const EmailSenderForm = () => {
                   <div className="md:mx-6 md:p-12">
                     <div className="text-center">
                       <h4 className="mb-12 mt-1 pb-1 text-xl font-bold">
-                        Send Top Route Email
+                        Send Top Route
                       </h4>
                     </div>
                     <Formik
@@ -159,7 +159,7 @@ const EmailSenderForm = () => {
                               )}
                             </div>
                           ))}
-                          <BlackButton title={"Send Email"} button={button} />
+                          <BlackButton title={"Submit"} button={button} />
                         </Form>
                       )}
                     </Formik>
