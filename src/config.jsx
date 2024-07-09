@@ -1,6 +1,5 @@
 
 // Server Url 
-
 const API_BASE_URL = 'https://emailmanagement.pythonanywhere.com';
 // const API_BASE_URL = 'http://localhost:8000';
 const API_ROUTE_URL = 'http://localhost:5173';

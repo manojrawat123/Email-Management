@@ -67,7 +67,6 @@ const RateManagmentForm = () => {
                                                 }
                                                 else {
                                                     formData.append(key, value);
-                                                    console.log({ [key]: value })
                                                 }
                                             });
                                             const token = Cookies.get("token");

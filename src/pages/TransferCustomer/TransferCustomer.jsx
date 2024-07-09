@@ -24,14 +24,28 @@ const TransferCustomer = () => {
     const transfeRCustomerArray = [
         {
             'type': 'option',
+            'id': 'from_transfer_user',
+            'name': 'from_transfer_user',
+            'required': true,
+            'option': transferCustomerPageObj?.users?.map((element, index) => {
+                return {
+                    value: element?.id,
+                    label: `${element?.user_name}`
+                }
+            }),
+            'placeholder': 'User',
+            'icon': <Email className={iconCss} />
+        },
+        {
+            'type': 'option',
             'id': 'transfer_customer',
             'name': 'transfer_customer',
-            'required': true,
+            // 'required': true,
             'option': transferCustomerPageObj?.customer?.map((element, index) => {
                 return {
                     value: element?.id,
                     label: `${element?.customer_name} - ${element?.user_id?.user_name}`,
-                    userId : element?.user_id?.id
+                    userId: element?.user_id?.id
                 }
             }),
             'placeholder': 'Please Select Customer',

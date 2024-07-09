@@ -83,6 +83,9 @@ const generateValidationSchema = (inputFields) => {
     if (field.name == "experience") {
       validationObject[field.name] = Yup.number().max(5);
     }
+    if (field.name == "transfer_customer"){
+      validationObject["transfer_customer"] = Yup.array();
+    }
   });
 
   return Yup.object().shape(validationObject);

@@ -32,8 +32,8 @@ const SearchInvoice = () => {
                 }
                 return null; // Explicitly return null for non-active elements
             })
-            .filter(element => element !== null),
-            icon : <Person className={iconCss} />
+                .filter(element => element !== null),
+            icon: <Person className={iconCss} />
         },
         {
             type: "date",
@@ -52,7 +52,7 @@ const SearchInvoice = () => {
     ]
 
     return (
-        <SearchPage title={"Search Invoice"} search_page_arr={search_invoice_arr} route_page={"display-invoice"}/>
+        <SearchPage title={"Search Invoice"} search_page_arr={search_invoice_arr} route_page={"display-invoice"} />
     )
 }
 

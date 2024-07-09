@@ -15,7 +15,7 @@ const RateEmail = () => {
     }, [])
 
     if (!emailSenderPageObj) {
-      return <Loading />
+        return <Loading />
     }
 
     const updateRateEmailArr = rate_email_arr.map((element, index) => {

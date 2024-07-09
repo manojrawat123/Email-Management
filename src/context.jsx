@@ -360,6 +360,7 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider value={{
       customerObject,
+      setCustomerObjectList,
       getCustomerFunction,
       emailSenderPageFunc,
       emailSenderPageObj,

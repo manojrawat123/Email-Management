@@ -26,7 +26,6 @@ const ProtectedRoutes = () => {
       return <Loading />
     }
   }
-  console.log(session);
 
   let ex_url_routes = [];
   let start_url_routes = [];
