@@ -52,7 +52,7 @@ const rateEmailConfirmArr = [
         "required" : true,
         "name" : "template_body_before",
         "id" : "template_body_before",
-        "placeholder" : "Template Before Message",
+        "placeholder" : "Inital Message",
         "icon" : <ListIcon className={iconCss}/>
     },
     {
@@ -60,7 +60,7 @@ const rateEmailConfirmArr = [
         "required" : true,
         "name" : "template_body_after",
         "id" : "template_body_after",
-        "placeholder" : "Template After Message",
+        "placeholder" : "End Message",
         "icon" : <ListIcon className={iconCss}/>
     },
 ]

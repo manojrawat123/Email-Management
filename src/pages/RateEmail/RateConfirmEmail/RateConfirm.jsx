@@ -74,7 +74,7 @@ const RateEmailConfirmForm = ({ setIsModalOpen, data, isAllCountry, setIsAllCoun
                                     <div className={"w-full relative col-span-1 "}>
                                         {element.icon}
                                         {element.type != "select" && element.type != "option" ?
-                                            ['template_body_before', 'template_body_after'].includes(element.name) ?
+                                            ['template_body_before', 'template_body_after', 'signatures'].includes(element.name) ?
                                                 <textarea
                                                     onBlur={formik.handleBlur}
                                                     type={element.type}
