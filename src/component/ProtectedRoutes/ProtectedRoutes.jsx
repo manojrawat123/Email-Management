@@ -28,7 +28,7 @@ const ProtectedRoutes = () => {
   }
 
   let ex_url_routes = [];
-  let start_url_routes = [];
+  let start_url_routes = ['/change-password'];
   session?.navbar?.forEach((element, index) => {
     element?.option?.forEach((el) => {
       if (el.link == "/addcustomer"){

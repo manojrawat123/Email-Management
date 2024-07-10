@@ -52,7 +52,7 @@ const emailSenderFormArr = [
 const EmailSenderForm = () => {
 
   const { emailSenderPageFunc, emailSenderPageObj } = useContext(DataContext);
-  const [button, setButton] = useState();
+  const [loading, setLoading] = useState();
   const initialValues = genrateInitalValues(emailSenderFormArr);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState();
@@ -70,9 +70,9 @@ const EmailSenderForm = () => {
   }
 
   return (
-    <>
+    loading ? <Loading /> : <>
       <ToastContainer />
-      <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} resetFunction={resetFunction} fieldValueFunc={fieldValueFunc} />
+      <EmailSenderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} data={data} EmailConfirmForm={EmailConfirmForm} resetFunction={resetFunction} fieldValueFunc={fieldValueFunc} setLoading={setLoading} />
       <section className="gradient-form h-[100vh] bg-neutral-200 dark:bg-neutral-700 font-semibold text-gray-700">
         <div className=" h-full p-10">
           <div className="flex h-full flex-wrap items-center justify-center text-gray-700 dark:text-neutral-200 md:w-[55%] mx-auto">
@@ -159,7 +159,7 @@ const EmailSenderForm = () => {
                               )}
                             </div>
                           ))}
-                          <BlackButton title={"Submit"} button={button} />
+                          <BlackButton title={"Submit"} button={false} />
                         </Form>
                       )}
                     </Formik>

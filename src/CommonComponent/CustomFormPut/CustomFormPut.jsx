@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 import { DataContext } from '../../context';
 import Select from "react-select";
 
-const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
+const CustomFormsPut = ({ fieldsArr, route_name, title, pageFunc }) => {
     const validationSchema = generateValidationSchema(fieldsArr);
     const initialValues = genrateInitalValues(fieldsArr);
     const [button, setButton] = useState(false);
@@ -25,7 +25,7 @@ const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
     const handleSubmit = (values, { resetForm }) => {
         setButton(true);
         const token = Cookies.get("token");
-        axios.post(`${API_BASE_URL}/${route_name}/`, { ...values, fromDataTransferUser }, {
+        axios.put(`${API_BASE_URL}/${route_name}/`, { ...values, fromDataTransferUser }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -180,4 +180,4 @@ const CustomForms = ({ fieldsArr, route_name, title, pageFunc }) => {
     )
 }
 
-export default CustomForms
+export default CustomFormsPut

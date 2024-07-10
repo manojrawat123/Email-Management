@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { CloseOutlined } from "@mui/icons-material";
+import { CloseOutlined, Logout } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useEffect } from "react";
@@ -8,10 +8,37 @@ import navBarArr from "./NavArr";
 import NavBarIc from "../../images/icons/NavBarIc";
 import UpArrowIcon from "../../images/icons/UpArrow";
 import { DataContext } from "../../context";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+
+
+const LogoutButton = ({ logoutFunc, setNavbarId }) => {
+    const navigate = useNavigate();
+
+
+    const handleLogout = () => {
+        logoutFunc();
+        setNavbarId(0);
+        navigate('/login'); // Redirect to login or home page after logout
+    };
+
+    return (
+        <button
+            onClick={handleLogout}
+            className={`inline-block w-full rounded md:px-1 md:pb-1 md:pt-1 px-6 pb-2 pt-2.5 font-semibold uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]`}
+            type="button"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            style={{ background: "#FF0000" }}
+        >
+            <PowerSettingsNewIcon /> Logout
+        </button>
+    );
+};
 
 const NavMenu = () => {
     const [mobMenuVis, setMobileVis] = useState(false);
-    const { logoutFunc,isValidSessionFunc, session } = useContext(DataContext);
+    const { logoutFunc, isValidSessionFunc, session } = useContext(DataContext);
     const [navbarId, setNavbarId] = useState(0);
     const location = useLocation();
     const [open, setOpen] = useState(false);
@@ -26,14 +53,30 @@ const NavMenu = () => {
         }
     }, [mobMenuVis]);
 
-    useEffect(()=>{
+    useEffect(() => {
         isValidSessionFunc();
-    },[])
+    }, [])
 
-    if (!session){
+    if (!session) {
         return null;
     }
 
+    const updatedArr = [...session?.navbar, {
+        id: "custom1",
+        label: <AccountCircleIcon />,
+        option: [
+            {
+                id: "8a",
+                label: "Change Password",
+                link: '/change-password'
+            },
+            {
+                id: "c1",
+                label: <LogoutButton logoutFunc={logoutFunc} setNavbarId={setNavbarId} />,
+                link: '/login'
+            },
+        ]
+    }];
 
     return (
         <>
@@ -72,7 +115,7 @@ const NavMenu = () => {
                         </button>
                     </div>
                     <div className="text-md font-bold text-gray-500 md:flex md:text-center">
-                        {session.navbar?.map((element, index) => {
+                        {updatedArr?.map((element, index) => {
                             return (
                                 <>
                                     <div
@@ -159,21 +202,21 @@ const NavMenu = () => {
                                 </>
                             )
                         })}
+                        {Cookies.get("token") ? <div className="mx-6 md:hidden">
+                            <button
+                                onClick={() => {
+                                    logoutFunc();
+                                    setNavbarId(0);
+                                }}
+                                className={` mb-3 inline-block w-full rounded md:px-1 md:pb-1  md:pt:1 px-6 pb-2 pt-2.5 font-semibold mt-5 uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]`}
+                                type="button"
+                                data-te-ripple-init
+                                data-te-ripple-color="light"
+                                style={{
+                                    background: "#FF0000",
+                                }}> <PowerSettingsNewIcon />Logout</button>
+                        </div> : null}
                     </div>
-                    {Cookies.get("token") ? <div className="mx-6 md:hidden">
-                        <button
-                            onClick={() => {
-                                logoutFunc();
-                                setNavbarId(0);
-                            }}
-                            className={` mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 font-semibold mt-5 uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]`}
-                            type="button"
-                            data-te-ripple-init
-                            data-te-ripple-color="light"
-                            style={{
-                                background: "#FF0000",
-                            }}> <PowerSettingsNewIcon />Logout</button>
-                    </div> : null}
                 </div>
             </nav>
         </>

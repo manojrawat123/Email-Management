@@ -13,7 +13,7 @@ import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 import EmailLastConfirm from '../../../CommonComponent/DynamicForm/ConfirmEmailModal/EmailLastConfirm';
 
 
-const EmailConfirmForm = ({ setIsModalOpen, data, resetFunction, fieldValueFunc }) => {
+const EmailConfirmForm = ({ setIsModalOpen, data, resetFunction, fieldValueFunc, setLoading }) => {
 
     const initialValues = genrateInitalValues(emailConfirmArr);
     const [addButton, setAddButton] = useState(false);
@@ -25,7 +25,9 @@ const EmailConfirmForm = ({ setIsModalOpen, data, resetFunction, fieldValueFunc 
         initialValues,
         onSubmit: (values, { resetForm }) => {
             const formData = new FormData();
+            console.log(values);
             const customer = values["to"].map((element, index) => { return element.value });
+            console.log(customer);
             formData.append("sendTo", customer);
             const final_html_format = `<h4>${values['template_body_before']}</h4>
                  ${topRouteTable?.html_data}
@@ -83,7 +85,7 @@ const EmailConfirmForm = ({ setIsModalOpen, data, resetFunction, fieldValueFunc 
 
     return (
         <div>
-            {showConfirmEmail ? <EmailLastConfirm setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} resetFunction={resetFunction} fieldValueFunc={fieldValueFunc} /> : null}
+            {showConfirmEmail ? <EmailLastConfirm setShowConfirmEmail={setShowConfirmEmail} lastData={lastData} setIsModalOpen={setIsModalOpen} resetFunction={resetFunction} fieldValueFunc={fieldValueFunc} setLoading={setLoading}/> : null}
             <div className="w-[100%]">
                 <div className="sm:w-[80%] w-[90%] mx-auto bg-white rounded-lg shadow-2xl border border-t-0 border-solid border-gray-300">
                     <h2 className="font-bold text-3xl  px-6  text-gray-800 text-center">
@@ -122,13 +124,18 @@ const EmailConfirmForm = ({ setIsModalOpen, data, resetFunction, fieldValueFunc 
                                             /> :
                                             <Select
                                                 name='to'
-                                                options={emailSenderPageObj?.customer_data?.map((customer, idx) => ({
+                                                options={emailSenderPageObj?.customer_data?.filter(el=> defaultOptions.map((e2)=> e2.id).includes(el.id)).map((customer, idx) => ({
                                                     value: customer.id,
                                                     label: customer.customer_name
                                                 }))}
                                                 isSearchable={true}
                                                 isMulti
-                                                isDisabled
+                                                onChange={(selectedOptions)=>{
+                                                    if (element.name === "to") {
+                                                        formik.setFieldValue("to", selectedOptions);
+                                                      }
+                                                }}
+                                                // isDisabled
                                                 isClearable={true}
                                                 defaultValue={defaultOptions}
                                                 placeholder="Select a Customer"

@@ -26,7 +26,7 @@ const emailConfirmArr = [
         "required" : true,
         "name" : "template_body_before",
         "id" : "template_body_before",
-        "placeholder" : "Template Before Message",
+        "placeholder" : "Message Before Top Routes",
         "icon" : <ListIcon className={iconCss}/>
     },
     {
@@ -34,7 +34,7 @@ const emailConfirmArr = [
         "required" : true,
         "name" : "template_body_after",
         "id" : "template_body_after",
-        "placeholder" : "Template After Message",
+        "placeholder" : "Message After Top Routes",
         "icon" : <ListIcon className={iconCss}/>
     },
     {

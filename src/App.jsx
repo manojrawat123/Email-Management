@@ -43,6 +43,7 @@ import AddUserIpAddress from './pages/UserIpAddress/AddIp/AddIp'
 import SearchIpAddress from './pages/UserIpAddress/SearchIp/SearchIp'
 import DisplayIp from './pages/UserIpAddress/DisplayIp/DisplayIp'
 import NavbarAccessDisplay from './pages/NavBarAccess/NavbarAccessDisplay'
+import ChangePassword from './pages/ChangePassword/ChangePassword'
 
 function App() {
 
@@ -205,6 +206,9 @@ function App() {
             </Route>
             <Route path='' Component={ProtectedRoutes}>
               <Route path='/display-ip' Component={DisplayIp} />
+            </Route>
+            <Route path='' Component={ProtectedRoutes}>
+              <Route path='/change-password' Component={ChangePassword} />
             </Route>
             <Route path='' Component={ProtectedRoutes}>
               <Route path='/navbar-access/:id' Component={NavbarAccessDisplay} />

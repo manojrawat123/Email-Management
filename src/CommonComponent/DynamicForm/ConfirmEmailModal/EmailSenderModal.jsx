@@ -2,8 +2,8 @@ import React from 'react'
 import { Close } from '@mui/icons-material';
 import Modal from 'react-modal';
 
-const EmailSenderModal = ({ isModalOpen, data, setIsModalOpen, EmailConfirmForm, isAllCountry, setIsAllCountry, form_array,fieldValueFunc, resetFunction }) => {
-    console.log(resetFunction)
+const EmailSenderModal = ({ isModalOpen, data, setIsModalOpen, EmailConfirmForm, isAllCountry, setIsAllCountry, form_array,fieldValueFunc, resetFunction, setLoading }) => {
+
     return (
         <Modal
             isOpen={
@@ -27,7 +27,7 @@ const EmailSenderModal = ({ isModalOpen, data, setIsModalOpen, EmailConfirmForm,
                 className="hover:bg-red-500 hover:text-white text-red p-4">
                 <Close />
             </div>
-            {<EmailConfirmForm  resetFunction={resetFunction} setIsModalOpen={setIsModalOpen} data={data} isAllCountry={isAllCountry} setIsAllCountry={setIsAllCountry} form_array={form_array} fieldValueFunc={fieldValueFunc}/>}
+            {<EmailConfirmForm  resetFunction={resetFunction} setIsModalOpen={setIsModalOpen} data={data} isAllCountry={isAllCountry} setIsAllCountry={setIsAllCountry} form_array={form_array} fieldValueFunc={fieldValueFunc} setLoading={setLoading}/>}
         </Modal>
     )
 }
