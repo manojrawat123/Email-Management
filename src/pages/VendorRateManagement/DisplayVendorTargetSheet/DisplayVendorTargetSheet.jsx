@@ -6,6 +6,7 @@ import CustomEditModal from '../../../CommonComponent/EditForms/EditModal';
 import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 import Select from "react-select";
 import displayVendorTargetSheetArr from './DisplayVendorTargetSheetArr';
+import BlackBtnTypeBtn from '../../../component/Buttons/BlackBtnTypeBtn';
 
 const DisplayVendorTargetSheet = () => {
     const { getVendorTagetSheetFunction, vendorTargetSheet } = useContext(DataContext);
@@ -15,7 +16,7 @@ const DisplayVendorTargetSheet = () => {
     const t_query = Object.fromEntries(new URLSearchParams(location.search).entries());
     const [query, setQuery] = useState(t_query);
     const [tempDisplayArr, setTempDisplayArr] = useState(displayVendorTargetSheetArr);
-
+    const [searchValue, setSearchValue] = useState();
     useEffect(() => {
         getVendorTagetSheetFunction(query);
     }, []);
@@ -58,12 +59,35 @@ const DisplayVendorTargetSheet = () => {
         return <Loading />;
     }
 
-    console.log(vendorTargetSheet);
-
     return (
         <div>
             <div className='w-full md:w-[50%] mx-auto'>
-                <Select
+                <div className='mt-4 '>
+
+                <input type="text"
+                placeholder='Search Country or Country Code'
+                onChange={(e)=>{
+                    setSearchValue(e.target.value);
+                }}
+                className={"w-full py-2 peer px-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 "}
+                />
+                <BlackBtnTypeBtn
+                title={"Search"}
+                func={() => {
+                    let url;
+                    if (!isNaN(parseFloat(searchValue))) {
+                        url = new URLSearchParams({ "country_code": searchValue });
+                    }
+                    else {
+                        url = new URLSearchParams({ "country_name": searchValue });
+                    }
+                    getVendorTagetSheetFunction(url);
+                    setQuery(url);
+                    navigate(`/display-vendor-target-sheet/?${url}`);
+                }}>
+                </BlackBtnTypeBtn>
+                        </div>
+                {/* <Select
                     options={vendorTargetSheet.country_list ? vendorTargetSheet.country_list.map((el) => {
                         return {
                             value: el,
@@ -92,7 +116,7 @@ const DisplayVendorTargetSheet = () => {
                     }}
                     placeholder={"Search By Country or Country Code"}
                     required
-                />
+                /> */}
             </div>
             <CustomTabel
                 getFunc={getVendorTagetSheetFunction}

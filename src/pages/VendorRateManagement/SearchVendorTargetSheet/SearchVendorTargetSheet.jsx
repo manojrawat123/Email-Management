@@ -1,41 +1,42 @@
 import React, { useContext, useEffect } from 'react'
-import { DateRange, Person } from '@mui/icons-material';
+import { Code, DateRange, Person } from '@mui/icons-material';
 import SearchPage from '../../../CommonComponent/SearchPage/SearchPage';
 import { DataContext } from '../../../context'
 import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 
 const SearchVendorTargetSheet = () => {
 
-    const {
-        searchPageOptionGetFunc,
-        searchPageData
-    } = useContext(DataContext);
+    // const {
+    //     searchPageOptionGetFunc,
+    //     searchPageData
+    // } = useContext(DataContext);
 
-    useEffect(() => {
-        searchPageOptionGetFunc("all_country");
-    }, []);
+    // useEffect(() => {
+    //     searchPageOptionGetFunc("all_country");
+    // }, []);
 
 
     const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700 left-1 text-gray-700`;
-    if (!searchPageData) {
-        console.log(searchPageData);
-        return <Loading />
-    }
+    
+    // if (!searchPageData) {
+    //     console.log(searchPageData);
+    //     return <Loading />
+    // }
 
 
     const search_invoice_arr = [
         {
-            type: "option",
+            type: "text",
             name: "country_name",
             placeholder: "Please Select Country",
             label: "Select Country",
-            icon: <DateRange className={iconCss} />,
-            option: searchPageData?.country?.map((element, index) => {
-                return {
-                    label: ` ${element}`,
-                    value: element
-                };
-            })
+            icon: <Code className={iconCss} />,
+            // option: searchPageData?.country?.map((element, index) => {
+            //     return {
+            //         label: ` ${element}`,
+            //         value: element
+            //     };
+            // })
         }
     ];
 

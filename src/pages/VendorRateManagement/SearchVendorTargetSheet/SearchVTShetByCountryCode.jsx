@@ -1,42 +1,43 @@
 import React, { useContext, useEffect } from 'react'
-import { DateRange, Person } from '@mui/icons-material';
+import { Code, DateRange, Person } from '@mui/icons-material';
 import SearchPage from '../../../CommonComponent/SearchPage/SearchPage';
 import { DataContext } from '../../../context'
 import Loading from '../../../component/LoadingSpinner/LoadingSpinner';
 
 const SearchVendorTargetSheetByCountryCode = () => {
 
-    const {
-        searchPageOptionGetFunc,
-        searchPageData
-    } = useContext(DataContext);
+    // const {
+    //     searchPageOptionGetFunc,
+    //     searchPageData
+    // } = useContext(DataContext);
 
-    useEffect(() => {
-        searchPageOptionGetFunc("country_code");
-    }, []);
+    // useEffect(() => {
+    //     searchPageOptionGetFunc("country_code");
+    // }, []);
 
 
     const iconCss = `absolute top-2 border-r border-black peer-focus:text-violet-700 left-1 text-gray-700`;
-    if (!searchPageData) {
-        return <Loading />
-    }
+    
+    // if (!searchPageData) {
+    //     return <Loading />
+    // }
 
-    console.log(searchPageData);
+    // console.log(searchPageData);
 
 
     const search_invoice_arr = [
         {
-            type: "apioption",
+            type: "text",
             name: "country_code",
             placeholder: "Please Select Country Code",
             label: "Select Country",
-            icon: <DateRange className={iconCss} />,
-            option: searchPageData.country_code?.map((el)=>{
-                return {
-                    value : el,
-                    label : el
-                }
-            })
+            icon: <Code className={iconCss} />,
+            // option: searchPageData.country_code?.map((el)=>{
+            //     return {
+            //         value : el,
+            //         label : el
+            //     }
+            // })
         }
     ];
 
