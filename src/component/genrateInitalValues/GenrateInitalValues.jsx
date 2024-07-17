@@ -11,4 +11,4 @@ const genrateInitalValues = (inputArr)=>{
     return initalValues;
 }
 
-export default genrateInitalValues; 
+export default genrateInitalValues;

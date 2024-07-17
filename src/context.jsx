@@ -298,7 +298,9 @@ export const DataProvider = ({ children }) => {
   
   const getVendorTagetSheetFunction = (query) => {
     if (!query) return;
-    setVendorTargetSheet();
+    if (!query.page_no){
+      setVendorTargetSheet();
+    }
     axios.get(`${API_BASE_URL}/vendortargetsheet/`, {
 
       params: query,
